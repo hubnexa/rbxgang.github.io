@@ -3,6 +3,16 @@ const axios = require('axios');
 const cors = require('cors');
 const app = express();
 
+const path = require('path');
+
+// Esto le dice a Express que sirva todos los archivos de tu carpeta actual
+app.use(express.static(path.join(__dirname, '/')));
+
+// Esto asegura que al entrar a la raíz se cargue el index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // 1. CORRECCIÓN DE CORS: Permitir tu dominio real y local
 const allowedOrigins = ['http://127.0.0.1:5500', 'https://rbxgang.xyz', 'https://rbxgang-web.onrender.com'];
 app.use(cors({
