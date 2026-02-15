@@ -1,0 +1,15 @@
+{
+  "name": "rbxgang-web",
+  "version": "1.0.0",
+  "description": "Servidor para rbxgang.xyz",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}
