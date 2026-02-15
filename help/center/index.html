@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RBXGang - Help Center</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .help-hero {
+            text-align: center;
+            padding: 140px 20px 80px;
+            background: radial-gradient(circle at top, rgba(139, 92, 246, 0.1) 0%, transparent 60%);
+        }
+
+        .search-wrapper {
+            max-width: 600px;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 18px 25px;
+            background: #161625;
+            border: 1px solid #2a2a3d;
+            border-radius: 15px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+        }
+
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 80px;
+        }
+
+        .help-category-card {
+            background: #161625;
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .help-category-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            background: #1c1c2e;
+        }
+
+        .cat-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+        }
+
+        .cat-links {
+            margin-top: 20px;
+            list-style: none;
+            text-align: left;
+            padding: 0;
+        }
+
+        .cat-links li {
+            margin-bottom: 12px;
+        }
+
+        .cat-links a {
+            color: #a0a0b8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .cat-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .support-cta {
+            background: linear-gradient(90deg, #1a1a2e 0%, #251a3a 100%);
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+<nav class="topbar">
+    <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+        <li><a href="/events">Eventos</a></li>
+        <li><a href="/help/us">Nosotros</a></li>
+    </ul>
+    
+    <div class="auth-container">
+    <button id="auth-btn" class="btn-login"></button>
+    
+    <div id="auth-dropdown" class="dropdown-content">
+        <a href="/dashboard"><i class="icon-dashboard"></i> Panel de Control</a>
+        <a href="/profile"><i class="icon-user"></i> Mi Perfil</a>
+        <hr>
+        <a href="#" onclick="logout()" class="logout-link">Cerrar Sesión</a>
+    </div>
+</div>
+</nav>
+
+<header class="help-hero">
+    <h1 class="section-title">¿Cómo podemos <span class="brand-accent">ayudarte?</span></h1>
+    <div class="search-wrapper">
+        <input type="text" class="search-input" placeholder="Busca problemas con retiros, tareas, seguridad...">
+    </div>
+</header>
+
+<main class="container">
+    <div class="help-grid">
+        <div class="help-category-card">
+            <div class="cat-icon" id="icon-wallet"></div>
+            <h3>Pagos y Retiros</h3>
+            <p class="text-dim">Todo sobre Gamepasses, grupos y tiempos de espera.</p>
+            <ul class="cat-links">
+                <li><a href="#">• ¿Por qué mis Robux están pendientes?</a></li>
+                <li><a href="#">• Mi Gamepass no ha sido comprado</a></li>
+                <li><a href="#">• Mínimos de retiro por método</a></li>
+            </ul>
+        </div>
+
+        <div class="help-category-card">
+            <div class="cat-icon" id="icon-shield"></div>
+            <h3>Cuenta y Seguridad</h3>
+            <p class="text-dim">Gestiona tu perfil y protege tus datos.</p>
+            <ul class="cat-links">
+                <li><a href="#">• Cómo vincular mi Discord</a></li>
+                <li><a href="#">• ¿Es seguro dar mi usuario de Roblox?</a></li>
+                <li><a href="#">• Cambiar configuración de privacidad</a></li>
+            </ul>
+        </div>
+
+        <div class="help-category-card">
+            <div class="cat-icon" id="icon-star"></div>
+            <h3>Tareas y Quests</h3>
+            <p class="text-dim">Cómo completar ofertas correctamente.</p>
+            <ul class="cat-links">
+                <li><a href="#">• Mi tarea no se marcó como completada</a></li>
+                <li><a href="#">• Requisitos de las Daily Quests</a></li>
+                <li><a href="#">• Límites diarios de puntos</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="support-cta">
+        <h2>¿No encontraste lo que buscabas?</h2>
+        <p class="text-dim" style="margin-bottom: 25px;">Nuestro equipo de soporte humano está disponible para casos complejos.</p>
+        <a href="/help/contact" class="btn-login large" style="text-decoration: none; display: inline-block;">HABLAR CON SOPORTE</a>
+    </section>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col brand-col">
+            <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+            <p>La plataforma más segura y rápida para potenciar tu experiencia en Roblox. Únete a miles de usuarios y empieza a ganar hoy.</p>
+            <div class="social-links">
+                <a href="/Social/" class="social-icon">Discord</a>
+                <a href="/Social" class="social-icon">TikTok</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Plataforma</h4>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+                <li><a href="/Trust/">Por qué elegirnos</a></li>
+                <li><a href="/Events">Eventos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="/legal/Terms-of-Service">Términos de Servicio</a></li>
+                <li><a href="/legal/Privacy-Policy">Política de Privacidad</a></li>
+                <li><a href="/help/center">Centro de Ayuda</a></li>
+                <li><a href="/help/contact">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>&copy; 2026 RBXGang. Todos los derechos reservados.</p>
+            <p class="disclaimer">Este sitio no está afiliado, patrocinado ni respaldado por Roblox Corporation.</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module">
+    // Iconos por código
+    document.getElementById('icon-wallet').innerHTML = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>`;
+    document.getElementById('icon-shield').innerHTML = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`;
+    document.getElementById('icon-star').innerHTML = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
+</script>
+
+<script type="module" src="/js/script.js"></script>
+
+</body>
+</html>

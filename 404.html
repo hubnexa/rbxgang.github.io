@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBXGang - 404</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">
+    <style>
+        :root {
+            --bg-color: #0f1016;
+            --discord-blurple: #5865F2;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --accent: #ff5c5c;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+            z-index: 1;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            margin: 0;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--discord-blurple), #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Efecto de glitch sutil */
+        .error-code::before {
+            content: "404";
+            position: absolute;
+            left: -2px;
+            text-shadow: 2px 0 var(--accent);
+            top: 0;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: noise-1 3s infinite linear alternate-reverse;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin: 20px 0 10px;
+            letter-spacing: 1px;
+        }
+
+        p {
+            color: var(--text-dim);
+            max-width: 400px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .btn-home {
+            background: var(--discord-blurple);
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 12px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-home:hover {
+            background: #4752c4;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
+        }
+
+        /* Fondo decorativo */
+        .bg-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--discord-blurple);
+            filter: blur(150px);
+            opacity: 0.15;
+            border-radius: 50%;
+            z-index: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes noise-1 {
+            0% { clip: rect(20px, 9999px, 40px, 0); }
+            20% { clip: rect(80px, 9999px, 10px, 0); }
+            40% { clip: rect(40px, 9999px, 60px, 0); }
+            60% { clip: rect(10px, 9999px, 80px, 0); }
+            80% { clip: rect(60px, 9999px, 20px, 0); }
+            100% { clip: rect(30px, 9999px, 50px, 0); }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="bg-glow"></div>
+
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1>PÁGINA NO ENCONTRADA</h1>
+        <p>Parece que te has perdido en el servidor. La página que buscas no existe o ha sido movida.</p>
+        
+        <a href="/" class="btn-home">
+            <svg viewBox="0 0 24 24" width="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            Volver al inicio
+        </a>
+    </div>
+
+
+    <script>
+        // Si el usuario está logueado, podríamos redirigirlo al dashboard en vez de al home
+        const user = localStorage.getItem('rbx_user');
+        if (user) {
+            const btn = document.querySelector('.btn-home');
+            btn.setAttribute('href', '/');
+            btn.innerHTML = btn.innerHTML.replace('Volver al inicio', 'Ir al Inicio');
+        }
+    </script>
+
+    
+</body>
+</html>

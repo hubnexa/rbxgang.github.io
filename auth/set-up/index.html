@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>RBXGang - Setup</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">
+    <style>
+        :root {
+            --bg-color: #0f1016;
+            --card-bg: #161821;
+            --discord-blurple: #5865F2;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --input-bg: #0c0d12;
+            --border: rgba(255, 255, 255, 0.1);
+            --success: #43b581;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .setup-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 440px;
+            padding: 30px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Perfil de Discord */
+        .discord-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(88, 101, 242, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(88, 101, 242, 0.2);
+        }
+
+        #discord-avatar-img { width: 52px; height: 52px; border-radius: 50%; background: #2f3136; }
+        .discord-info h3 { margin: 0; font-size: 1.1rem; letter-spacing: 0.5px; }
+        .btn-logout { background: none; border: none; color: #ff5c5c; cursor: pointer; font-size: 0.8rem; padding: 0; margin-top: 4px; font-weight: 600; }
+
+        /* Buscador de Roblox */
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 8px; font-weight: 700; text-transform: uppercase; }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            background: var(--input-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: white;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border 0.2s;
+        }
+
+        input:focus { outline: none; border-color: var(--discord-blurple); }
+
+        .roblox-preview {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            border: 1px dashed var(--border);
+            display: none;
+        }
+
+        #roblox-avatar-preview { width: 48px; height: 48px; border-radius: 8px; background: #000; }
+
+        /* Seguridad */
+        .security-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .security-info b { color: var(--text-main); font-family: monospace; }
+
+        /* Checkboxes Corregidos */
+        .legal-section { margin-bottom: 25px; }
+        .custom-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            text-align: left;
+        }
+
+        .custom-checkbox input { width: 18px; height: 18px; margin: 0; cursor: pointer; accent-color: var(--discord-blurple); }
+
+        /* Botón y Modal */
+        .btn-save-final {
+            width: 100%;
+            padding: 16px;
+            background: var(--discord-blurple);
+            border: none;
+            border-radius: 14px;
+            color: white;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-save-final:hover:not(:disabled) { background: #4752c4; transform: translateY(-2px); }
+        .btn-save-final:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 24px;
+            text-align: center;
+            max-width: 320px;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="setup-card">
+        <div id="loading-state">
+            <p>Verificando sesión...</p>
+        </div>
+
+        <div id="setup-panel" style="display: none;">
+            <div class="discord-badge">
+                <img id="discord-avatar-img" src="" alt="">
+                <div class="discord-info">
+                    <h3 id="discord-username">Username</h3>
+                    <button class="btn-logout" onclick="location.href='/'">¿No eres tú? Salir</button>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Usuario de Roblox</label>
+                <input type="text" id="roblox-input" placeholder="Nombre de usuario real">
+                
+                <div id="roblox-preview" class="roblox-preview">
+                    <img id="roblox-avatar-preview" src="" alt="">
+                    <div>
+                        <div id="roblox-name-display" style="font-weight: 800; font-size: 0.9rem;">-</div>
+                        <div style="font-size: 0.7rem; color: var(--success);">Confirmado: Usuario encontrado</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Tu Edad</label>
+                <input type="number" id="age-input" min="13" placeholder="Ej: 18">
+            </div>
+
+            <div class="security-info">
+                <span>IP: <b id="display-ip">0.0.0.0</b></span>
+                <span>BID: <b id="display-bid">000000</b></span>
+            </div>
+
+            <div class="legal-section">
+    <label class="custom-checkbox">
+        <input type="checkbox" id="check-tos"> 
+        <span>He leído y acepto los <a href="/terms" style="color:var(--discord-blurple); text-decoration:none;">Términos de Servicio</a></span>
+    </label>
+    <label class="custom-checkbox">
+        <input type="checkbox" id="check-safety"> 
+        <span>Acepto la <a href="/privacy" style="color:var(--discord-blurple); text-decoration:none;">Política de Privacidad</a> y seguridad</span>
+    </label>
+</div>
+
+            <button id="btn-save" class="btn-save-final" disabled>Vincular Cuenta</button>
+        </div>
+    </div>
+
+    <div id="custom-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div style="font-size: 3rem; margin-bottom: 10px;">✅</div>
+            <h2 id="modal-title" style="margin: 0 0 10px 0;">¡Listo!</h2>
+            <p id="modal-text" style="color: var(--text-dim); margin-bottom: 25px;">Cuenta vinculada correctamente.</p>
+            <button onclick="closeModal()" class="btn-save-final">Entrar al sitio</button>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col brand-col">
+            <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+            <p>La plataforma más segura y rápida para potenciar tu experiencia en Roblox. Únete a miles de usuarios y empieza a ganar hoy.</p>
+            <div class="social-links">
+                <a href="/Social/" class="social-icon">Discord</a>
+                <a href="/Social" class="social-icon">TikTok</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Plataforma</h4>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+                <li><a href="/Trust/">Por qué elegirnos</a></li>
+                <li><a href="/Events">Eventos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="/legal/Terms-of-Service">Términos de Servicio</a></li>
+                <li><a href="/legal/Privacy-Policy">Política de Privacidad</a></li>
+                <li><a href="/help/center">Centro de Ayuda</a></li>
+                <li><a href="/help/contact">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>&copy; 2026 RBXGang. Todos los derechos reservados.</p>
+            <p class="disclaimer">Este sitio no está afiliado, patrocinado ni respaldado por Roblox Corporation.</p>
+        </div>
+    </div>
+</footer>
+
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAceW9Yh2jRfY3pCFawWCTzP4Hvngt1V8g",
+        authDomain: "rbxgang-86d30.firebaseapp.com",
+        projectId: "rbxgang-86d30",
+        storageBucket: "rbxgang-86d30.firebasestorage.app",
+        messagingSenderId: "35329039357",
+        appId: "1:35329039357:web:2430fb26473ef1e9fd1794"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let currentUser = null;
+    const bid = navigator.userAgent.replace(/\D+/g, '').substring(0, 10);
+    document.getElementById('display-bid').innerText = bid;
+
+    // --- BUSCADOR DE ROBLOX EN TIEMPO REAL ---
+    const robloxInput = document.getElementById('roblox-input');
+    const robloxPreview = document.getElementById('roblox-preview');
+    const robloxNameDisplay = document.getElementById('roblox-name-display');
+    const robloxImg = document.getElementById('roblox-avatar-preview');
+
+    robloxInput.addEventListener('input', async (e) => {
+        const username = e.target.value.trim();
+        if (username.length < 3) {
+            robloxPreview.style.display = 'none';
+            checkFormValidity();
+            return;
+        }
+
+        try {
+            // Buscamos los datos básicos y el ID del usuario
+            const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://www.roblox.com/search/users/results?keyword=${username}&maxRows=1`)}`);
+            const data = JSON.parse(await res.json());
+            
+            if (data.UserSearchResults && data.UserSearchResults.length > 0) {
+                const user = data.UserSearchResults[0];
+                robloxNameDisplay.innerText = user.Name;
+                // Obtenemos el headshot
+                robloxImg.src = `https://www.roblox.com/headshot-thumbnail/image?userId=${user.UserId}&width=150&height=150&format=png`;
+                robloxPreview.style.display = 'flex';
+            } else {
+                robloxPreview.style.display = 'none';
+            }
+        } catch (err) { console.error("Error roblox api:", err); }
+        checkFormValidity();
+    });
+
+    // --- VALIDACIÓN DE FORMULARIO ---
+    const checkFormValidity = () => {
+        const isTos = document.getElementById('check-tos').checked;
+        const isSafety = document.getElementById('check-safety').checked;
+        const age = document.getElementById('age-input').value;
+        const roblox = robloxInput.value.trim();
+        
+        document.getElementById('btn-save').disabled = !(isTos && isSafety && age >= 13 && roblox.length > 2);
+    };
+
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('change', checkFormValidity);
+        input.addEventListener('keyup', checkFormValidity);
+    });
+
+    // --- CARGA INICIAL DISCORD ---
+    document.addEventListener("DOMContentLoaded", async () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        
+        try {
+            const ipRes = await fetch('https://api.ipify.org?format=json');
+            const ipData = await ipRes.json();
+            document.getElementById('display-ip').innerText = ipData.ip;
+        } catch(e) { document.getElementById('display-ip').innerText = "Oculta"; }
+
+        if (!code) return;
+
+        try {
+            const response = await fetch('http://localhost:3000/api/auth/discord', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code })
+            });
+            const data = await response.json();
+
+            if (data.id) {
+                currentUser = data;
+                
+                // Verificar si ya existe
+                const userDoc = await getDoc(doc(db, "users", data.id));
+                if (userDoc.exists()) {
+                    localStorage.setItem('rbx_user', JSON.stringify(userDoc.data()));
+                    window.location.href = '/profile/dashboard';
+                    return;
+                }
+
+                document.getElementById('loading-state').style.display = 'none';
+                document.getElementById('setup-panel').style.display = 'block';
+                document.getElementById('discord-username').innerText = data.username;
+                document.getElementById('discord-avatar-img').src = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png`;
+            }
+        } catch (e) { 
+            document.getElementById('loading-state').innerHTML = "<p>Error de autenticación.</p>";
+        }
+    });
+
+    // --- GUARDADO FINAL ---
+    document.getElementById('btn-save').addEventListener('click', async () => {
+        const btn = document.getElementById('btn-save');
+        btn.innerText = "Sincronizando...";
+        btn.disabled = true;
+
+        try {
+            const finalData = {
+                discordId: currentUser.id,
+                discordName: currentUser.username,
+                avatarHash: currentUser.avatar, // <--- CLAVE PARA LA FOTO DE LA TOPBAR
+                robloxUser: robloxInput.value.trim(),
+                age: parseInt(document.getElementById('age-input').value),
+                ip: document.getElementById('display-ip').innerText,
+                browserId: bid,
+                verified: true,
+                createdAt: new Date()
+            };
+
+            await setDoc(doc(db, "users", currentUser.id), finalData);
+            localStorage.setItem('rbx_user', JSON.stringify(finalData));
+            
+            // Función para mostrar modal (debes tenerla definida o usar alert)
+            alert("¡Cuenta vinculada con éxito!");
+            window.location.href = '/profile/dashboard';
+
+        } catch (e) {
+            btn.innerText = "Reintentar";
+            btn.disabled = false;
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>    <title>RBXGang - Terms of Service</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6"></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .legal-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 50px;
+            padding: 160px 20px 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .legal-sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .legal-sidebar h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .legal-nav {
+            list-style: none;
+            border-left: 2px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .legal-nav li a {
+            display: block;
+            padding: 10px 20px;
+            color: #a0a0b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .legal-nav li a:hover {
+            color: var(--primary);
+            border-left: 2px solid var(--primary);
+            margin-left: -2px;
+        }
+
+        .legal-content {
+            background: #161625;
+            padding: 60px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            line-height: 1.8;
+            color: #a0a0b8;
+        }
+
+        .legal-content h1 { color: white; margin-bottom: 10px; }
+        .legal-content h2 { color: white; margin-top: 40px; margin-bottom: 20px; font-size: 1.5rem; }
+        .legal-content strong { color: white; }
+        
+        .last-update {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary);
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .legal-container { grid-template-columns: 1fr; padding-top: 120px; }
+            .legal-sidebar { display: none; }
+            .legal-content { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="topbar">
+    <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+        <li><a href="/events">Eventos</a></li>
+        <li><a href="/help/us">Nosotros</a></li>
+    </ul>
+    
+    <div class="auth-container">
+    <button id="auth-btn" class="btn-login"></button>
+    
+    <div id="auth-dropdown" class="dropdown-content">
+        <a href="/dashboard"><i class="icon-dashboard"></i> Panel de Control</a>
+        <a href="/profile"><i class="icon-user"></i> Mi Perfil</a>
+        <hr>
+        <a href="#" onclick="logout()" class="logout-link">Cerrar Sesión</a>
+    </div>
+</div>
+</nav>
+
+<main class="legal-container">
+    <aside class="legal-sidebar">
+        <h4>Navegación</h4>
+        <ul class="legal-nav">
+            <li><a href="#aceptacion">1. Aceptación</a></li>
+            <li><a href="#uso">2. Uso del Sitio</a></li>
+            <li><a href="#robux">3. Recompensas</a></li>
+            <li><a href="#cuentas">4. Seguridad</a></li>
+            <li><a href="#limitaciones">5. Limitaciones</a></li>
+        </ul>
+    </aside>
+
+    <article class="legal-content">
+        <span class="last-update">Última actualización: 15 de febrero, 2026</span>
+        <h1>Términos de Servicio</h1>
+        <p>Bienvenido a <strong>RBXGang</strong>. Al acceder a nuestro sitio web, usted acepta cumplir con los siguientes términos y condiciones. Por favor, léalos detenidamente.</p>
+
+        <h2 id="aceptacion">1. Aceptación de los Términos</h2>
+        <p>Al utilizar este sitio, usted declara que tiene al menos 13 años de edad (o la edad mínima legal en su país para participar en servicios en línea). Si no está de acuerdo con alguna parte de estos términos, debe dejar de utilizar el sitio inmediatamente.</p>
+
+        <h2 id="uso">2. Uso de la Plataforma</h2>
+        <p>RBXGang otorga una licencia limitada para acceder y hacer uso personal de este sitio. Está estrictamente prohibido:</p>
+        <ul>
+            <li>El uso de scripts, bots o software de automatización para completar ofertas.</li>
+            <li>Crear múltiples cuentas para abusar del sistema de referidos.</li>
+            <li>Utilizar VPNs o Proxies para falsear su ubicación geográfica.</li>
+        </ul>
+
+        <h2 id="robux">3. Recompensas y Pagos</h2>
+        <p>Las recompensas (puntos convertibles a Robux) se otorgan por la finalización exitosa de tareas verificadas por nuestros proveedores externos. <strong>RBXGang</strong> no se hace responsable si un proveedor decide no validar una oferta debido a un incumplimiento de sus propias reglas.</p>
+
+        <h2 id="cuentas">4. Seguridad de la Cuenta</h2>
+        <p>Usted es responsable de mantener la seguridad de su sesión. Nosotros <strong>NUNCA</strong> le pediremos su contraseña de Roblox. El acceso a RBXGang se realiza exclusivamente mediante métodos de autenticación seguros que no comprometen sus credenciales personales.</p>
+
+        <h2 id="limitaciones">5. Descargo de Responsabilidad</h2>
+        <p>RBXGang no está afiliado, asociado ni patrocinado por <strong>Roblox Corporation</strong>. El uso de nuestra plataforma es bajo su propio riesgo. No garantizamos que el servicio sea ininterrumpido o libre de errores en todo momento.</p>
+
+        <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center;">
+            <div id="legal-icon"></div>
+            <p style="font-size: 0.8rem;">¿Tienes dudas legales? Contáctanos en support@rbxgang.xyz</p>
+        </div>
+    </article>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col brand-col">
+            <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+            <p>La plataforma más segura y rápida para potenciar tu experiencia en Roblox. Únete a miles de usuarios y empieza a ganar hoy.</p>
+            <div class="social-links">
+                <a href="/Social/" class="social-icon">Discord</a>
+                <a href="/Social" class="social-icon">TikTok</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Plataforma</h4>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+                <li><a href="/Trust/">Por qué elegirnos</a></li>
+                <li><a href="/Events">Eventos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="/legal/Terms-of-Service">Términos de Servicio</a></li>
+                <li><a href="/legal/Privacy-Policy">Política de Privacidad</a></li>
+                <li><a href="/help/center">Centro de Ayuda</a></li>
+                <li><a href="/help/contact">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>&copy; 2026 RBXGang. Todos los derechos reservados.</p>
+            <p class="disclaimer">Este sitio no está afiliado, patrocinado ni respaldado por Roblox Corporation.</p>
+        </div>
+    </div>
+</footer>
+
+
+<script type="module">
+    document.getElementById('legal-icon').innerHTML = `
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" style="margin-bottom: 10px;">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <path d="M12 8v4"></path>
+            <path d="M12 16h.01"></path>
+        </svg>
+    `;
+</script>
+
+<script type="module" src="/js/script.js"></script>
+</body>
+</html>

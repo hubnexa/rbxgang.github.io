@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RBXGang - Social</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* --- ESTILOS SOCIALES CORREGIDOS --- */
+        .social-hero {
+            padding: 160px 20px 80px;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 0 auto 100px;
+            max-width: 1100px;
+            padding: 0 20px;
+            justify-content: center; /* Centra las tarjetas si hay pocas */
+        }
+
+        .social-card {
+            background: #161625;
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+        }
+
+        .social-card:hover {
+            transform: translateY(-12px);
+            background: #1c1c2e;
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .social-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-card:hover .social-icon-wrapper {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .social-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .social-card p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Empuja el botón hacia abajo para que todos estén alineados */
+        }
+
+        .social-stats {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn-discord { background: #5865F2; color: white; box-shadow: 0 10px 20px rgba(88, 101, 242, 0.2); }
+        .btn-tiktok { background: #fff; color: #000; box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1); }
+        .btn-twitter { background: #1DA1F2; color: white; box-shadow: 0 10px 20px rgba(29, 161, 242, 0.2); }
+
+        .btn-social:hover {
+            filter: brightness(1.1);
+            transform: scale(1.03);
+        }
+
+        .feed-placeholder {
+            max-width: 800px;
+            margin: 0 auto 120px;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 2px dashed rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            text-align: center;
+        }
+
+        /* --- RESPONSIVIDAD --- */
+        @media (max-width: 768px) {
+            .social-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="topbar">
+    <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+        <li><a href="/events">Eventos</a></li>
+        <li><a href="/help/us">Nosotros</a></li>
+    </ul>
+    
+    <div class="auth-container">
+    <button id="auth-btn" class="btn-login"></button>
+    
+    <div id="auth-dropdown" class="dropdown-content">
+        <a href="/dashboard"><i class="icon-dashboard"></i> Panel de Control</a>
+        <a href="/profile"><i class="icon-user"></i> Mi Perfil</a>
+        <hr>
+        <a href="#" onclick="logout()" class="logout-link">Cerrar Sesión</a>
+    </div>
+</div>
+</nav>
+
+
+<header class="social-hero">
+    <h1 class="section-title">Únete a la <span class="brand-accent">Familia</span></h1>
+    <p class="section-subtitle">Sorteos diarios, códigos promocionales y las últimas noticias de la Gang.</p>
+</header>
+
+<main class="container">
+    <div class="social-grid">
+        <div class="social-card">
+            <div class="social-icon-wrapper" id="icon-discord-big"></div>
+            <h3>Discord Oficial</h3>
+            <p class="text-dim">Chat en vivo, soporte 24/7 y comunidad para tradear y ganar.</p>
+            <div class="social-stats">discord.gg/Hh4wsvuUrT</div>
+            <a href="https://discord.gg/Hh4wsvuUrT" class="btn-social btn-discord">UNIRSE AL DISCORD</a>
+        </div>
+
+        <div class="social-card">
+            <div class="social-icon-wrapper" id="icon-tiktok-big"></div>
+            <h3>TikTok</h3>
+            <p class="text-dim">Tutoriales rápidos, pruebas de pago y trends de Roblox.</p>
+            <div class="social-stats">@rbxgang.xyz</div>
+            <a href="https://tiktok.com/@rbxgang.xyz" class="btn-social btn-tiktok">SEGUIR EN TIKTOK</a>
+        </div>
+
+    </div>
+
+</main>
+<footer class="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col brand-col">
+            <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+            <p>La plataforma más segura y rápida para potenciar tu experiencia en Roblox. Únete a miles de usuarios y empieza a ganar hoy.</p>
+            <div class="social-links">
+                <a href="/Social/" class="social-icon">Discord</a>
+                <a href="/Social" class="social-icon">TikTok</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Plataforma</h4>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+                <li><a href="/Trust/">Por qué elegirnos</a></li>
+                <li><a href="/Events">Eventos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="/legal/Terms-of-Service">Términos de Servicio</a></li>
+                <li><a href="/legal/Privacy-Policy">Política de Privacidad</a></li>
+                <li><a href="/help/center">Centro de Ayuda</a></li>
+                <li><a href="/help/contact">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>&copy; 2026 RBXGang. Todos los derechos reservados.</p>
+            <p class="disclaimer">Este sitio no está afiliado, patrocinado ni respaldado por Roblox Corporation.</p>
+        </div>
+    </div>
+</footer>
+
+
+<script type="module">
+    // Inyectar logos por código para evitar carga de archivos externos
+    const drawIcon = (id, svg) => document.getElementById(id).innerHTML = svg;
+
+    drawIcon('icon-discord-big', `<svg width="40" height="40" viewBox="0 0 24 24" fill="#5865F2"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 11.721 11.721 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.23 10.23 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.946-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"></path></svg>`);
+    
+    drawIcon('icon-tiktok-big', `<svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.06-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.59-1.01-.01 2.62.02 5.24-.02 7.86-.19 2.03-1.02 4.03-2.49 5.42-1.49 1.41-3.57 2.15-5.63 2.02-2.03-.13-3.99-1.19-5.24-2.81-1.26-1.63-1.72-3.77-1.28-5.73.4-1.8 1.51-3.41 3.05-4.38 1.57-.99 3.52-1.31 5.33-.87.01 1.4.01 2.79.01 4.19-.83-.26-1.75-.24-2.53.13-.85.39-1.45 1.15-1.63 2.05-.24.98.03 2.07.7 2.85.67.81 1.72 1.25 2.77 1.18 1.05-.05 2.02-.65 2.53-1.56.28-.51.39-1.11.38-1.69-.02-3.79-.01-7.58-.02-11.37z"></path></svg>`);
+    
+    drawIcon('icon-twitter-big', `<svg width="40" height="40" viewBox="0 0 24 24" fill="#1DA1F2"><path d="M23.953 4.57a10 10 0 0 1-2.825.775 4.958 4.958 0 0 0 2.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 0 0-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 0 0-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 0 1-2.228-.616v.06a4.923 4.923 0 0 0 3.946 4.84 4.996 4.996 0 0 1-2.212.085 4.936 4.936 0 0 0 4.604 3.417 9.867 9.867 0 0 1-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0 0 7.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0 0 24 4.59z"></path></svg>`);
+
+    drawIcon('icon-camera', `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#a0a0b8" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>`);
+</script>
+
+<script type="module" src="/js/script.js"></script>
+
+</body>
+</html>

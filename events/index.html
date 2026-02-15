@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RBXGang - Events</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .events-hero {
+            padding: 160px 20px 60px;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(245, 158, 11, 0.1) 0%, transparent 60%);
+        }
+
+        .active-event-card {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            background: linear-gradient(135deg, #1e1e30 0%, #161625 100%);
+            border-radius: 30px;
+            border: 2px solid var(--primary);
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .event-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(139, 92, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+        }
+
+        .event-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .reward-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid #10b981;
+            padding: 12px 25px;
+            border-radius: 15px;
+            color: #10b981;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+
+        .event-timer {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .timer-unit {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .timer-unit span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .timer-label {
+            font-size: 0.7rem;
+            color: #a0a0b8;
+            text-transform: uppercase;
+        }
+
+        .past-events {
+            margin-top: 80px;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .active-event-card { flex-direction: column; text-align: center; padding: 40px 20px; }
+            .event-timer { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="topbar">
+    <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+        <li><a href="/events">Eventos</a></li>
+        <li><a href="/help/us">Nosotros</a></li>
+    </ul>
+    
+    <div class="auth-container">
+    <button id="auth-btn" class="btn-login"></button>
+    
+    <div id="auth-dropdown" class="dropdown-content">
+        <a href="/dashboard"><i class="icon-dashboard"></i> Panel de Control</a>
+        <a href="/profile"><i class="icon-user"></i> Mi Perfil</a>
+        <hr>
+        <a href="#" onclick="logout()" class="logout-link">Cerrar Sesión</a>
+    </div>
+</div>
+</nav>
+<header class="events-hero">
+    <h1 class="section-title">Eventos <span class="brand-accent">Exclusivos</span></h1>
+    <p class="section-subtitle">Participa en desafíos temporales y multiplica tus ganancias.</p>
+</header>
+
+<main class="container">
+    <section class="active-event-card">
+        <div class="event-badge">Activo Ahora</div>
+        
+        <div class="event-visual" id="event-icon-main"></div>
+
+        <div class="event-info">
+            <h2>Gran Lanzamiento</h2>
+            <p>¡Celebramos la apertura oficial de <strong>RBXGang</strong>! Todos los usuarios que se unan y completen su perfil durante las primeras 24 horas recibirán un bono instantáneo.</p>
+            
+            <div class="reward-box">
+                <div id="icon-coin"></div>
+                +200 CRÉDITOS DE REGALO
+            </div>
+
+            <div class="event-timer">
+                <div class="timer-unit">
+                    <span id="hours">23</span>
+                    <div class="timer-label">Horas</div>
+                </div>
+                <div class="timer-unit">
+                    <span id="minutes">59</span>
+                    <div class="timer-label">Mins</div>
+                </div>
+                <div class="timer-unit">
+                    <span id="seconds">59</span>
+                    <div class="timer-label">Segs</div>
+                </div>
+            </div>
+
+            <button class="btn-primary" style="margin-top: 30px; width: 100%; height: 60px; font-size: 1.1rem;">
+                RECLAMAR MI RECOMPENSA
+            </button>
+        </div>
+    </section>
+
+   
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col brand-col">
+            <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+            <p>La plataforma más segura y rápida para potenciar tu experiencia en Roblox. Únete a miles de usuarios y empieza a ganar hoy.</p>
+            <div class="social-links">
+                <a href="/Social/" class="social-icon">Discord</a>
+                <a href="/Social" class="social-icon">TikTok</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Plataforma</h4>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+                <li><a href="/Trust/">Por qué elegirnos</a></li>
+                <li><a href="/Events">Eventos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="/legal/Terms-of-Service">Términos de Servicio</a></li>
+                <li><a href="/legal/Privacy-Policy">Política de Privacidad</a></li>
+                <li><a href="/help/center">Centro de Ayuda</a></li>
+                <li><a href="/help/contact">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>&copy; 2026 RBXGang. Todos los derechos reservados.</p>
+            <p class="disclaimer">Este sitio no está afiliado, patrocinado ni respaldado por Roblox Corporation.</p>
+        </div>
+    </div>
+</footer>
+
+
+<script type="module">
+    // Visual del evento
+    document.getElementById('event-icon-main').innerHTML = `
+        <svg width="180" height="180" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
+            <circle cx="12" cy="12" r="3" fill="#8b5cf6" fill-opacity="0.3"></circle>
+        </svg>
+    `;
+
+    document.getElementById('icon-coin').innerHTML = `
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="8"></circle>
+            <line x1="12" y1="8" x2="12" y2="16"></line>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+        </svg>
+    `;
+
+    // Script simple para el contador (simulado para el ejemplo)
+    function updateTimer() {
+        const now = new Date();
+        document.getElementById('seconds').innerText = 60 - now.getSeconds();
+    }
+    setInterval(updateTimer, 1000);
+</script>
+
+<script type="module" src="/js/script.js"></script>
+</body>
+</html>

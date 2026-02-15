@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBXGang - Us </title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .about-hero {
+            padding: 160px 20px 80px;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto 100px;
+            line-height: 1.8;
+            color: #a0a0b8;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .about-card {
+            background: #161625;
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.3s;
+        }
+
+        .about-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .about-card h3 {
+            color: white;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stack-section {
+            text-align: center;
+            margin-top: 100px;
+            padding: 60px;
+            background: rgba(139, 92, 246, 0.05);
+            border-radius: 30px;
+        }
+
+        .stack-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stack-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .mission-vision { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="topbar">
+    <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+        <li><a href="/events">Eventos</a></li>
+        <li><a href="/help/us">Nosotros</a></li>
+    </ul>
+    
+    <div class="auth-container">
+    <button id="auth-btn" class="btn-login"></button>
+    
+    <div id="auth-dropdown" class="dropdown-content">
+        <a href="/dashboard"><i class="icon-dashboard"></i> Panel de Control</a>
+        <a href="/profile"><i class="icon-user"></i> Mi Perfil</a>
+        <hr>
+        <a href="#" onclick="logout()" class="logout-link">Cerrar Sesión</a>
+    </div>
+</div>
+</nav>
+
+<header class="about-hero">
+    <h1 class="section-title">Más que una plataforma, una <span class="brand-accent">Comunidad</span></h1>
+    <p class="section-subtitle">Nacimos con el objetivo de democratizar el acceso a Robux de forma segura, legal y sin riesgos.</p>
+</header>
+
+<main class="container">
+    <section class="about-content">
+        <div class="about-card" style="margin-bottom: 40px;">
+            <p><strong>RBXGang</strong> comenzó en 2024 como un pequeño proyecto entre desarrolladores y fans de Roblox que estaban cansados de los sitios de estafas que ponían en riesgo las cuentas de los usuarios. Decidimos crear algo diferente: un sistema basado en la transparencia y la tecnología automatizada. Llevamos un aproximado de <strong>2 años</strong> planeando este proyecto.</p>
+        </div>
+
+        <div class="mission-vision">
+            <div class="about-card">
+                <h3><div id="icon-mission"></div> Nuestra Misión</h3>
+                <p>Proveer una infraestructura robusta donde cualquier usuario pueda ganar recompensas completando tareas simples, garantizando siempre la seguridad de su cuenta principal.</p>
+            </div>
+            <div class="about-card">
+                <h3><div id="icon-vision"></div> Nuestra Visión</h3>
+                <p>Convertirnos en el estándar de confianza para la comunidad hispana de Roblox, expandiendo nuestros servicios a nuevos métodos de integración y eventos exclusivos.</p>
+            </div>
+        </div>
+
+        <section class="stack-section">
+            <h2>Nuestra <span class="brand-accent">Tecnología</span></h2>
+            <p class="text-dim">Utilizamos herramientas de grado industrial para asegurar que el sitio sea rápido y tus datos estén protegidos.</p>
+            
+            <div class="stack-grid">
+                <div class="stack-item">
+                    <div id="stack-node"></div>
+                    <span>Backend Realtime</span>
+                </div>
+                <div class="stack-item">
+                    <div id="stack-shield"></div>
+                    <span>Cifrado SSL</span>
+                </div>
+                <div class="stack-item">
+                    <div id="stack-cloud"></div>
+                    <span>Cloud Hosting</span>
+                </div>
+            </div>
+        </section>
+    </section>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col brand-col">
+            <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+            <p>La plataforma más segura y rápida para potenciar tu experiencia en Roblox. Únete a miles de usuarios y empieza a ganar hoy.</p>
+            <div class="social-links">
+                <a href="/Social/" class="social-icon">Discord</a>
+                <a href="/Social" class="social-icon">TikTok</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Plataforma</h4>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+                <li><a href="/Trust/">Por qué elegirnos</a></li>
+                <li><a href="/Events">Eventos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="/legal/Terms-of-Service">Términos de Servicio</a></li>
+                <li><a href="/legal/Privacy-Policy">Política de Privacidad</a></li>
+                <li><a href="/help/center">Centro de Ayuda</a></li>
+                <li><a href="/help/contact">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>&copy; 2026 RBXGang. Todos los derechos reservados.</p>
+            <p class="disclaimer">Este sitio no está afiliado, patrocinado ni respaldado por Roblox Corporation.</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module">
+    // Logos por código
+    const icons = {
+        mission: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>`,
+        vision: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`,
+        node: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>`,
+        shield: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
+        cloud: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>`
+    };
+
+    document.getElementById('icon-mission').innerHTML = icons.mission;
+    document.getElementById('icon-vision').innerHTML = icons.vision;
+    document.getElementById('stack-node').innerHTML = icons.node;
+    document.getElementById('stack-shield').innerHTML = icons.shield;
+    document.getElementById('stack-cloud').innerHTML = icons.cloud;
+</script>
+
+<script type="module" src="/js/script.js"></script>
+</body>
+</html>

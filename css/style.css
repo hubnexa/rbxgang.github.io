@@ -1,0 +1,1103 @@
+:root {
+    --bg-color: #0f172a; /* Slate Dark */
+    --card-bg: #1e293b;
+    --primary: #8b5cf6;  /* Violeta */
+    --text-white: #f8fafc;
+    --glass: rgba(15, 23, 42, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-white);
+    line-height: 1.6;
+}
+
+/* --- TOPBAR --- */
+.topbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    z-index: 1000;
+}
+
+.logo { font-weight: 800; font-size: 1.5rem; }
+.logo span { color: var(--primary); }
+
+.nav-links { display: flex; list-style: none; gap: 2rem; }
+.nav-links a { color: var(--text-white); text-decoration: none; transition: 0.3s; }
+.nav-links a:hover { color: var(--primary); }
+
+.btn-login {
+    background: var(--primary);
+    border: none;
+    padding: 0.6rem 1.5rem;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* --- HERO SECTION & ILLUSTRATIONS --- */
+.hero {
+    padding: 150px 5% 50px;
+    text-align: center;
+}
+
+.hero h1 span { color: var(--primary); }
+
+.hero-illustration {
+    position: relative;
+    height: 150px;
+    margin-top: 2rem;
+}
+
+/* Ilustración con código */
+.circle {
+    width: 80px; height: 80px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin: auto;
+    filter: blur(20px);
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .nav-links { display: none; } /* Aquí podrías añadir un menú hamburguesa */
+    .hero h1 { font-size: 1.8rem; }
+}
+
+/* --- MEJORAS EN EL BODY Y CONTENEDORES --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Auto-ajuste para móvil */
+    gap: 2rem;
+}
+
+/* Estilo para las tarjetas de información */
+.card {
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    text-align: left;
+}
+
+/* El contenedor del icono */
+/* Contenedor del icono: Crea un cuadrado redondeado con fondo suave */
+.card-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;   /* Un poco más grande para destacar */
+    height: 56px;
+    background-color: rgba(139, 92, 246, 0.15); /* Fondo violeta traslúcido */
+    border: 1px solid rgba(139, 92, 246, 0.2);  /* Borde sutil */
+    border-radius: 14px; /* Bordes suaves modernos */
+    margin-bottom: 20px; /* Espacio equilibrado con el título */
+    transition: all 0.3s ease;
+}
+
+/* El emoji o icono interno */
+.icon-code {
+    font-size: 1.6rem;
+    line-height: 1;
+    /* Efecto de brillo sutil */
+    filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.4));
+}
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+}
+
+.card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.card p {
+    color: #94a3b8; /* Gris suave para mejor lectura */
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* --- BOTONES RESPONSIVOS Y MEJORADOS --- */
+.btn-login {
+    background: var(--primary);
+    border: none;
+    padding: 0.8rem 1.8rem;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+    white-space: nowrap; /* Evita que el texto se rompa en móvil */
+}
+
+.btn-login:hover {
+    filter: brightness(1.2);
+    transform: scale(1.05);
+}
+
+/* --- RESPONSIVE ADAPTATION --- */
+@media (max-width: 768px) {
+    .topbar {
+        padding: 1rem 1.5rem;
+    }
+
+    .nav-links {
+        display: none; /* Oculto hasta que hagamos el menú hamburguesa */
+    }
+
+    .hero {
+        padding: 120px 1.5rem 40px;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .container {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+        padding: 2rem 1.5rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+}
+
+/* --- CTA BANNER --- */
+.cta-banner {
+    background: linear-gradient(135deg, var(--primary), #6366f1);
+    border-radius: 24px;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.cta-content h2 { font-size: 2.5rem; margin-bottom: 1rem; color: white; }
+.btn-login.large {
+    background: white;
+    color: var(--primary);
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+}
+
+/* --- FAQ --- */
+.faq-item {
+    background: var(--card-bg);
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+details summary {
+    padding: 1.2rem;
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    transition: 0.3s;
+}
+
+details summary:hover { background: rgba(139, 92, 246, 0.1); }
+details p { padding: 0 1.2rem 1.2rem; color: #94a3b8; }
+
+/* --- ACORDEÓN ESTILO RBXGANG --- */
+.accordion-container {
+    max-width: 850px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.acc-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(139, 92, 246, 0.1); /* Borde violeta muy tenue */
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Cuando el acordeón está abierto */
+.acc-card[open] {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+    background: linear-gradient(180deg, var(--card-bg) 0%, rgba(139, 92, 246, 0.02) 100%);
+}
+
+summary {
+    list-style: none;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* El cuadro del icono con color RBXGang */
+.acc-icon-box {
+    width: 48px;
+    height: 48px;
+    background: rgba(139, 92, 246, 0.1); /* Fondo violeta suave */
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.acc-card[open] .acc-icon-box {
+    background: var(--primary); /* El icono se llena de color al abrir */
+    transform: scale(1.1);
+}
+
+.acc-header h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.acc-card[open] .acc-header h4 {
+    color: var(--primary); /* El título se vuelve violeta al abrir */
+}
+
+/* Resaltado de texto dentro del contenido */
+.text-highlight {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.acc-content {
+    padding: 0 1.5rem 1.8rem 4.5rem;
+    color: #94a3b8;
+    font-size: 1rem;
+    line-height: 1.7;
+    animation: fadeIn 0.5s ease;
+}
+
+.acc-arrow {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Quitar la flecha de Safari */
+summary::-webkit-details-marker { display: none; }
+
+/* --- HEADER DE SECCIÓN --- */
+.features-header {
+    text-align: center;
+    margin-bottom: 3.5rem; /* Espacio extra para que respire el acordeón */
+    padding: 0 1rem;
+}
+
+/* Título con énfasis en la marca */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+    letter-spacing: -0.5px;
+}
+
+/* El toque RBXGang: Gradiente y Brillo */
+.brand-accent {
+    background: linear-gradient(135deg, var(--primary), #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.3));
+    text-transform: uppercase;
+    font-style: italic; /* Opcional: le da un toque más "gangster" y dinámico */
+}
+
+/* La mini descripción debajo del título */
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #94a3b8; /* Gris azulado suave */
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    .section-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* --- FOOTER ESTILO PRO --- */
+.main-footer {
+    background-color: #020617; /* Más oscuro que el cuerpo */
+    padding-top: 5rem;
+    margin-top: 5rem;
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 4rem;
+    padding-bottom: 4rem;
+}
+
+.footer-col h4 {
+    color: var(--text-white);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+/* Línea pequeña debajo de los títulos del footer */
+.footer-col h4::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: var(--primary);
+    margin-top: 8px;
+}
+
+.footer-col p {
+    color: #94a3b8;
+    line-height: 1.7;
+    margin-top: 1rem;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+/* Redes Sociales */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-icon {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--primary);
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.social-icon:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Copyright y Disclaimer */
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.disclaimer {
+    font-style: italic;
+    opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+    }
+    
+    .footer-col h4::after {
+        margin: 8px auto 0;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Botón cuando muestra el usuario */
+.btn-logged {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(88, 101, 242, 0.1); /* Color Discord suave */
+    border: 1px solid #5865F2;
+    padding: 0.5rem 1.2rem;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-logged:hover {
+    background: #5865F2;
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
+}
+
+/* El icono de Discord (SVG) */
+.discord-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor; /* Toma el color del texto */
+}
+
+.setup-body {
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.setup-card {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 28px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    text-align: center;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.user-preview {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+}
+
+.user-preview img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid var(--primary);
+    object-fit: cover;
+}
+
+.btn-not-me {
+    background: transparent;
+    border: none;
+    color: #ef4444; /* Rojo suave */
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-top: 5px;
+    text-decoration: underline;
+}
+
+.divider-thin {
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin: 2rem 0;
+}
+
+.input-tip {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-top: 8px;
+    text-align: left;
+}
+
+.auth-container {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-login {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background: #5865F2; /* Color Discord */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background: #4752c4;
+    transform: translateY(-2px);
+}
+
+.btn-logged {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.arrow-down {
+    font-size: 10px;
+    margin-left: 10px;
+    opacity: 0.7;
+}
+
+/* Estilos del Menú Desplegable */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 55px;
+    background: #1a1b2e;
+    min-width: 180px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.dropdown-content.show {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.dropdown-content a:hover {
+    background: rgba(88, 101, 242, 0.2);
+    color: #5865F2;
+}
+
+.logout-link {
+    color: #ff4747 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.profile-preview {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+#discord-avatar-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--brand-accent);
+}
+
+.input-block {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-block label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.checkbox-group {
+    text-align: left;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.check-item {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.btn-not-me {
+    background: transparent;
+    color: #ff5555;
+    border: none;
+    font-size: 0.75rem;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
+/* --- COMPLEMENTOS DE DISEÑO PARA SETUP --- */
+
+/* Contenedor de estados (Carga y Panel) */
+.state-container {
+    animation: fadeInScale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Divisor elegante */
+.divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 25px 0;
+}
+
+/* Efectos de Glassmorphism en Inputs */
+.input-wrapper input {
+    backdrop-filter: blur(5px);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Estilo para los links dentro de los legales */
+.label-text a {
+    color: var(--brand-accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+    border-bottom: 1px solid transparent;
+}
+
+.label-text a:hover {
+    border-bottom: 1px solid var(--brand-accent);
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.5);
+}
+
+/* Animación del Loader Pulse */
+.pulse {
+    animation: pulseShadow 2s infinite;
+    border-radius: 50%;
+}
+
+/* Keyframes */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes pulseShadow {
+    0% { box-shadow: 0 0 0 0 rgba(88, 101, 242, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(88, 101, 242, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(88, 101, 242, 0); }
+}
+
+/* Ajustes de Responsive */
+@media (max-width: 480px) {
+    .setup-card {
+        padding: 20px;
+        border-radius: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .setup-wrapper {
+        padding: 0;
+    }
+}
+
+/* Estilo para el ID de navegador e IP (opcional si quieres mostrar etiquetas pequeñas) */
+.security-tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+}
+
+/* Botón estilizado cuando hay usuario */
+.user-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 5px 12px 5px 5px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #5865F2;
+}
+
+/* El dropdown que mencionaste con 2 botones + logout */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #161821;
+    min-width: 200px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-top: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    z-index: 999;
+}
+
+.dropdown-content.show { display: block; }
+
+.dropdown-content a {
+    display: block;
+    padding: 12px 16px;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.dropdown-content a:hover { background: #5865F2; }
+
+.logout-link { color: #ff4747 !important; }
+
+.btn-login-discord {
+    background-color: #5865F2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+    min-width: 160px; /* Evita que salga vacío */
+}
+
+.btn-login-discord:hover { background-color: #4752c4; }
+
+/* El avatar fallaba porque a veces el thumbnail de 150x150 tarda, 60x60 es más rápido */
+.nav-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #2f3136; /* Color de fondo mientras carga */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.btn-login-discord {
+    background: #5865F2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-discord-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-content a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+
+.dropdown-content a:hover {
+    background: rgba(88, 101, 242, 0.1);
+    color: #5865F2;
+}
+
+.logout-link:hover {
+    background: rgba(255, 92, 92, 0.1) !important;
+    color: #ff5c5c !important;
+}
+
+.dropdown-content svg {
+    flex-shrink: 0;
+}
+
+.user-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+
+.user-pill:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Limpiamos el botón original para que no tenga fondo de botón */
+.user-auth-wrapper {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+/* El Óvalo (User Pill) */
+.user-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.05); /* Fondo muy sutil */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 16px 6px 6px; /* Menos espacio a la izquierda para el avatar */
+    border-radius: 50px; /* Forma de óvalo perfecto */
+    transition: all 0.3s ease;
+}
+
+.user-pill:hover {
+    background: rgba(139, 92, 246, 0.1); /* Brillo violeta al pasar el mouse */
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+
+/* Contenedor circular de la foto para asegurar que no se vea el error */
+.avatar-container {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #1e293b;
+    border: 2px solid var(--primary); /* Anillo violeta alrededor de la foto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nav-username {
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.nav-arrow {
+    font-size: 0.7rem;
+    color: var(--primary);
+    opacity: 0.8;
+}
+
+/* Ajuste del Dropdown para que no tape el óvalo */
+.dropdown-content {
+    top: 60px; /* Ajusta según el alto de tu topbar */
+    right: 0;
+    border-radius: 16px;
+    background: #0f172a;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* Contenedor principal del botón (transparente) */
+.user-auth-wrapper {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer;
+    box-shadow: none !important;
+}
+
+/* El Óvalo "User Pill" */
+.user-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.07); /* Fondo traslúcido suave */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 5px 15px 5px 5px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.user-pill:hover {
+    background: rgba(88, 101, 242, 0.15); /* Color Discord muy suave */
+    border-color: #5865F2;
+    transform: translateY(-1px);
+}
+
+/* Contenedor circular de la foto de Discord */
+.avatar-container {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #5865F2; /* Borde color Discord */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #232428;
+}
+
+.nav-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nav-username {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+}
+
+.nav-arrow {
+    font-size: 0.6rem;
+    color: #5865F2;
+    margin-left: 2px;
+}
+
+/* Quitamos el fondo azul del botón original */
+.user-auth-wrapper {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer;
+    box-shadow: none !important;
+}
+
+/* El Óvalo (User Pill) */
+.user-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05); /* Fondo muy sutil para el óvalo */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4px 12px 4px 4px;
+    border-radius: 50px; /* Hace que sea un óvalo */
+    transition: all 0.3s ease;
+}
+
+.user-pill:hover {
+    background: rgba(88, 101, 242, 0.1); /* Brillo color Discord al pasar el mouse */
+    border-color: #5865F2;
+}
+
+/* Contenedor circular de la foto de Discord */
+.avatar-container {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #5865F2; /* Anillo de color Discord */
+    background: #1e1f22;
+}
+
+.nav-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nav-username {
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.nav-arrow {
+    font-size: 0.7rem;
+    color: #5865F2;
+    opacity: 0.8;
+}
+

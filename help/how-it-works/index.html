@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>RBXGang - How it works?</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Estilos específicos para la guía de pasos */
+        .how-header {
+            text-align: center;
+            padding: 120px 20px 60px;
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+        }
+
+        .steps-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 100px;
+            padding: 20px;
+        }
+
+        .step-card {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 60px;
+            align-items: flex-start;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+
+        .step-content h3 {
+            margin-top: 0;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            color: #a0a0b8;
+            line-height: 1.6;
+        }
+
+        .visual-helper {
+            margin-top: 15px;
+            background: #0f0f1a;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px dashed #333;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #10b981;
+        }
+
+        @media (max-width: 768px) {
+            .step-card { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="topbar">
+    <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+        <li><a href="/events">Eventos</a></li>
+        <li><a href="/help/us">Nosotros</a></li>
+    </ul>
+    
+    <div class="auth-container">
+    <button id="auth-btn" class="btn-login"></button>
+    
+    <div id="auth-dropdown" class="dropdown-content">
+        <a href="/dashboard"><i class="icon-dashboard"></i> Panel de Control</a>
+        <a href="/profile"><i class="icon-user"></i> Mi Perfil</a>
+        <hr>
+        <a href="#" onclick="logout()" class="logout-link">Cerrar Sesión</a>
+    </div>
+</div>
+</nav>
+
+<header class="how-header">
+    <h1 class="section-title">Guía de <span class="brand-accent">Funcionamiento</span></h1>
+    <p class="section-subtitle">Aprende cómo transformar tu tiempo en Robux siguiendo estos 4 simples pasos.</p>
+</header>
+
+<section class="steps-container">
+    <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-content">
+            <h3>Conecta tu Perfil</h3>
+            <p>Inicia sesión de forma segura con tu cuenta de Discord. No necesitamos tu contraseña de Roblox; solo tu nombre de usuario para saber a quién enviar las recompensas.</p>
+            <div class="visual-helper">
+                Status: Connected as User#1234
+            </div>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-content">
+            <h3>Elige una Tarea o Evento</h3>
+            <p>Explora el Dashboard. Encontrarás desde "Quests" diarias hasta eventos comunitarios. Cada tarea especifica cuántos puntos o Robux otorga al completarse.</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-content">
+            <h3>Completa y Verifica</h3>
+            <p>Sigue las instrucciones de la tarea. Una vez termines, nuestro bot verificará el cumplimiento automáticamente en un plazo de pocos minutos.</p>
+        </div>
+    </div>
+
+    <div class="step-card">
+        <div class="step-number">4</div>
+        <div class="step-content">
+            <h3>Retira tus Ganancias</h3>
+            <p>Cuando alcances el mínimo de retiro, selecciona tu método preferido. Utilizamos el sistema de <b>Gamepasses</b> o <b>Group Payouts</b> para asegurar que los Robux lleguen a tu cuenta.</p>
+            <div class="visual-helper">
+                [Transacción Pendiente] -> [Enviado ✅]
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="metodos" class="container" style="margin-bottom: 100px;">
+    <h2 class="section-title" style="text-align: center;">Métodos de <span class="brand-accent">Pago</span></h2>
+    <div class="card" style="max-width: 600px; margin: 20px auto;">
+        <p>Actualmente operamos con el método de <b>Venta de Items (Gamepasses)</b>. Al retirar, nuestro sistema comprará un item de tu propiedad. Recuerda que Roblox retiene los fondos por un periodo de seguridad de 3 a 5 días.</p>
+    </div>
+</section>
+
+<footer class="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col brand-col">
+            <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+            <p>La plataforma más segura y rápida para potenciar tu experiencia en Roblox. Únete a miles de usuarios y empieza a ganar hoy.</p>
+            <div class="social-links">
+                <a href="/Social/" class="social-icon">Discord</a>
+                <a href="/Social" class="social-icon">TikTok</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Plataforma</h4>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+                <li><a href="/Trust/">Por qué elegirnos</a></li>
+                <li><a href="/Events">Eventos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="/legal/Terms-of-Service">Términos de Servicio</a></li>
+                <li><a href="/legal/Privacy-Policy">Política de Privacidad</a></li>
+                <li><a href="/help/center">Centro de Ayuda</a></li>
+                <li><a href="/help/contact">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>&copy; 2026 RBXGang. Todos los derechos reservados.</p>
+            <p class="disclaimer">Este sitio no está afiliado, patrocinado ni respaldado por Roblox Corporation.</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="/js/script.js"></script>
+
+</body>
+</html>
