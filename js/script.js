@@ -103,7 +103,7 @@ function renderTopbar() {
 window.loginWithDiscord = function() {
     localStorage.removeItem('user_logged_out');
     const CLIENT_ID = '1472654015702499550';
-    const REDIRECT_URI = encodeURIComponent('http://127.0.0.1:5500/auth/set-up/'); 
+    const REDIRECT_URI = encodeURIComponent('https://rbxgang.xyz/auth/set-up/'); 
     window.location.href = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&scope=identify+guilds.join`;
 };
 
