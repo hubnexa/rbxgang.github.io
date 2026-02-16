@@ -31,7 +31,7 @@ app.use(express.json());
 const CLIENT_ID = process.env.CLIENT_ID || '1472654015702499550';
 const CLIENT_SECRET = process.env.CLIENT_SECRET || 'H2SW3Kn6iAYih2CLswFCVNGHAbx1olIz';
 // La REDIRECT_URI debe cambiar según el entorno
-const REDIRECT_URI = process.env.REDIRECT_URI || 'http://127.0.0.1:5500/auth/set-up/'; 
+const REDIRECT_URI = process.env.REDIRECT_URI || 'https://rbxgang.xyz/auth/set-up/'; 
 
 app.post('/api/auth/discord', async (req, res) => {
     const { code } = req.body;
