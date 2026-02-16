@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBXGang - Verify</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f12;
+            --card-bg: #16161a;
+            --primary-violet: #8b5cf6;
+            --text-white: #ffffff;
+            --text-gray: #a1a1aa;
+            --error-red: #ef4444;
+            --success-green: #10b981;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-white);
+        }
+
+        .verify-card {
+            background: var(--card-bg);
+            width: 90%;
+            max-width: 450px;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .status-container {
+            margin-bottom: 24px;
+        }
+
+        /* Animación del Loader */
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(139, 92, 246, 0.1);
+            border-top: 5px solid var(--primary-violet);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .icon-box {
+            font-size: 50px;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 10px 0;
+            background: linear-gradient(to right, #fff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .footer-logo {
+            margin-top: 30px;
+            opacity: 0.5;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Clases de Estado */
+        .state-error h1 { background: var(--error-red); -webkit-text-fill-color: var(--error-red); }
+        .state-success h1 { background: var(--success-green); -webkit-text-fill-color: var(--success-green); }
+    </style>
+</head>
+<body>
+
+    <div class="verify-card" id="card">
+        <div class="status-container">
+            <div id="loader" class="loader"></div>
+            <div id="icon" class="icon-box"></div>
+        </div>
+        
+        <h1 id="title">Verificando Cuenta</h1>
+        <p id="description">Por favor, no cierres esta pestaña. Estamos comprobando tu identidad y seguridad de conexión.</p>
+
+        <div class="footer-logo">RBXGANG SYSTEM</div>
+    </div>
+
+    <script type="module">
+        import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, setDoc, getDocs, collection, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // CONFIGURACIÓN DE TU FIREBASE
+        const firebaseConfig = {
+            apiKey: "AIzaSyAceW9Yh2jRfY3pCFawWCTzP4Hvngt1V8g",
+            authDomain: "rbxgang-86d30.firebaseapp.com",
+            projectId: "rbxgang-86d30",
+            storageBucket: "rbxgang-86d30.firebasestorage.app",
+            messagingSenderId: "35329039357",
+            appId: "1:35329039357:web:2430fb26473ef1e9fd1794"
+        };
+
+        const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+        const db = getFirestore(app);
+
+        async function initVerify() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('user_id');
+            const title = document.getElementById('title');
+            const desc = document.getElementById('description');
+            const loader = document.getElementById('loader');
+            const icon = document.getElementById('icon');
+            const card = document.getElementById('card');
+
+            if (!userId) {
+                updateUI("error", "Falta ID", "No se detectó una ID de Discord válida. Regresa al bot e intenta de nuevo.");
+                return;
+            }
+
+            try {
+                // 1. Obtener la IP real
+                const ipRes = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipRes.json();
+                const userIp = ipData.ip;
+
+                // 2. Comprobar si la IP ya existe en ServerUsers
+                const q = query(collection(db, "ServerUsers"), where("ip", "==", userIp));
+                const querySnapshot = await getDocs(q);
+
+                // Pequeña pausa para que la animación se aprecie
+                await new Promise(r => setTimeout(r, 1500));
+
+                if (!querySnapshot.empty) {
+                    updateUI("error", "Acceso Denegado", "Esta dirección IP ya ha sido utilizada por otra cuenta. No se permiten multicuentas.");
+                    return;
+                }
+
+                // 3. Guardar nuevo usuario verificado
+                await setDoc(doc(db, "ServerUsers", userId), {
+                    discordId: userId,
+                    ip: userIp,
+                    timestamp: new Date().toISOString(),
+                    status: "verified"
+                });
+
+                updateUI("success", "¡Verificado!", "Tu cuenta ha sido vinculada correctamente. Ya puedes cerrar esta ventana y volver a Discord.");
+
+            } catch (err) {
+                console.error(err);
+                updateUI("error", "Error Interno", "Hubo un fallo al conectar con el servidor de seguridad.");
+            }
+        }
+
+        function updateUI(type, tText, dText) {
+            const loader = document.getElementById('loader');
+            const icon = document.getElementById('icon');
+            const card = document.getElementById('card');
+            
+            loader.style.display = "none";
+            icon.style.display = "block";
+            
+            document.getElementById('title').innerText = tText;
+            document.getElementById('description').innerText = dText;
+
+            if (type === "error") {
+                card.classList.add("state-error");
+                icon.innerHTML = "❌";
+            } else {
+                card.classList.add("state-success");
+                icon.innerHTML = "✅";
+            }
+        }
+
+        window.onload = initVerify;
+    </script>
+</body>
+</html>
