@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>RBXGang - Events</title>
+    <title>RBXGang - Events</title>
 <meta name="title" content="RBXGang - ¡Gana robux!">
 <meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
 <meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
@@ -27,102 +27,202 @@
 <meta name="theme-color" content="#8b5cf6">
     <link rel="stylesheet" href="/css/style.css">
     <style>
+        /* --- DISEÑO DE EVENTOS PREMIUM --- */
         .events-hero {
-            padding: 160px 20px 60px;
+            padding: 140px 20px 40px;
             text-align: center;
-            background: radial-gradient(circle at top, rgba(245, 158, 11, 0.1) 0%, transparent 60%);
+            background: radial-gradient(circle at top, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
         }
 
         .active-event-card {
             max-width: 900px;
             margin: 0 auto 60px;
-            background: linear-gradient(135deg, #1e1e30 0%, #161625 100%);
-            border-radius: 30px;
-            border: 2px solid var(--primary);
+            background: rgba(22, 22, 37, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 32px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
             padding: 50px;
             position: relative;
-            overflow: hidden;
             display: flex;
             align-items: center;
             gap: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        /* Decoración de fondo */
+        .active-event-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            z-index: -1;
         }
 
         .event-badge {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--primary);
+            top: 25px;
+            right: 25px;
+            background: linear-gradient(90deg, #8b5cf6, #d946ef);
             color: white;
             padding: 8px 20px;
             border-radius: 50px;
-            font-weight: 800;
-            font-size: 0.8rem;
+            font-weight: 900;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            animation: pulse 2s infinite;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(139, 92, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0); }
+        .event-visual svg {
+            filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.3));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
         .event-info h2 {
             font-size: 2.5rem;
+            background: linear-gradient(to right, #fff, #a0a0b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
-            color: white;
         }
 
         .reward-box {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             background: rgba(16, 185, 129, 0.1);
-            border: 1px solid #10b981;
-            padding: 12px 25px;
-            border-radius: 15px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 12px 24px;
+            border-radius: 16px;
             color: #10b981;
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin: 20px 0;
         }
 
         .event-timer {
             display: flex;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 12px;
+            margin-top: 20px;
         }
 
         .timer-unit {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 12px;
-            min-width: 80px;
+            background: #1c1c2e;
+            padding: 12px;
+            border-radius: 14px;
+            min-width: 70px;
             text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .timer-unit span {
             display: block;
-            font-size: 1.5rem;
-            font-weight: 800;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .timer-label { font-size: 0.65rem; color: #64748b; font-weight: 700; }
+
+        .btn-claim {
+            margin-top: 30px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 18px;
+            background: #8b5cf6;
             color: white;
+            border: none;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.4);
         }
 
-        .timer-label {
-            font-size: 0.7rem;
-            color: #a0a0b8;
-            text-transform: uppercase;
+        .btn-claim:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -10px rgba(139, 92, 246, 0.6);
+            background: #7c3aed;
         }
 
-        .past-events {
-            margin-top: 80px;
-            opacity: 0.6;
+        .btn-claim:disabled {
+            background: #2d2d44;
+            color: #64748b;
+            box-shadow: none;
+            cursor: not-allowed;
         }
 
+        /* --- MODAL DE RECOMPENSA --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: none; /* Cambiado por JS */
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #161625;
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            text-align: center;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-content.active { transform: scale(1); opacity: 1; }
+
+        .modal-icon {
+            width: 80px; height: 80px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: #10b981;
+        }
+
+        .modal-content h3 { font-size: 1.8rem; color: #fff; margin-bottom: 10px; }
+        .modal-content p { color: #a0a0b8; line-height: 1.6; margin-bottom: 25px; }
+
+        .btn-modal-close {
+            background: #2d2d44;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
-            .active-event-card { flex-direction: column; text-align: center; padding: 40px 20px; }
+            .active-event-card {
+                flex-direction: column;
+                padding: 40px 25px;
+                text-align: center;
+                margin: 0 15px;
+            }
+            .event-info h2 { font-size: 1.8rem; }
             .event-timer { justify-content: center; }
         }
     </style>
@@ -149,49 +249,45 @@
     </div>
 </div>
 </nav>
+
 <header class="events-hero">
-    <h1 class="section-title">Eventos <span class="brand-accent">Exclusivos</span></h1>
-    <p class="section-subtitle">Participa en desafíos temporales y multiplica tus ganancias.</p>
+    <h1 class="section-title">Eventos de la <span class="brand-accent">Gang</span></h1>
 </header>
 
 <main class="container">
     <section class="active-event-card">
-        <div class="event-badge">Activo Ahora</div>
+        <div class="event-badge">Evento de Apertura</div>
         
         <div class="event-visual" id="event-icon-main"></div>
 
         <div class="event-info">
-            <h2>Gran Lanzamiento</h2>
-            <p>¡Celebramos la apertura oficial de <strong>RBXGang</strong>! Todos los usuarios que se unan y completen su perfil durante las primeras 24 horas recibirán un bono instantáneo.</p>
+            <h2>Bono de Lanzamiento</h2>
+            <p class="text-dim">¡Estamos regalando créditos a todos los miembros fundadores! No pierdas la oportunidad de empezar con ventaja.</p>
             
             <div class="reward-box">
                 <div id="icon-coin"></div>
-                +200 CRÉDITOS DE REGALO
+                +200 CRÉDITOS GRATIS
             </div>
 
             <div class="event-timer">
-                <div class="timer-unit">
-                    <span id="hours">23</span>
-                    <div class="timer-label">Horas</div>
-                </div>
-                <div class="timer-unit">
-                    <span id="minutes">59</span>
-                    <div class="timer-label">Mins</div>
-                </div>
-                <div class="timer-unit">
-                    <span id="seconds">59</span>
-                    <div class="timer-label">Segs</div>
-                </div>
+                <div class="timer-unit"><span id="hours">00</span><div class="timer-label">Horas</div></div>
+                <div class="timer-unit"><span id="minutes">00</span><div class="timer-label">Mins</div></div>
+                <div class="timer-unit"><span id="seconds">00</span><div class="timer-label">Segs</div></div>
             </div>
 
-            <button class="btn-primary" style="margin-top: 30px; width: 100%; height: 60px; font-size: 1.1rem;">
-                RECLAMAR MI RECOMPENSA
-            </button>
+            <button id="claim-btn" class="btn-claim">RECLAMAR CRÉDITOS</button>
         </div>
     </section>
-
-   
 </main>
+
+<div class="modal-overlay" id="reward-modal">
+    <div class="modal-content">
+        <div class="modal-icon" id="modal-check-icon"></div>
+        <h3>¡Felicidades!</h3>
+        <p>Has recibido <strong>200 créditos</strong>. Se han añadido instantáneamente a tu balance de RBXGang.</p>
+        <button class="btn-modal-close" onclick="closeModal()">GENIAL</button>
+    </div>
+</div>
 
 <footer class="main-footer">
     <div class="footer-container container">
@@ -210,7 +306,7 @@
                 <li><a href="/">Inicio</a></li>
                 <li><a href="/help/how-it-works/">Cómo funciona</a></li>
                 <li><a href="/Trust/">Por qué elegirnos</a></li>
-                <li><a href="/Events">Eventos</a></li>
+                <li><a href="/events">Eventos</a></li>
             </ul>
         </div>
 
@@ -232,33 +328,71 @@
         </div>
     </div>
 </footer>
-
-
 <script type="module">
-    // Visual del evento
-    document.getElementById('event-icon-main').innerHTML = `
-        <svg width="180" height="180" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-            <path d="M2 17l10 5 10-5"></path>
-            <path d="M2 12l10 5 10-5"></path>
-            <circle cx="12" cy="12" r="3" fill="#8b5cf6" fill-opacity="0.3"></circle>
-        </svg>
-    `;
+    // 1. DIBUJAR LOGOS CON CÓDIGO
+    const draw = (id, svg) => document.getElementById(id).innerHTML = svg;
 
-    document.getElementById('icon-coin').innerHTML = `
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="8"></circle>
-            <line x1="12" y1="8" x2="12" y2="16"></line>
-            <line x1="8" y1="12" x2="16" y2="12"></line>
-        </svg>
-    `;
+    draw('event-icon-main', `<svg width="180" height="180" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="0.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path><path d="M12 22V12" stroke-opacity="0.3"></path></svg>`);
+    draw('icon-coin', `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="8"></circle><path d="M12 7v10M9 12h6"></path></svg>`);
+    draw('modal-check-icon', `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`);
 
-    // Script simple para el contador (simulado para el ejemplo)
+    // 2. TEMPORIZADOR GMT-3
     function updateTimer() {
         const now = new Date();
-        document.getElementById('seconds').innerText = 60 - now.getSeconds();
+        const offset = -3; 
+        const gmt3 = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (offset * 3600000));
+        
+        const endOfDay = new Date(gmt3);
+        endOfDay.setHours(23, 59, 59, 999);
+
+        const diff = endOfDay - gmt3;
+        if (diff <= 0) return;
+
+        document.getElementById('hours').innerText = Math.floor(diff / 3600000).toString().padStart(2, '0');
+        document.getElementById('minutes').innerText = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+        document.getElementById('seconds').innerText = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
     }
     setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // 3. LÓGICA DE RECLAMO Y MODAL
+    const claimBtn = document.getElementById('claim-btn');
+    const modal = document.getElementById('reward-modal');
+    const modalContent = modal.querySelector('.modal-content');
+
+    if (localStorage.getItem('rbxgang_launch_claimed')) {
+        setBtnClaimed();
+    }
+
+    claimBtn.addEventListener('click', async () => {
+        claimBtn.disabled = true;
+        claimBtn.innerText = "VERIFICANDO...";
+
+        // Simulación de guardado en base de datos
+        setTimeout(() => {
+            localStorage.setItem('rbxgang_launch_claimed', 'true');
+            openModal();
+            setBtnClaimed();
+        }, 1200);
+    });
+
+    function openModal() {
+        modal.style.display = 'flex';
+        setTimeout(() => modalContent.classList.add('active'), 10);
+    }
+
+    window.closeModal = function() {
+        modalContent.classList.remove('active');
+        setTimeout(() => modal.style.display = 'none', 300);
+    }
+
+    function setBtnClaimed() {
+        claimBtn.disabled = true;
+        claimBtn.innerText = "RECOMPENSA RECLAMADA";
+        claimBtn.style.background = "rgba(16, 185, 129, 0.1)";
+        claimBtn.style.color = "#10b981";
+        claimBtn.style.border = "1px solid rgba(16, 185, 129, 0.2)";
+    }
 </script>
 
 <script type="module" src="/js/script.js"></script>

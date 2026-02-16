@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>RBXGang - Blog</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">
+    
+    <link rel="stylesheet" href="/css/style.css">
+   <style>
+    /* --- SECCIÓN BLOG / DEVLOG --- */
+    .blog-section {
+        padding: 80px 0;
+        background: radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+    }
+
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .blog-card {
+        background: #161625;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-10px);
+        border-color: #8b5cf6;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Contenedor de Imagen */
+    .blog-image-wrapper {
+        width: 100%;
+        height: 200px;
+        background: #1c1c2e;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .blog-image-wrapper svg {
+        opacity: 0.2;
+        transition: 0.5s;
+    }
+
+    .blog-card:hover .blog-image-wrapper svg {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+
+    /* Contenido de la Noticia */
+    .blog-content {
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .blog-meta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+
+    .tag-owner {
+        background: linear-gradient(90deg, #8b5cf6, #d946ef);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 900;
+        padding: 4px 10px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .author-name {
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .blog-title {
+        font-size: 1.5rem;
+        color: #fff;
+        margin-bottom: 12px;
+        line-height: 1.3;
+    }
+
+    .blog-description {
+        color: #a0a0b8;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 25px;
+        flex-grow: 1;
+    }
+
+    /* Botón de la Noticia */
+    .btn-blog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.03);
+        color: #fff;
+        text-decoration: none;
+        padding: 14px;
+        border-radius: 12px;
+        font-weight: 700;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: 0.3s;
+    }
+
+    .btn-blog:hover {
+        background: #8b5cf6;
+        border-color: #8b5cf6;
+        color: white;
+    }
+
+    @media (max-width: 480px) {
+        .blog-grid { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+    <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+        <li><a href="/events">Eventos</a></li>
+        <li><a href="/help/us">Nosotros</a></li>
+    </ul>
+    
+    <div class="auth-container">
+    <button id="auth-btn" class="btn-login"></button>
+    
+    <div id="auth-dropdown" class="dropdown-content">
+        <a href="/dashboard"><i class="icon-dashboard"></i> Panel de Control</a>
+        <a href="/profile"><i class="icon-user"></i> Mi Perfil</a>
+        <hr>
+        <a href="#" onclick="logout()" class="logout-link">Cerrar Sesión</a>
+    </div>
+</div>
+</nav>
+
+<section id="blog" class="blog-section container">
+    <div class="features-header" style="text-align: center;">
+        <h2 class="section-title">Actualizaciones de la <span class="brand-accent">Gang</span></h2>
+        <p class="section-subtitle">Entérate de los últimos cambios, eventos y mejoras de la plataforma.</p>
+    </div>
+
+    <div class="blog-grid">
+        <article class="blog-card">
+            <div class="blog-image-wrapper">
+                <div id="blog-img-1"></div>
+            </div>
+            
+            <div class="blog-content">
+                <div class="blog-meta">
+                    <span class="tag-owner">Owner</span>
+                    <span class="author-name">AstralixDev</span>
+                </div>
+                
+                <h3 class="blog-title">¡Gran lanzamiento!</h3>
+                <p class="blog-description">
+                    Hemos lanzado oficialmente RBX Gang en su fase de "Prueba final", si todo resulta bien podriamos estar ante una de las mejores webs de <strong>ROBUX GRATIS</strong> de todo Roblox.
+
+                    
+                <a href="/blog/release" class="btn-blog">
+                    LEER MÁS 
+                    <span id="icon-arrow-blog"></span>
+                </a>
+            </div>
+        </article>
+        </div>
+</section>
+<footer class="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col brand-col">
+            <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+            <p>La plataforma más segura y rápida para potenciar tu experiencia en Roblox. Únete a miles de usuarios y empieza a ganar hoy.</p>
+            <div class="social-links">
+                <a href="/Social/" class="social-icon">Discord</a>
+                <a href="/Social" class="social-icon">TikTok</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Plataforma</h4>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+                <li><a href="/Trust/">Por qué elegirnos</a></li>
+                <li><a href="/events">Eventos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="/legal/Terms-of-Service">Términos de Servicio</a></li>
+                <li><a href="/legal/Privacy-Policy">Política de Privacidad</a></li>
+                <li><a href="/help/center">Centro de Ayuda</a></li>
+                <li><a href="/help/contact">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>&copy; 2026 RBXGang. Todos los derechos reservados.</p>
+            <p class="disclaimer">Este sitio no está afiliado, patrocinado ni respaldado por Roblox Corporation.</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="/js/script.js"></script>
+
+<script>
+    // Inyectar logos en código SVG para el Blog
+    const blogIcons = {
+        'blog-img-1': `<svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>`,
+        'icon-arrow-blog': `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`
+    };
+
+    Object.entries(blogIcons).forEach(([id, svg]) => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = svg;
+    });
+</script>
+
+</body>
+</html>

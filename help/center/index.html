@@ -26,103 +26,157 @@
 <link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
 <meta name="theme-color" content="#8b5cf6">
     <link rel="stylesheet" href="/css/style.css">
-    <style>
-        .help-hero {
-            text-align: center;
-            padding: 140px 20px 80px;
-            background: radial-gradient(circle at top, rgba(139, 92, 246, 0.1) 0%, transparent 60%);
-        }
+ <style>
+    /* --- RESET DE ESTILOS DE ENLACES --- */
+    .help-grid a, 
+    .cat-links a, 
+    .faq-answer a {
+        color: #a0a0b8; /* Gris tenue por defecto */
+        text-decoration: none;
+        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        .search-wrapper {
-            max-width: 600px;
-            margin: 30px auto;
-            position: relative;
-        }
+    .help-grid a:hover, 
+    .cat-links a:hover {
+        color: #8b5cf6; /* Violeta al pasar el mouse */
+        padding-left: 5px;
+    }
 
-        .search-input {
-            width: 100%;
-            padding: 18px 25px;
-            background: #161625;
-            border: 1px solid #2a2a3d;
-            border-radius: 15px;
-            color: white;
-            font-size: 1rem;
-            outline: none;
-            transition: 0.3s;
-        }
+    /* --- MEJORAS DEL HELP CENTER --- */
+    .help-hero {
+        text-align: center;
+        padding: 140px 20px 60px;
+        background: radial-gradient(circle at top, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+    }
 
-        .search-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
-        }
+    .search-wrapper {
+        max-width: 700px;
+        margin: 30px auto;
+        position: relative;
+    }
 
-        .help-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 80px;
-        }
+    .search-input {
+        width: 100%;
+        padding: 20px 30px 20px 60px;
+        background: #161625;
+        border: 1px solid rgba(139, 92, 246, 0.2);
+        border-radius: 20px;
+        color: white;
+        font-size: 1.1rem;
+        outline: none;
+        transition: 0.3s;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
 
-        .help-category-card {
-            background: #161625;
-            padding: 40px 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-        }
+    .search-input:focus {
+        border-color: #8b5cf6;
+        box-shadow: 0 0 25px rgba(139, 92, 246, 0.3);
+    }
 
-        .help-category-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            background: #1c1c2e;
-        }
+    .search-icon-fixed {
+        position: absolute;
+        left: 22px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #8b5cf6;
+    }
 
-        .cat-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: var(--primary);
-        }
+    .help-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+    }
 
-        .cat-links {
-            margin-top: 20px;
-            list-style: none;
-            text-align: left;
-            padding: 0;
-        }
+    .help-category-card {
+        background: #161625;
+        padding: 40px 30px;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        transition: all 0.4s ease;
+    }
 
-        .cat-links li {
-            margin-bottom: 12px;
-        }
+    .help-category-card:hover {
+        transform: translateY(-8px);
+        background: #1c1c2e;
+        border-color: #8b5cf6;
+    }
 
-        .cat-links a {
-            color: #a0a0b8;
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: 0.2s;
-        }
+    .cat-icon {
+        width: 64px; height: 64px;
+        background: rgba(139, 92, 246, 0.1);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+        color: #8b5cf6;
+    }
 
-        .cat-links a:hover {
-            color: var(--primary);
-            padding-left: 5px;
-        }
+    .cat-links {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+        text-align: left;
+    }
 
-        .support-cta {
-            background: linear-gradient(90deg, #1a1a2e 0%, #251a3a 100%);
-            padding: 50px;
-            border-radius: 25px;
-            text-align: center;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-        }
-    </style>
+    .cat-links li { margin-bottom: 12px; }
+
+    /* FAQ ACORDEÓN */
+    .faq-section { max-width: 800px; margin: 0 auto 80px; }
+    .faq-title { text-align: center; margin-bottom: 40px; font-size: 2rem; color: #fff; }
+
+    .faq-item {
+        background: #161625;
+        border-radius: 16px;
+        margin-bottom: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+    }
+
+    .faq-question {
+        padding: 22px 30px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .faq-answer {
+        padding: 0 30px;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease-out;
+        color: #a0a0b8;
+        line-height: 1.6;
+    }
+
+    .faq-item.active { border-color: #8b5cf6; }
+    .faq-item.active .faq-answer { padding-bottom: 22px; max-height: 300px; }
+
+    /* SOPORTE CTA */
+    .support-cta {
+        background: linear-gradient(135deg, #1e1e30 0%, #11111d 100%);
+        padding: 60px 30px;
+        border-radius: 30px;
+        text-align: center;
+        border: 1px solid rgba(139, 92, 246, 0.15);
+    }
+
+    .btn-support {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: #8b5cf6;
+        color: white !important; /* Forzar blanco */
+        padding: 16px 40px;
+        border-radius: 14px;
+        font-weight: 800;
+        margin-top: 20px;
+    }
+</style>
 </head>
 <body>
 
@@ -150,50 +204,101 @@
 <header class="help-hero">
     <h1 class="section-title">¿Cómo podemos <span class="brand-accent">ayudarte?</span></h1>
     <div class="search-wrapper">
-        <input type="text" class="search-input" placeholder="Busca problemas con retiros, tareas, seguridad...">
+        <div class="search-icon-fixed" id="icon-search"></div>
+        <input type="text" class="search-input" id="help-search" placeholder="Escribe tu duda (ej: 'retiros', 'pendientes', 'seguridad')...">
     </div>
 </header>
 
 <main class="container">
     <div class="help-grid">
-        <div class="help-category-card">
+        <div class="help-category-card searchable">
             <div class="cat-icon" id="icon-wallet"></div>
             <h3>Pagos y Retiros</h3>
-            <p class="text-dim">Todo sobre Gamepasses, grupos y tiempos de espera.</p>
+            <p class="text-dim">Gestiona tus Robux y entiende el sistema de Gamepasses.</p>
             <ul class="cat-links">
-                <li><a href="#">• ¿Por qué mis Robux están pendientes?</a></li>
-                <li><a href="#">• Mi Gamepass no ha sido comprado</a></li>
-                <li><a href="#">• Mínimos de retiro por método</a></li>
+                <li><a href="#faq-pendientes">• Robux pendientes (7 días)</a></li>
+                <li><a href="#faq-metodos">• Métodos de retiro disponibles</a></li>
+                <li><a href="#faq-error">• Error al comprar Gamepass</a></li>
             </ul>
         </div>
 
-        <div class="help-category-card">
+        <div class="help-category-card searchable">
             <div class="cat-icon" id="icon-shield"></div>
             <h3>Cuenta y Seguridad</h3>
-            <p class="text-dim">Gestiona tu perfil y protege tus datos.</p>
+            <p class="text-dim">Protección de datos y vinculación de redes sociales.</p>
             <ul class="cat-links">
-                <li><a href="#">• Cómo vincular mi Discord</a></li>
-                <li><a href="#">• ¿Es seguro dar mi usuario de Roblox?</a></li>
-                <li><a href="#">• Cambiar configuración de privacidad</a></li>
+                <li><a href="#">• ¿Es seguro usar RBXGang?</a></li>
+                <li><a href="#">• Vincular mi cuenta de Discord</a></li>
+                <li><a href="#">• Recuperar acceso a la cuenta</a></li>
             </ul>
         </div>
 
-        <div class="help-category-card">
+        <div class="help-category-card searchable">
             <div class="cat-icon" id="icon-star"></div>
-            <h3>Tareas y Quests</h3>
-            <p class="text-dim">Cómo completar ofertas correctamente.</p>
+            <h3>Tareas y Ofertas</h3>
+            <p class="text-dim">Maximiza tus ganancias completando muros de ofertas.</p>
             <ul class="cat-links">
-                <li><a href="#">• Mi tarea no se marcó como completada</a></li>
-                <li><a href="#">• Requisitos de las Daily Quests</a></li>
-                <li><a href="#">• Límites diarios de puntos</a></li>
+                <li><a href="#">• Mi oferta no cargó los créditos</a></li>
+                <li><a href="#">• Mejores muros para tu país</a></li>
+                <li><a href="#">• Reglas de las encuestas</a></li>
             </ul>
         </div>
     </div>
 
+    <section class="faq-section">
+        <h2 class="faq-title">Preguntas <span class="brand-accent">Frecuentes</span></h2>
+        
+        <div class="faq-container">
+            <div class="faq-item searchable-item">
+                <div class="faq-question">
+                    <span>¿Por qué mis Robux aparecen como "Pendientes"?</span>
+                    <div class="faq-chevron" id="icon-chevron-1"></div>
+                </div>
+                <div class="faq-answer">
+                    Roblox impone un tiempo de retención de seguridad de 5 a 7 días para todas las transacciones de Gamepasses. RBXGang procesa el pago al instante, pero debes esperar ese tiempo para que aparezcan en tu balance oficial de Roblox.
+                </div>
+            </div>
+
+            <div class="faq-item searchable-item">
+                <div class="faq-question">
+                    <span>¿Cuál es el mínimo para retirar?</span>
+                    <div class="faq-chevron" id="icon-chevron-2"></div>
+                </div>
+                <div class="faq-answer">
+                    El retiro mínimo es de solo 10 Robux. Esto nos permite asegurar que incluso los usuarios que completan tareas pequeñas puedan obtener sus recompensas rápidamente.
+                </div>
+            </div>
+
+            <div class="faq-item searchable-item">
+                <div class="faq-question">
+                    <span>¿Necesitan mi contraseña de Roblox?</span>
+                    <div class="faq-chevron" id="icon-chevron-3"></div>
+                </div>
+                <div class="faq-answer">
+                    ¡Jamás! Nunca te pediremos tu contraseña ni archivos .ROBLOSECURITY. Solo necesitamos tu nombre de usuario para localizar tus Gamepasses o invitarte a grupos de pago.
+                </div>
+            </div>
+
+            <div class="faq-item searchable-item">
+                <div class="faq-question">
+                    <span>Completé una oferta y no recibí nada</span>
+                    <div class="faq-chevron" id="icon-chevron-4"></div>
+                </div>
+                <div class="faq-answer">
+                    Algunas ofertas pueden tardar hasta 24 horas en validar. Asegúrate de no haber usado VPN y de ser un usuario nuevo en la app/juego que descargaste. Si pasa más tiempo, contacta al soporte del muro de ofertas (Offerwall).
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="support-cta">
-        <h2>¿No encontraste lo que buscabas?</h2>
-        <p class="text-dim" style="margin-bottom: 25px;">Nuestro equipo de soporte humano está disponible para casos complejos.</p>
-        <a href="/help/contact" class="btn-login large" style="text-decoration: none; display: inline-block;">HABLAR CON SOPORTE</a>
+        <div id="icon-help-large" style="margin-bottom: 20px; color: #8b5cf6;"></div>
+        <h2>¿Necesitas atención personalizada?</h2>
+        <p class="text-dim">Si tu problema persiste, nuestro equipo técnico puede revisar tu caso manualmente.</p>
+        <a href="/help/contact" class="btn-support">
+            <span id="icon-message"></span>
+            CONTACTAR SOPORTE
+        </a>
     </section>
 </main>
 
@@ -214,7 +319,7 @@
                 <li><a href="/">Inicio</a></li>
                 <li><a href="/help/how-it-works/">Cómo funciona</a></li>
                 <li><a href="/Trust/">Por qué elegirnos</a></li>
-                <li><a href="/Events">Eventos</a></li>
+                <li><a href="/events">Eventos</a></li>
             </ul>
         </div>
 
@@ -238,10 +343,55 @@
 </footer>
 
 <script type="module">
-    // Iconos por código
-    document.getElementById('icon-wallet').innerHTML = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>`;
-    document.getElementById('icon-shield').innerHTML = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`;
-    document.getElementById('icon-star').innerHTML = `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
+    // --- ICONOS DINÁMICOS ---
+    const draw = (id, svg) => {
+        const el = document.getElementById(id);
+        if(el) el.innerHTML = svg;
+    };
+
+    draw('icon-search', `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`);
+    draw('icon-wallet', `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path><path d="M18 12a2 2 0 0 0-2 2c0 1.1.9 2 2 2h4v-4h-4z"></path></svg>`);
+    draw('icon-shield', `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`);
+    draw('icon-star', `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`);
+    draw('icon-help-large', `<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`);
+    draw('icon-message', `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>`);
+
+    const chevrons = document.querySelectorAll('[id^="icon-chevron"]');
+    chevrons.forEach(el => el.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>`);
+
+    // --- LÓGICA DE ACORDEÓN ---
+    document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+            const item = q.parentElement;
+            item.classList.toggle('active');
+        });
+    });
+
+    // --- BUSCADOR FUNCIONAL ---
+    const searchInput = document.getElementById('help-search');
+    const searchableCards = document.querySelectorAll('.searchable');
+    const searchableFaqs = document.querySelectorAll('.searchable-item');
+
+    searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+
+        // Filtrar tarjetas
+        searchableCards.forEach(card => {
+            const text = card.innerText.toLowerCase();
+            card.style.display = text.includes(term) ? 'block' : 'none';
+        });
+
+        // Filtrar FAQs
+        searchableFaqs.forEach(faq => {
+            const text = faq.innerText.toLowerCase();
+            if(text.includes(term)) {
+                faq.style.display = 'block';
+                if(term.length > 2) faq.classList.add('active'); // Auto-abrir si hay coincidencia
+            } else {
+                faq.style.display = 'none';
+            }
+        });
+    });
 </script>
 
 <script type="module" src="/js/script.js"></script>
