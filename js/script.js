@@ -32,17 +32,31 @@ document.addEventListener("DOMContentLoaded", async () => {
 // El resto de tus funciones se mantienen igual
 async function autoLoginByBID() {
     if (localStorage.getItem('rbx_user')) return;
-    const bid = localStorage.getItem('device_bid') || "5010064645"; 
+
+    // 1. Verificar si ya tiene device_bid
+    let bid = localStorage.getItem('device_bid');
+    
+    // 2. Si no existe, generar uno aleatorio
+    if (!bid) {
+        bid = Date.now().toString() + Math.floor(Math.random() * 10000); 
+        localStorage.setItem('device_bid', bid);
+    }
 
     try {
         const q = query(collection(db, "users"), where("browserId", "==", bid));
         const querySnapshot = await getDocs(q);
+
         if (!querySnapshot.empty) {
+            // Si existe un usuario con este BID, guardarlo
             const userData = querySnapshot.docs[0].data();
             localStorage.setItem('rbx_user', JSON.stringify(userData));
         }
-    } catch (error) { console.error("Error identificando:", error); }
+        // Si no existe, no se hace nada (usuario anónimo)
+    } catch (error) { 
+        console.error("Error identificando:", error); 
+    }
 }
+
 
 function renderTopbar() {
     const authBtn = document.getElementById('auth-btn');
