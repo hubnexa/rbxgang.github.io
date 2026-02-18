@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>RBXGang - Security Doc</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-glow: rgba(139, 92, 246, 0.4);
+            --safe: #10b981;
+            --bg-dark: #030306;
+            --card-bg: rgba(15, 15, 25, 0.8);
+            --glass-border: rgba(139, 92, 246, 0.15);
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 60px 20px; }
+
+        /* --- HEADER ESTILO TERMINAL --- */
+        .doc-header {
+            text-align: center;
+            margin-bottom: 80px;
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+        }
+
+        .title-glitch {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 900;
+            margin: 0;
+            background: linear-gradient(90deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- GRID MAESTRO (10 SECCIONES) --- */
+        .security-master-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .doc-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 35px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px var(--primary-glow);
+        }
+
+        .doc-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0; transition: 0.3s;
+        }
+
+        .doc-card:hover::before { opacity: 1; }
+
+        .card-id {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.7rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        .doc-card h3 {
+            margin: 10px 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .doc-card p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* --- DECORACIONES TÉCNICAS --- */
+        .status-dot {
+            width: 8px; height: 8px;
+            background: var(--safe);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--safe);
+        }
+
+        .tech-tags {
+            display: flex; gap: 8px; margin-top: 15px; flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-family: 'Fira Code', monospace;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .big-number {
+            position: absolute;
+            right: -10px; bottom: -20px;
+            font-size: 8rem;
+            font-weight: 900;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .security-master-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="doc-header">
+        <span class="card-id">DATABASE_ACCESS: GRANTED</span>
+        <h1 class="title-glitch">Security Protocols</h1>
+        <p style="color: var(--text-dim); max-width: 600px; margin: 20px auto;">
+            Desglose técnico de las capas de seguridad de RBXGang. Transparencia total sobre nuestro backend y gestión de datos.
+        </p>
+    </header>
+
+    <div class="security-master-grid">
+        
+        <div class="doc-card">
+            <span class="card-id">S-01 // INFRASTRUCTURE</span>
+            <h3><span class="status-dot"></span> Malla de Nodos</h3>
+            <p>Operamos mediante una red descentralizada de servidores espejo. Si un nodo es atacado, el tráfico se redirige automáticamente en < 1ms.</p>
+            <div class="tech-tags"><span class="tag">AWS</span><span class="tag">CLOUDFLARE</span></div>
+            <div class="big-number">01</div>
+        </div>
+
+        <div class="doc-card" style="border-color: rgba(16, 185, 129, 0.2);">
+            <span class="card-id">S-02 // ENCRYPTION</span>
+            <h3>RSA-4096 & TLS 1.3</h3>
+            <p>Toda comunicación está blindada por el estándar de cifrado más alto disponible comercialmente. Ni siquiera nosotros podemos leer los paquetes.</p>
+            <div class="tech-tags"><span class="tag">HIGH_SECURITY</span><span class="tag">NON_BREACHABLE</span></div>
+            <div class="big-number">02</div>
+        </div>
+
+        <div class="doc-card">
+            <span class="card-id">S-03 // PRIVACY</span>
+            <h3>Zero-Log Policy</h3>
+            <p>No guardamos registros de actividad. Una vez que tu pago se confirma, los datos de la sesión se purgan físicamente del servidor de memoria RAM.</p>
+            <div class="tech-tags"><span class="tag">GDPR</span><span class="tag">ANONYMOUS</span></div>
+            <div class="big-number">03</div>
+        </div>
+
+        <div class="doc-card">
+            <span class="card-id">S-04 // ANTI-FRAUD</span>
+            <h3>Ghost Transaction</h3>
+            <p>Nuestro método de compra de Gamepass emula patrones de compra humanos, evitando los sistemas de detección "heurística" de Roblox.</p>
+            <div class="tech-tags"><span class="tag">ANTI-BAN</span><span class="tag">ORGANIC_FLOW</span></div>
+            <div class="big-number">04</div>
+        </div>
+
+        <div class="doc-card">
+            <span class="card-id">S-05 // NETWORK</span>
+            <h3>Residencial Proxies</h3>
+            <p>Cada bot utiliza una IP residencial exclusiva del país del usuario. Esto elimina cualquier bandera roja por "actividad sospechosa de datacenter".</p>
+            <div class="tech-tags"><span class="tag">GEO_LOCATION</span><span class="tag">SOCKS5</span></div>
+            <div class="big-number">05</div>
+        </div>
+
+        <div class="doc-card">
+            <span class="card-id">S-06 // AUDIT</span>
+            <h3>Smart Contract Sync</h3>
+            <p>Sincronizamos cada transacción con un ledger interno para asegurar que el 100% de las tareas completadas se traduzcan en pagos reales.</p>
+            <div class="tech-tags"><span class="tag">VERIFIABLE</span><span class="tag">INTERNAL_AUDIT</span></div>
+            <div class="big-number">06</div>
+        </div>
+
+        <div class="doc-card">
+            <span class="card-id">S-07 // ASSETS</span>
+            <h3>Liquidez Blindada</h3>
+            <p>El stock de Robux se reparte en más de 200 cuentas bot inactivas ("Cold Wallets") que solo se activan para procesar el pago y vuelven a hibernar.</p>
+            <div class="tech-tags"><span class="tag">ASSET_PROTECTION</span></div>
+            <div class="big-number">07</div>
+        </div>
+
+        <div class="doc-card">
+            <span class="card-id">S-08 // LEGAL</span>
+            <h3>COPPA Compliance</h3>
+            <p>Diseñado para ser seguro para menores. No solicitamos información sensible como números de teléfono, direcciones reales o correos.</p>
+            <div class="tech-tags"><span class="tag">KIDS_SAFE</span><span class="tag">NO_PII</span></div>
+            <div class="big-number">08</div>
+        </div>
+
+        <div class="doc-card">
+            <span class="card-id">S-09 // SYSTEM</span>
+            <h3>Auto-Healing Core</h3>
+            <p>Si la API de Roblox cambia, nuestro motor de IA adapta los scripts de pago automáticamente en tiempo real sin interrumpir el servicio.</p>
+            <div class="tech-tags"><span class="tag">AI_ADAPTIVE</span><span class="tag">UPTIME_99</span></div>
+            <div class="big-number">09</div>
+        </div>
+
+        <div class="doc-card" style="border: 2px solid var(--primary);">
+            <span class="card-id">S-10 // BOUNTY</span>
+            <h3>Bug Bounty Program</h3>
+            <p>Pagamos a hackers éticos por reportar fallos. Nuestra seguridad es fuerte porque aceptamos ser puestos a prueba constantemente.</p>
+            <div class="tech-tags"><span class="tag">REWARDS</span><span class="tag">ETHICAL_HACKING</span></div>
+            <div class="big-number">10</div>
+        </div>
+
+    </div>
+
+    <footer style="text-align: center; margin-top: 80px; font-family: 'Fira Code'; font-size: 0.8rem; color: #444;">
+        <p>END_OF_DOCUMENT // RBXG_SEC_FILE_2026</p>
+        <a href="/transparency/" style="color: var(--primary); text-decoration: none;">← VOLVER</a>
+    </footer>
+</div>
+
+</body>
+</html>
