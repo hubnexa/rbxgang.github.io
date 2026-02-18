@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RBXGang - Transparency</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">
+<link rel="stylesheet" href="/css/style.css">
+    <style>
+        :root {
+            --primary: #8b5cf6;
+            --primary-light: #a78bfa;
+            --safe: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg-dark: #06060a;
+            --card-bg: #0f0f1a;
+            --glass-border: rgba(139, 92, 246, 0.2);
+            --text-dim: #94a3b8;
+            --terminal-bg: #05050a;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Inter', system-ui, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .trans-wrapper {
+            padding: 60px 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER DINÁMICO --- */
+        .audit-header {
+            text-align: center;
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--safe);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            margin-bottom: 20px;
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .title-reveal {
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 900;
+            background: linear-gradient(to bottom, #fff 40%, var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            letter-spacing: -2px;
+        }
+
+        /* --- DASHBOARD DE ESTADÍSTICAS --- */
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 80px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-light);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+        }
+
+        /* --- GRID DE INTEGRIDAD --- */
+        .integrity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 100px;
+        }
+
+        .integrity-card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .integrity-card:hover {
+            transform: scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.1);
+        }
+
+        .integrity-card h3 {
+            margin: 15px 0;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .details-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            border-left: 3px solid var(--primary);
+            display: none;
+        }
+
+        .integrity-card.active .details-box {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        /* --- ARQUITECTURA TÉCNICA (FLOW) --- */
+        .tech-section {
+            background: rgba(139, 92, 246, 0.03);
+            border-radius: 40px;
+            padding: 60px 40px;
+            margin-bottom: 100px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .flow-visual {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .flow-node {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .node-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+
+        /* --- TERMINAL DE PROCESOS --- */
+        .terminal-container {
+            margin-bottom: 100px;
+        }
+
+        .terminal-window {
+            background: var(--terminal-bg);
+            border-radius: 20px;
+            border: 1px solid #222;
+            font-family: 'Fira Code', monospace;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+        }
+
+        .terminal-header {
+            background: #1a1a1b;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .terminal-dots { display: flex; gap: 8px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+
+        .terminal-body {
+            padding: 30px;
+            font-size: 0.9rem;
+            color: #a9b1d6;
+            min-height: 250px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .code-success { color: var(--safe); }
+        .code-meta { color: var(--primary-light); }
+        .code-warn { color: var(--warning); }
+
+        /* --- TABLA DE COMPARACIÓN --- */
+        .comparison-wrapper {
+            background: var(--card-bg);
+            border-radius: 35px;
+            padding: 50px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 100px;
+        }
+
+        .audit-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        .audit-table th {
+            padding: 20px;
+            text-align: left;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            border-bottom: 2px solid rgba(255,255,255,0.05);
+        }
+
+        .audit-table td {
+            padding: 25px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .status-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+        .status-success { background: rgba(16, 185, 129, 0.1); color: var(--safe); }
+
+        /* --- FAQ TÉCNICO --- */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .faq-item {
+            background: rgba(255,255,255,0.02);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .faq-item h4 { margin: 0 0 15px 0; color: var(--primary-light); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 900px) {
+            .faq-grid { grid-template-columns: 1fr; }
+            .stats-dashboard { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="topbar">
+    <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+        <li><a href="/events">Eventos</a></li>
+        <li><a href="/help/us">Nosotros</a></li>
+    </ul>
+    
+    <div class="auth-container">
+    <button id="auth-btn" class="btn-login"></button>
+    
+    <div id="auth-dropdown" class="dropdown-content">
+        <a href="/dashboard"><i class="icon-dashboard"></i> Panel de Control</a>
+        <a href="/profile"><i class="icon-user"></i> Mi Perfil</a>
+        <hr>
+        <a href="#" onclick="logout()" class="logout-link">Cerrar Sesión</a>
+    </div>
+</div>
+</nav>
+
+
+    <main class="trans-wrapper">
+        
+        <header class="audit-header">
+            <div class="live-indicator">
+                <span style="width: 8px; height: 8px; background: var(--safe); border-radius: 50%;"></span>
+                INFRAESTRUCTURA VERIFICADA 2026
+            </div>
+            <h1 class="title-reveal">Transparencia<br>Sin Límites.</h1>
+            <p style="color: var(--text-dim); max-width: 700px; margin: 25px auto; font-size: 1.1rem;">
+                En un ecosistema lleno de sitios fraudulentos, nosotros abrimos nuestras puertas. Mira el código, entiende los fondos y opera con total tranquilidad.
+            </p>
+        </header>
+
+        <div class="stats-dashboard">
+            <div class="stat-card">
+                <span class="stat-value" id="stat-payouts">2,482k+</span>
+                <span class="stat-label">Robux Entregados</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">0</span>
+                <span class="stat-label">Passwords Pedidas</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">99.9%</span>
+                <span class="stat-label">Uptime Servidores</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="stat-users">12,104</span>
+                <span class="stat-label">Usuarios Activos</span>
+            </div>
+        </div>
+
+        <h2 style="text-align: center; margin-bottom: 50px;">Nuestros Compromisos de <span style="color: var(--primary)">Hierro</span></h2>
+        <div class="integrity-grid">
+            <div class="integrity-card" onclick="this.classList.toggle('active')">
+                <div class="node-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>Encriptación de Datos</h3>
+                <p>Usamos estándares bancarios para proteger cada ID que entra en nuestro sistema.</p>
+                <div class="details-box">
+                    Técnico: Cifrado AES-256-GCM con rotación de llaves cada 24 horas. Los metadatos de usuario nunca se almacenan en texto plano.
+                </div>
+            </div>
+
+            <div class="integrity-card" onclick="this.classList.toggle('active')">
+                <div class="node-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                </div>
+                <h3>Cero Retención</h3>
+                <p>No somos coleccionistas de datos. Si no nos usas, tus registros desaparecen.</p>
+                <div class="details-box">
+                    Protocolo: Purga automática de registros (Log Flush) tras 30 días de inactividad total. No vendemos bases de datos.
+                </div>
+            </div>
+
+            <div class="integrity-card" onclick="this.classList.toggle('active')">
+                <div class="node-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                </div>
+                <h3>Pruebas Públicas</h3>
+                <p>Cada pago puede ser verificado por la comunidad en nuestros canales públicos.</p>
+                <div class="details-box">
+                    Transparencia: Canal #vouches conectado vía Webhook directo a nuestra API de pagos para validación comunitaria.
+                </div>
+            </div>
+        </div>
+
+        <section class="tech-section">
+            <h2 style="text-align: center;">¿De dónde viene el <span style="color: var(--primary)">Dinero</span>?</h2>
+            <p style="text-align: center; color: var(--text-dim); margin-bottom: 40px;">Es simple economía, no magia ni estafas.</p>
+            
+            <div class="flow-visual">
+                <div class="flow-node">
+                    <div class="node-icon">1</div>
+                    <h4>Publicidad Externas</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Empresas pagan a RBXGang por visibilidad y micro-tareas.</p>
+                </div>
+                <div class="flow-node">
+                    <div class="node-icon">2</div>
+                    <h4>Conversión a Fondos</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Esos ingresos se usan para comprar Robux legalmente en la plataforma oficial.</p>
+                </div>
+                <div class="flow-node">
+                    <div class="node-icon">3</div>
+                    <h4>Distribución Justa</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Tú recibes tu recompensa por el tiempo invertido. Todos ganan.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="terminal-container">
+            <h2 style="margin-bottom: 30px;">Consola de Auditoría <span style="color: var(--primary)">en Vivo</span></h2>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <div class="dot" style="background: #ff5f56;"></div>
+                        <div class="dot" style="background: #ffbd2e;"></div>
+                        <div class="dot" style="background: #27c93f;"></div>
+                    </div>
+                    <span style="font-size: 0.7rem; color: #555;">RBXGANG_SHIELD_V2.log</span>
+                </div>
+                <div class="terminal-body" id="audit-log">
+                    <span class="code-meta">[SYSTEM]</span> Kernel de seguridad iniciado...<br>
+                    <span class="code-meta">[INFO]</span> Escaneando integridad de nodos de pago...<br>
+                    <span class="code-success">[READY]</span> Firewall activo y monitoreando.<br>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-wrapper">
+            <h2>El Estándar <span style="color: var(--primary)">RBXGang</span></h2>
+            <table class="audit-table">
+                <thead>
+                    <tr>
+                        <th>Punto de Control</th>
+                        <th>Otros Sitios (Scam)</th>
+                        <th>RBXGang</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Acceso a Cuenta</strong></td>
+                        <td><span class="status-badge status-danger">Pide Contraseña</span></td>
+                        <td><span class="status-badge status-success">Solo ID Público</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Software Necesario</strong></td>
+                        <td><span class="status-badge status-danger">Descargar .EXE/.APK</span></td>
+                        <td><span class="status-badge status-success">100% Web Seguro</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Publicidad</strong></td>
+                        <td>Pop-ups intrusivos / Virus</td>
+                        <td>Sponsors Verificados</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Retiros</strong></td>
+                        <td>"Error técnico" al pagar</td>
+                        <td>Inmediatos / Pendientes (7 días)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Soporte</strong></td>
+                        <td>Inexistente</td>
+                        <td>Discord Staff 24/7</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 style="text-align: center; margin-bottom: 40px;">Preguntas de <span style="color: var(--primary)">Seguridad</span></h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h4>¿Por qué mis Robux aparecen como "Pendientes"?</h4>
+                <p style="font-size: 0.9rem; color: var(--text-dim);">No es un truco nuestro, es el sistema oficial de Roblox. Cualquier transferencia de Robux por Gamepass tarda de 5 a 7 días en procesarse por seguridad de la propia plataforma.</p>
+            </div>
+            <div class="faq-item">
+                <h4>¿Pueden banearme por usar RBXGang?</h4>
+                <p style="font-size: 0.9rem; color: var(--text-dim);">No. No usamos exploits ni bots de hacking. Los Robux te llegan mediante una compra legítima de tu Gamepass, lo cual es una transacción permitida en los términos de Roblox.</p>
+            </div>
+            <div class="faq-item">
+                <h4>¿Cómo ganan dinero ustedes?</h4>
+                <p style="font-size: 0.9rem; color: var(--text-dim);">Como cualquier red publicitaria. Los anunciantes nos pagan por cada tarea completada; nosotros nos quedamos con una pequeña comisión para mantener los servidores y el resto va directo a ti.</p>
+            </div>
+            <div class="faq-item">
+                <h4>¿Qué hacen con mi ID de Discord?</h4>
+                <p style="font-size: 0.9rem; color: var(--text-dim);">Solo lo usamos para vincular tu saldo. Nunca publicaremos nada en tu nombre ni accederemos a tus mensajes privados. Tu privacidad es nuestro activo más valioso.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 80px; background: linear-gradient(90deg, transparent, var(--card-bg), transparent); padding: 40px; border-radius: 20px;">
+            <h3>¿Aún tienes sospechas?</h3>
+            <p style="color: var(--text-dim);">Entra a nuestro servidor, mira los miles de comprobantes y pregunta a los usuarios reales.</p>
+            <br>
+            <a href="/Social" style="text-decoration: none; background: var(--primary); color: white; padding: 18px 40px; border-radius: 12px; font-weight: 800; display: inline-block; transition: 0.3s;" onmouseover="this.style.filter='brightness(1.2)'" onmouseout="this.style.filter='brightness(1)'">
+                VER PRUEBAS EN DISCORD
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col brand-col">
+            <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+            <p>La plataforma más segura y rápida para potenciar tu experiencia en Roblox. Únete a miles de usuarios y empieza a ganar hoy.</p>
+            <div class="social-links">
+                <a href="/Social/" class="social-icon">Discord</a>
+                <a href="/Social" class="social-icon">TikTok</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Plataforma</h4>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+                <li><a href="/Trust/">Por qué elegirnos</a></li>
+                <li><a href="/Events">Eventos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="/legal/Terms-of-Service">Términos de Servicio</a></li>
+                <li><a href="/legal/Privacy-Policy">Política de Privacidad</a></li>
+                <li><a href="/help/center">Centro de Ayuda</a></li>
+                <li><a href="/help/contact">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>&copy; 2026 RBXGang. Todos los derechos reservados.</p>
+            <p class="disclaimer">Este sitio no está afiliado, patrocinado ni respaldado por Roblox Corporation.</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="/js/script.js"></script>
+
+    <script>
+        // Animación de números de estadísticas
+        function animateValue(id, start, end, duration) {
+            let obj = document.getElementById(id);
+            let range = end - start;
+            let minTimer = 50;
+            let stepTime = Math.abs(Math.floor(duration / range));
+            stepTime = Math.max(stepTime, minTimer);
+            let startTime = new Date().getTime();
+            let endTime = startTime + duration;
+            let timer;
+
+            function run() {
+                let now = new Date().getTime();
+                let remaining = Math.max((endTime - now) / duration, 0);
+                let value = Math.round(end - (remaining * range));
+                obj.innerHTML = value.toLocaleString() + (id === 'stat-payouts' ? 'k+' : '');
+                if (value == end) clearInterval(timer);
+            }
+            timer = setInterval(run, stepTime);
+            run();
+        }
+
+        animateValue("stat-users", 11500, 12104, 3000);
+
+        // Simulador de Terminal
+        const logEntries = [
+            "<span class='code-meta'>[INFO]</span> Conexión entrante desde nodo_latam_4...",
+            "<span class='code-success'>[SECURE]</span> Sesión validada sin cookies intrusivas.",
+            "<span class='code-meta'>[INFO]</span> Purgando caché de IDs inactivos (+2400 eliminados).",
+            "<span class='code-warn'>[ALERT]</span> Intento de acceso sospechoso bloqueado en API v2.",
+            "<span class='code-success'>[OK]</span> Sincronización de stock de Robux completada.",
+            "<span class='code-meta'>[INFO]</span> Escaneo de vulnerabilidades: 0 fallos encontrados.",
+            "<span class='code-meta'>[SYSTEM]</span> Re-cifrando base de datos temporal..."
+        ];
+
+        const logContainer = document.getElementById('audit-log');
+        let index = 0;
+
+        setInterval(() => {
+            const entry = document.createElement('div');
+            entry.style.marginBottom = "8px";
+            entry.innerHTML = logEntries[index % logEntries.length];
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+            index++;
+            if(logContainer.childElementCount > 15) logContainer.removeChild(logContainer.firstChild);
+        }, 3000);
+    </script>
+</body>
+</html>

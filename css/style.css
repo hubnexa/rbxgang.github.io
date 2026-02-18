@@ -1101,3 +1101,259 @@ summary::-webkit-details-marker { display: none; }
     opacity: 0.8;
 }
 
+
+/* --- CONTENEDOR DE RANGOS --- */
+.rank-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    user-select: none;
+    border: 1px solid transparent;
+}
+
+/* Efecto Hover general */
+.rank-tag:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.2);
+}
+
+/* --- ESTILOS ESPECÍFICOS POR RANGO --- */
+
+/* Basic - Gris sobrio */
+.rank-basic {
+    border-color: #a0a0a044;
+    color: #a0a0a0;
+}
+
+/* VIP - Púrpura brillante */
+.rank-vip {
+    border-color: #8b5cf666;
+    color: #a78bfa;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.1);
+}
+
+/* Bronce - Marrón metálico */
+.rank-bronce {
+    border-color: #cd7f3266;
+    color: #ffa44f;
+}
+
+/* Oro - Dorado con resplandor */
+.rank-oro {
+    border-color: #ffd70066;
+    color: #ffdb1a;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 0, 0, 0.3));
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+}
+
+/* Admin/Owner - Rojo Intenso con animación */
+.rank-admin, .rank-owner {
+    border-color: #ef444488;
+    color: #ff5c5c;
+    background: rgba(239, 68, 68, 0.1);
+    animation: pulse-rank 2s infinite;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes pulse-rank {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* --- AJUSTE PARA ICONOS SVG DENTRO DEL RANGO --- */
+.rank-tag svg {
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 2px currentColor);
+}
+
+/* --- CLASE PARA DETECCIÓN (VPN/ADBLOCK) --- */
+.adsbox {
+    position: absolute;
+    left: -9999px;
+    height: 1px;
+    width: 1px;
+}
+
+/* Contenedor del perfil en el Topbar */
+.auth-container {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espacio entre el botón de usuario y el rango */
+}
+
+/* Etiqueta de Rango */
+.rank-tag {
+    order: 2; /* Fuerza que salga a la derecha del botón si están en el mismo flex */
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(5px);
+    border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+.rank-tag svg {
+    flex-shrink: 0;
+}
+
+/* Animación especial para Owner */
+.rank-owner {
+    box-shadow: 0 0 10px rgba(255, 92, 92, 0.2);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+    100% { filter: brightness(1); }
+}
+
+/* Detección de Adblock */
+.adsbox {
+    position: absolute;
+    left: -9999px;
+}
+
+/* Contenedor Principal en Topbar */
+.auth-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Diseño Base del Rango */
+.rank-tag {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 12px;
+    border-radius: 10px;
+    font-size: 10.5px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    background: rgba(15, 15, 25, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Brillo interior sutil */
+.rank-tag::after {
+    content: "";
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+    transform: rotate(45deg);
+    transition: 0.5s;
+}
+
+.rank-tag:hover::after {
+    left: 120%;
+}
+
+/* --- VARIANTES DE RANGO --- */
+
+.rank-basic { 
+    color: #b9bbbe; 
+    border-color: rgba(185, 187, 190, 0.2); 
+}
+
+.rank-vip { 
+    color: #a370f7; 
+    border-color: rgba(163, 112, 247, 0.4);
+    text-shadow: 0 0 8px rgba(163, 112, 247, 0.4);
+}
+
+.rank-oro { 
+    color: #ffcc00; 
+    border-color: rgba(255, 204, 0, 0.4);
+    background: linear-gradient(135deg, rgba(255, 204, 0, 0.1), rgba(15, 15, 25, 0.8));
+}
+
+/* Animación para Admin y Owner */
+.rank-admin, .rank-owner {
+    color: #ff4747;
+    border-color: rgba(255, 71, 71, 0.5);
+    background: rgba(255, 71, 71, 0.08);
+    animation: pulse-border 2.5s infinite;
+}
+
+.rank-owner {
+    background: linear-gradient(90deg, rgba(255,71,71,0.1), rgba(15,15,25,0.8));
+    color: #ff5c5c;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes pulse-border {
+    0% { border-color: rgba(255, 71, 71, 0.3); box-shadow: 0 0 0 0 rgba(255, 71, 71, 0.2); }
+    50% { border-color: rgba(255, 71, 71, 0.7); box-shadow: 0 0 10px 2px rgba(255, 71, 71, 0.1); }
+    100% { border-color: rgba(255, 71, 71, 0.3); box-shadow: 0 0 0 0 rgba(255, 71, 71, 0.2); }
+}
+
+/* Ajuste del Icono */
+.rank-tag svg {
+    filter: drop-shadow(0 0 3px currentColor);
+}
+
+/* Necesario para detectar AdBlocker */
+.adsbox {
+    position: absolute;
+    left: -9999px;
+    height: 1px;
+    width: 1px;
+}
+
+/* Contenedor de Auth */
+.auth-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Diseño de Rangos Mejorado */
+.rank-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid transparent;
+    transition: 0.3s ease;
+}
+
+.rank-owner {
+    box-shadow: 0 0 10px rgba(255, 92, 92, 0.2);
+    animation: shine-owner 3s infinite;
+}
+
+@keyframes shine-owner {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.4) drop-shadow(0 0 5px #ff5c5c); }
+    100% { filter: brightness(1); }
+}

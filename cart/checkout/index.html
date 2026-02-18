@@ -300,9 +300,9 @@
     const params = new URLSearchParams(window.location.search);
     const amount = params.get('amount') || "0.00";
     const type = params.get('type') || "donacion";
-    const txnRef = params.get('txn_ref');
+    const txnRef = params.get('txn_ref'); // ¡CRÍTICO!
     const discordId = params.get('discord_id');
-    const promoCode = params.get('promo'); // Opcional: Para mostrar código aplicado
+    const promoCode = params.get('promo');
 
     document.getElementById('display-amount').innerText = `$${amount}`;
 
@@ -341,10 +341,18 @@
         }
     }
 
-    paypal.Buttons({
+   paypal.Buttons({
         style: { layout: 'vertical', color: 'blue', shape: 'pill', label: 'pay' },
         createOrder: (data, actions) => actions.order.create({ purchase_units: [{ amount: { value: amount } }] }),
-        onApprove: (data, actions) => actions.order.capture().then(finalizar)
+        onApprove: (data, actions) => {
+            return actions.order.capture().then(details => {
+                console.log("Pago de PayPal exitoso:", details.id);
+                return finalizar(details); // Asegúrate de retornar la promesa
+            });
+        },
+        onError: (err) => {
+            console.error("Error en el botón de PayPal:", err);
+        }
     }).render('#paypal-button-container');
 
     function generateGangID() {
@@ -357,8 +365,15 @@
 
     async function finalizar(details) {
         const gangPaymentId = generateGangID();
+        console.log("Iniciando actualización en Firebase para:", txnRef);
+
         try {
+            // 1. Verificar que txnRef existe para no romper el script
+            if (!txnRef) throw new Error("Missing transaction reference");
+
             const docRef = doc(db, "transactions", txnRef);
+            
+            // 2. Intentar actualización
             await updateDoc(docRef, {
                 status: "completed",
                 paypalOrderId: details.id,
@@ -367,12 +382,26 @@
                 appliedPromo: promoCode || "none"
             });
 
-            if (discordId) await updateDoc(doc(db, "users", discordId), { isDonator: true });
+            console.log("Firebase actualizado correctamente");
+
+            // 3. Actualización de usuario (opcional)
+            if (discordId) {
+                try {
+                    await updateDoc(doc(db, "users", discordId), { isDonator: true });
+                } catch (userErr) {
+                    console.warn("No se pudo actualizar el rango de donador:", userErr);
+                }
+            }
+
             if (type === "compra") localStorage.removeItem('cart_list');
 
+            // 4. Redirección de éxito
             window.location.href = `/cart/checkout/payment?status=success&gangId=${gangPaymentId}&amount=${amount}`;
+
         } catch (e) {
-            window.location.href = `/cart/checkout/payment?status=failed&gangId=${gangPaymentId}`;
+            console.error("Error crítico en el proceso de finalización:", e);
+            // Redirección de fallo incluyendo el error para debug (opcional)
+            window.location.href = `/cart/checkout/payment?status=failed&gangId=${gangPaymentId}&reason=db_error`;
         }
     }
 </script>

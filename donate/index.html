@@ -26,99 +26,238 @@
 <link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
 <meta name="theme-color" content="#8b5cf6">
     <link rel="stylesheet" href="/css/style.css">
-    <style>
-        /* Estilos específicos para la sección de donación */
-        .donate-hero {
-            padding: 120px 5% 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+<style>
+    :root {
+        --primary: #8b5cf6;
+        --primary-hover: #7c3aed;
+        --primary-glow: rgba(139, 92, 246, 0.25);
+        --bg-dark: #0f0f1a;
+        --card-bg: #161625;
+        --text-main: #ffffff;
+        --text-dim: #94a3b8;
+        --border: rgba(255, 255, 255, 0.08);
+    }
 
-        .donation-grid {
-            max-width: 1000px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
+    /* --- CONTENEDOR PRINCIPAL --- */
+    .donate-hero {
+        padding: 140px 5% 80px;
+        min-height: 100vh;
+        background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.12) 0%, var(--bg-dark) 50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Inter', system-ui, sans-serif;
+    }
 
-        /* Tarjeta de Formulario */
-        .donate-card {
-            background: var(--card-bg);
-            border-radius: 24px;
-            padding: 2.5rem;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            text-align: left;
-        }
+    .features-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        max-width: 800px;
+    }
 
-        .donate-card h2 { margin-bottom: 1rem; color: var(--primary); }
+    .section-title {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 1rem;
+    }
 
-        .input-group {
-            margin: 1.5rem 0;
-        }
+    /* --- GRID DE PACKS --- */
+    .packs-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        width: 100%;
+        max-width: 1100px;
+        margin-bottom: 4rem;
+    }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: #94a3b8;
-        }
+    .donate-pack {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 2.5rem;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+    }
 
-        .input-group input {
-            width: 100%;
-            background: rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 12px;
-            border-radius: 10px;
-            color: white;
-            font-size: 1.1rem;
-            transition: 0.3s;
-        }
+    .donate-pack:hover {
+        transform: translateY(-8px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
 
-        .input-group input:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
-        }
+    /* Estado Seleccionado */
+    .donate-pack.selected {
+        border: 2px solid var(--primary);
+        background: linear-gradient(145deg, #1a1a2e, #161625);
+        box-shadow: 0 0 30px var(--primary-glow);
+    }
 
-        /* Beneficios */
-        .benefits-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 2rem;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+    .donate-pack.selected::after {
+        content: 'SELECCIONADO';
+        position: absolute;
+        top: 15px;
+        right: -30px;
+        background: var(--primary);
+        font-size: 0.65rem;
+        font-weight: 900;
+        padding: 5px 40px;
+        transform: rotate(45deg);
+    }
 
-        .benefit-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 1.2rem;
-        }
+    .pack-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(139, 92, 246, 0.1);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        color: var(--primary);
+    }
 
-        .benefit-icon {
-            width: 35px; height: 35px;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-        }
+    .pack-price {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin: 1rem 0;
+        color: var(--text-main);
+    }
 
-        #donation-status {
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            text-align: center;
-        }
+    .pack-price span {
+        font-size: 1.2rem;
+        color: var(--primary);
+        margin-right: 4px;
+    }
 
-        @media (max-width: 768px) {
-            .donation-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    .pack-features {
+        list-style: none;
+        padding: 0;
+        margin-top: 1.5rem;
+    }
+
+    .pack-features li {
+        color: var(--text-dim);
+        font-size: 0.95rem;
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* --- SECCIÓN INFERIOR: FORMULARIO Y INFO --- */
+    .donation-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 2rem;
+        width: 100%;
+        max-width: 1100px;
+    }
+
+    .donate-card, .benefits-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 2.5rem;
+    }
+
+    .input-group {
+        margin: 2rem 0;
+    }
+
+    .input-wrapper {
+        position: relative;
+        margin-top: 10px;
+    }
+
+    .input-wrapper span {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: 800;
+        color: var(--primary);
+        font-size: 1.2rem;
+    }
+
+    .input-wrapper input {
+        width: 100%;
+        height: 65px;
+        background: #0d0d1a;
+        border: 2px solid #2a2a3d;
+        border-radius: 16px;
+        padding-left: 45px;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 700;
+        transition: 0.3s;
+    }
+
+    .input-wrapper input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    /* --- BOTÓN DE PROCESO --- */
+    #btn-process-donation {
+        width: 100%;
+        height: 65px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 16px;
+        font-size: 1.1rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    #btn-process-donation:hover:not(:disabled) {
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+    }
+
+    #btn-process-donation:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    /* --- BENEFICIOS --- */
+    .benefit-row {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 1.5rem;
+        padding: 15px;
+        background: rgba(255,255,255,0.02);
+        border-radius: 16px;
+    }
+
+    .benefit-row svg {
+        color: var(--primary);
+        flex-shrink: 0;
+    }
+
+    #donation-status {
+        margin-top: 1.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 850px) {
+        .donation-grid { grid-template-columns: 1fr; }
+        .section-title { font-size: 2.2rem; }
+    }
+</style>
+
 </head>
 <body>
 
@@ -143,78 +282,85 @@
     </div>
 </nav>
 
-   <section class="donate-hero">
+  <section class="donate-hero">
     <div class="features-header">
-        <h1 class="section-title">Apoya a la <span class="brand-accent">Gang</span></h1>
-        <p class="section-subtitle">Tu apoyo mantiene la infraestructura y el stock de Robux. ¡Elige un pack o personaliza tu aporte!</p>
+        <h1 class="section-title">Impulsa la <span class="brand-accent">Gang</span></h1>
+        <p class="section-subtitle">Tu contribución directa financia el stock de Robux y la infraestructura de servidores 24/7.</p>
     </div>
 
-    <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; width: 100%; margin-top: 2rem;">
-        
-        <div class="card donate-pack" style="cursor: pointer; padding: 1.5rem; border-radius: 16px; background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1);" onclick="selectPack(5)">
-            <div class="card-icon-wrapper" style="margin-bottom: 1rem;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17.59L10.59 13 6 8.41 7.41 7l6 6-6 6z"/><path d="M13 17.59L17.59 13 13 8.41 14.41 7l6 6-6 6z"/></svg>
+    <div class="packs-container">
+        <div class="donate-pack" onclick="selectPack(5, this)">
+            <div class="pack-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </div>
-            <h3 style="color: white;">Starter</h3>
-            <p style="color: #94a3b8;">Aporte de <span style="color: var(--primary); font-weight: bold;">$5.00</span></p>
-            <ul style="list-style: none; font-size: 0.85rem; color: #64748b; margin-top: 10px; padding: 0;">
-                <li>✓ Rol Donador</li>
-                <li>✓ Badge Bronce</li>
+            <h3>Starter</h3>
+            <div class="pack-price"><span>$</span>5.00</div>
+            <ul class="pack-features">
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Rol Donador</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Badge Bronce</li>
             </ul>
         </div>
 
-        <div class="card donate-pack" style="cursor: pointer; padding: 1.5rem; border-radius: 16px; background: var(--card-bg); border: 2px solid var(--primary);" onclick="selectPack(20)">
-            <div class="card-icon-wrapper" style="margin-bottom: 1rem;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <div class="donate-pack selected" onclick="selectPack(20, this)">
+            <div class="pack-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"></path></svg>
             </div>
-            <h3 style="color: white;">Pro Gang</h3>
-            <p style="color: #94a3b8;">Aporte de <span style="color: var(--primary); font-weight: bold;">$20.00</span></p>
-            <ul style="list-style: none; font-size: 0.85rem; color: #64748b; margin-top: 10px; padding: 0;">
-                <li>✓ Rol Donador VIP</li>
-                <li>✓ Prioridad Stock</li>
-                <li>✓ Badge Plata</li>
+            <h3>Pro Gang</h3>
+            <div class="pack-price"><span>$</span>20.00</div>
+            <ul class="pack-features">
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Rol Donador VIP</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Prioridad Stock</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Badge Plata</li>
             </ul>
         </div>
 
-        <div class="card donate-pack" style="cursor: pointer; padding: 1.5rem; border-radius: 16px; background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1);" onclick="selectPack(50)">
-            <div class="card-icon-wrapper" style="margin-bottom: 1rem;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"></path><path d="M12 2v15.77"></path></svg>
+        <div class="donate-pack" onclick="selectPack(50, this)">
+            <div class="pack-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15l-2 5L9 9l11 4-5 2zm0 0l4 8"></path></svg>
             </div>
-            <h3 style="color: white;">Legend</h3>
-            <p style="color: #94a3b8;">Aporte de <span style="color: var(--primary); font-weight: bold;">$50.00</span></p>
-            <ul style="list-style: none; font-size: 0.85rem; color: #64748b; margin-top: 10px; padding: 0;">
-                <li>✓ Acceso Beta</li>
-                <li>✓ Badge Oro</li>
+            <h3>Legendary</h3>
+            <div class="pack-price"><span>$</span>50.00</div>
+            <ul class="pack-features">
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Acceso Beta Privada</li>
+                <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Badge Oro Animada</li>
             </ul>
         </div>
     </div>
 
     <div class="donation-grid">
         <div class="donate-card">
-            <h2>Monto Personalizado</h2>
+            <h3>Personaliza tu <span class="brand-accent">Aporte</span></h3>
             <div class="input-group">
-                <label>Monto en USD ($)</label>
-                <input type="number" id="donation-amount" placeholder="10.00" min="1">
+                <label style="color: var(--text-dim); font-size: 0.85rem; font-weight: 600;">MONTO EN USD</label>
+                <div class="input-wrapper">
+                    <span>$</span>
+                    <input type="number" id="donation-amount" placeholder="0.00" value="20.00">
+                </div>
             </div>
-            <button id="btn-process-donation" class="btn-login" style="width: 100%; padding: 1rem; cursor: pointer;">
-                Donar Ahora
-            </button>
+            <button id="btn-process-donation">Continuar al Pago</button>
             <div id="donation-status"></div>
         </div>
 
         <div class="benefits-card">
-            <div class="benefit-item">
-                <div class="benefit-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
+            <h4 style="margin-bottom: 1.5rem;">Compromiso Gang</h4>
+            <div class="benefit-row">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 <div>
-                    <strong style="color: white;">Seguridad</strong>
-                    <p style="font-size: 0.8rem; color: #94a3b8;">Procesamiento seguro vía Stripe/PayPal.</p>
+                    <strong style="display: block; color: white;">Transacción Segura</strong>
+                    <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 4px;">Encriptación SSL de grado bancario para tus datos.</p>
+                </div>
+            </div>
+            <div class="benefit-row">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <div>
+                    <strong style="display: block; color: white;">Entrega Inmediata</strong>
+                    <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 4px;">Tus badges y roles se activan tras confirmar el pago.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
     <footer class="main-footer">
     <div class="footer-container container">

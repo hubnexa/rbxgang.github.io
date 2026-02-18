@@ -27,78 +27,134 @@
 <meta name="theme-color" content="#8b5cf6">
     <link rel="stylesheet" href="/css/style.css">
     <style>
-        /* Estilos específicos para la guía de pasos */
-        .how-header {
-            text-align: center;
-            padding: 120px 20px 60px;
-            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
-        }
+    :root {
+        --primary: #8b5cf6;
+        --primary-glow: rgba(139, 92, 246, 0.3);
+        --bg-card: rgba(20, 20, 35, 0.7);
+        --code-bg: #09090f;
+    }
 
-        .steps-container {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto 100px;
-            padding: 20px;
-        }
+    .how-header {
+        text-align: center;
+        padding: 140px 20px 80px;
+        background: radial-gradient(circle at center, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+    }
 
-        .step-card {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 60px;
-            align-items: flex-start;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease;
-        }
+    /* Contenedor con línea de conexión vertical */
+    .steps-container {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto 100px;
+        padding: 20px;
+    }
 
-        .step-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
+    .steps-container::before {
+        content: '';
+        position: absolute;
+        left: 45px;
+        top: 50px;
+        bottom: 50px;
+        width: 2px;
+        background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+        opacity: 0.3;
+        z-index: 0;
+    }
 
-        .step-number {
-            background: var(--primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
-        }
+    .step-card {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 80px;
+        align-items: flex-start;
+        background: var(--bg-card);
+        backdrop-filter: blur(10px);
+        padding: 40px;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        position: relative;
+        z-index: 1;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
-        .step-content h3 {
-            margin-top: 0;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
+    .step-card:hover {
+        transform: translateX(10px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
 
-        .step-content p {
-            color: #a0a0b8;
-            line-height: 1.6;
-        }
+    .step-number {
+        background: var(--primary);
+        color: white;
+        min-width: 54px;
+        height: 54px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+        box-shadow: 0 8px 20px var(--primary-glow);
+        border: 2px solid rgba(255,255,255,0.1);
+    }
 
-        .visual-helper {
-            margin-top: 15px;
-            background: #0f0f1a;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px dashed #333;
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: #10b981;
-        }
+    .step-content h3 {
+        font-size: 1.5rem;
+        color: white;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-        @media (max-width: 768px) {
-            .step-card { flex-direction: column; gap: 15px; }
-        }
-    </style>
+    /* Terminal de código decorativa */
+    .visual-helper {
+        margin-top: 20px;
+        background: var(--code-bg);
+        border-radius: 12px;
+        border: 1px solid #1e1e2e;
+        overflow: hidden;
+        font-family: 'Fira Code', 'Courier New', monospace;
+    }
+
+    .terminal-header {
+        background: #1a1a2e;
+        padding: 8px 15px;
+        display: flex;
+        gap: 6px;
+        border-bottom: 1px solid #2d2d44;
+    }
+
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-r { background: #ff5f56; }
+    .dot-y { background: #ffbd2e; }
+    .dot-g { background: #27c93f; }
+
+    .terminal-body {
+        padding: 15px;
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .code-comment { color: #6272a4; font-style: italic; }
+    .code-key { color: #ff79c6; }
+    .code-val { color: #f1fa8c; }
+    .code-func { color: #50fa7b; }
+
+    /* Flecha de proceso */
+    .process-arrow {
+        display: flex;
+        justify-content: center;
+        margin: -40px 0 40px;
+        color: var(--primary);
+        opacity: 0.5;
+    }
+
+    @media (max-width: 768px) {
+        .steps-container::before { display: none; }
+        .step-card { padding: 25px; flex-direction: column; }
+        .step-card:hover { transform: translateY(-5px); }
+    }
+</style>
 </head>
 <body>
 
@@ -133,9 +189,20 @@
         <div class="step-number">1</div>
         <div class="step-content">
             <h3>Conecta tu Perfil</h3>
-            <p>Inicia sesión de forma segura con tu cuenta de Discord. No necesitamos tu contraseña de Roblox; solo tu nombre de usuario para saber a quién enviar las recompensas.</p>
+            <p>Inicia sesión mediante Discord de forma encriptada. El sistema genera un identificador único vinculado a tu perfil de Roblox sin comprometer tu seguridad.</p>
+            
             <div class="visual-helper">
-                Status: Connected as User#1234
+                <div class="terminal-header">
+                    <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+                </div>
+                <div class="terminal-body">
+                    <span class="code-comment">// AES-256 Auth Handshake</span><br>
+                    <span class="code-key">const</span> session = <span class="code-func">encrypt</span>({<br>
+                    &nbsp;&nbsp;discord_id: <span class="code-val">"353290..."</span>,<br>
+                    &nbsp;&nbsp;roblox_user: <span class="code-val">"Player_Gang"</span><br>
+                    });<br>
+                    <span class="code-func">console.log</span>(<span class="code-val">"🔐 Securing session..."</span>);
+                </div>
             </div>
         </div>
     </div>
@@ -143,28 +210,62 @@
     <div class="step-card">
         <div class="step-number">2</div>
         <div class="step-content">
-            <h3>Elige una Tarea o Evento</h3>
-            <p>Explora el Dashboard. Encontrarás desde "Quests" diarias hasta eventos comunitarios. Cada tarea especifica cuántos puntos o Robux otorga al completarse.</p>
+            <h3>Tareas y Eventos</h3>
+            <p>Participa en retos comunitarios y Quests. Nuestro servidor monitorea en tiempo real el progreso de cada integrante de la Gang.</p>
         </div>
     </div>
 
     <div class="step-card">
         <div class="step-number">3</div>
         <div class="step-content">
-            <h3>Completa y Verifica</h3>
-            <p>Sigue las instrucciones de la tarea. Una vez termines, nuestro bot verificará el cumplimiento automáticamente en un plazo de pocos minutos.</p>
+            <h3>Algoritmo de Verificación</h3>
+            <p>Una vez completada la tarea, nuestro bot audita el cumplimiento. Si todo es correcto, los fondos se acreditan instantáneamente en tu balance virtual.</p>
+            
+            <div class="visual-helper">
+                <div class="terminal-header">
+                    <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+                </div>
+                <div class="terminal-body">
+                    <span class="code-key">if</span> (task.status === <span class="code-val">'completed'</span>) {<br>
+                    &nbsp;&nbsp;<span class="code-func">verifyProof</span>(proof_hash);<br>
+                    &nbsp;&nbsp;<span class="code-func">updateBalance</span>(user_id, task.reward);<br>
+                    &nbsp;&nbsp;<span class="code-func">sendNotification</span>(<span class="code-val">"💰 Reward added!"</span>);<br>
+                    }
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="step-card">
         <div class="step-number">4</div>
         <div class="step-content">
-            <h3>Retira tus Ganancias</h3>
-            <p>Cuando alcances el mínimo de retiro, selecciona tu método preferido. Utilizamos el sistema de <b>Gamepasses</b> o <b>Group Payouts</b> para asegurar que los Robux lleguen a tu cuenta.</p>
+            <h3>Retiro Automatizado</h3>
+            <p>Selecciona tu método de retiro. El sistema procesa la compra de tu gamepass de forma automática mediante nuestra red de bots distribuida.</p>
+            
             <div class="visual-helper">
-                [Transacción Pendiente] -> [Enviado ✅]
+                <div class="terminal-body" style="text-align: center; color: #50fa7b; font-weight: bold;">
+                    REQUEST_WITHDRAWAL <br>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin: 10px 0;"><path d="M12 5v14M5 12l7 7 7-7"/></svg><br>
+                    STATUS: DISPATCHED ✅
+                </div>
             </div>
         </div>
+    </div>
+</section>
+
+<section id="metodos" class="container" style="margin-bottom: 120px;">
+    <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Proceso de <span class="brand-accent">Transferencia</span></h2>
+    <div class="step-card" style="max-width: 700px; margin: 0 auto; display: block; border-style: dashed;">
+        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+            <div class="step-number" style="background: transparent; border: 2px solid var(--primary); color: var(--primary);">i</div>
+            <h4 style="margin: 0; color: white; font-size: 1.2rem;">¿Cómo recibo los Robux?</h4>
+        </div>
+        <p style="font-size: 0.95rem;">Utilizamos el sistema de <b>Gamepasses</b>. Al solicitar un retiro:</p>
+        <ul style="color: #a0a0b8; margin-top: 15px; font-size: 0.9rem; line-height: 1.8;">
+            <li>1. Tú creas un item (Gamepass) en tu juego de Roblox.</li>
+            <li>2. Nuestro sistema lo localiza y lo compra automáticamente.</li>
+            <li>3. Roblox procesa el pago y verás tus Robux como "Pendientes".</li>
+        </ul>
     </div>
 </section>
 

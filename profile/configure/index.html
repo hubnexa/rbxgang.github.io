@@ -48,24 +48,15 @@
 </div>
 </nav>
 
-<main class="dashboard-container" style="margin-top: 80px; min-height: 80vh;">
+<main class="dashboard-container">
     <aside class="sidebar">
-        <a href="javascript:void(0)" class="side-link active" onclick="switchConfigTab('account')">
-            <span>Account</span>
-        </a>
-        <a href="javascript:void(0)" class="side-link" onclick="switchConfigTab('privacy')">
-            <span>Privacy</span>
-        </a>
-        <a href="javascript:void(0)" class="side-link" onclick="switchConfigTab('device')">
-            <span>Device</span>
-        </a>
-        <a href="javascript:void(0)" class="side-link" onclick="switchConfigTab('data')">
-            <span>Data</span>
-        </a>
+        <a href="javascript:void(0)" class="side-link active" onclick="switchConfigTab('account')">Account</a>
+        <a href="javascript:void(0)" class="side-link" onclick="switchConfigTab('privacy')">Privacy</a>
+        <a href="javascript:void(0)" class="side-link" onclick="switchConfigTab('device')">Device</a>
+        <a href="javascript:void(0)" class="side-link" onclick="switchConfigTab('data')">Data</a>
     </aside>
 
     <section class="dashboard-content">
-        
         <div id="conf-account" class="content-section active">
             <h2 class="section-title">Ajustes de <span class="brand-accent">Cuenta</span></h2>
             <div class="card settings-card">
@@ -84,15 +75,15 @@
                     </div>
                     <div class="setting-item">
                         <label>IP de Registro</label>
-                        <input type="text" id="conf-reg-ip" readonly class="input-styled" value="192.168.1.1">
+                        <input type="text" id="conf-reg-ip" readonly class="input-styled">
                     </div>
                     <div class="setting-item">
                         <label>Browser ID (BID)</label>
-                        <input type="text" id="conf-bid" readonly class="input-styled" value="BROWSER_7721">
+                        <input type="text" id="conf-bid" readonly class="input-styled">
                     </div>
                     <div class="setting-item">
                         <label>Tema de la Web</label>
-                        <button class="btn-login secondary" disabled>Próximamente</button>
+                        <button class="input-styled" style="text-align:left; cursor:not-allowed;" disabled>Próximamente</button>
                     </div>
                 </div>
             </div>
@@ -107,7 +98,7 @@
                         <p class="text-dim">Permite que otros vean tu perfil en el ranking.</p>
                     </div>
                     <label class="switch">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" id="privacy-discovery" onchange="savePrivacySettings()">
                         <span class="slider"></span>
                     </label>
                 </div>
@@ -119,30 +110,29 @@
             <div class="card settings-card">
                 <div class="device-info">
                     <p><strong>IP Actual:</strong> <span id="current-ip">Detectando...</span></p>
-                    <p><strong>Dispositivo Detectado:</strong> <span id="current-device">Windows 10 / Chrome</span></p>
+                    <p><strong>SO / Navegador:</strong> <span id="current-device">Detectando...</span></p>
                 </div>
                 <hr class="divider">
                 <div class="setting-item">
                     <label>Dispositivo Preferido</label>
-                    <select class="input-styled">
-                        <option>PC / Escritorio</option>
-                        <option>Mobile / Smartphone</option>
-                        <option>Tablet</option>
+                    <select id="pref-device" class="input-styled">
+                        <option value="PC">PC / Escritorio</option>
+                        <option value="Mobile">Mobile / Smartphone</option>
+                        <option value="Tablet">Tablet</option>
                     </select>
-                    <button class="btn-login" style="margin-top:10px">GUARDAR PREFERENCIA</button>
+                    <button class="btn-login" style="margin-top:20px; width: 100%;" onclick="saveDevicePreference()">GUARDAR PREFERENCIA</button>
                 </div>
             </div>
         </div>
 
         <div id="conf-data" class="content-section">
             <h2 class="section-title">Gestión de <span class="brand-accent">Datos</span></h2>
-            <div class="card settings-card" style="text-align: center; padding: 50px;">
-                <div id="data-logo"></div>
+            <div class="card settings-card" style="text-align: center; padding: 60px 20px;">
+                <div id="data-logo" style="margin-bottom: 20px;"></div>
                 <h3>Próximamente</h3>
-                <p class="text-dim">Estamos trabajando en herramientas para que puedas descargar y gestionar tus datos personales.</p>
+                <p class="text-dim">Podrás descargar y gestionar tu información personal muy pronto.</p>
             </div>
         </div>
-
     </section>
 </main>
 
