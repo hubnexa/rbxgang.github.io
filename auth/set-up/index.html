@@ -3,33 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>RBXGang - Setup</title>
-<meta name="title" content="RBXGang - ¡Gana robux!">
-<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
-<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
-<meta name="robots" content="index, follow">
-<meta name="language" content="Spanish">
-<meta name="author" content="RBXGang Team">
+    <title>RBXGang - Verificación de Acceso</title>
+    
+    <meta name="description" content="Plataforma segura para la comunidad de Roblox.">
+    <meta name="theme-color" content="#8b5cf6">
+    <link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
 
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://rbxgang.xyz/">
-<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
-<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
-<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
-
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://rbxgang.xyz/">
-<meta property="twitter:title" content="RBXGang - La comunidad número 1">
-<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
-<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
-
-<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
-<meta name="theme-color" content="#8b5cf6">
     <style>
         :root {
             --bg: #0b0f1a;
             --card: rgba(22, 27, 44, 0.8);
             --accent: #a78bfa;
+            --success: #4ade80;
             --error: #f87171;
             --text-dim: #94a3b8;
             --border: rgba(167, 139, 250, 0.15);
@@ -38,16 +23,17 @@
         body {
             background-color: var(--bg);
             color: #fff;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            overflow: hidden;
             background-image: radial-gradient(circle at top right, rgba(167, 139, 250, 0.05), transparent);
         }
 
-        /* --- LOGO RBXGANG POR CÓDIGO --- */
+        /* LOGO CODIFICADO */
         .gang-logo-raw {
             width: 50px; height: 50px; background: var(--accent);
             clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
@@ -59,42 +45,62 @@
             background: var(--card);
             backdrop-filter: blur(20px);
             width: 90%;
-            max-width: 440px;
+            max-width: 420px;
             padding: 40px;
             border-radius: 32px;
             border: 1px solid var(--border);
             box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+            text-align: center;
         }
 
-        /* --- ESTADOS DE ERROR --- */
-        .status-screen { display: none; text-align: center; }
-        .status-screen.active { display: block; }
-        .icon-error { border: 2px solid var(--error); color: var(--error); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: 900; }
+        .status-screen { display: none; }
+        .status-screen.active { display: block; animation: slideUp 0.4s ease-out; }
 
-        /* --- SELECTORES DE FECHA --- */
-        .date-selectors { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 10px; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* PERFIL DISCORD */
+        .discord-profile { 
+            display: flex; align-items: center; gap: 15px; background: rgba(0,0,0,0.2); 
+            padding: 15px; border-radius: 20px; margin-bottom: 25px; border: 1px solid var(--border); 
+            text-align: left;
+        }
+        .discord-profile img { width: 50px; height: 50px; border-radius: 12px; border: 2px solid var(--accent); }
+
+        /* FORMULARIO */
+        .input-group { text-align: left; margin-bottom: 15px; }
+        .input-group label { font-size: 0.7rem; color: var(--accent); font-weight: 800; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        
         select, input[type="text"] {
-            width: 100%; padding: 14px; background: rgba(0,0,0,0.3); border: 1px solid var(--border);
+            width: 100%; padding: 14px; background: rgba(0,0,0,0.4); border: 1px solid var(--border);
             border-radius: 12px; color: #fff; font-size: 0.9rem; outline: none; box-sizing: border-box;
         }
 
-        /* --- BOTONES --- */
+        .date-selectors { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 8px; }
+
+        /* BOTONES */
         .btn-main {
             width: 100%; padding: 18px; background: #fff; color: #000; border: none;
-            border-radius: 16px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 25px;
+            border-radius: 16px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 20px;
+            transition: 0.2s;
         }
-        .btn-main:disabled { opacity: 0.2; cursor: not-allowed; }
-        .btn-support { background: var(--accent); color: #000; text-decoration: none; display: block; padding: 15px; border-radius: 12px; font-weight: 800; margin-top: 20px; }
-
-        .discord-profile { display: flex; align-items: center; gap: 15px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 20px; margin-bottom: 25px; border: 1px solid var(--border); }
-        .discord-profile img { width: 45px; height: 45px; border-radius: 10px; border: 2px solid var(--accent); }
+        .btn-main:disabled { opacity: 0.1; cursor: not-allowed; }
         
         .toggle-btn {
-            background: rgba(167, 139, 250, 0.1); border: 1px solid var(--border);
-            color: var(--accent); padding: 10px; border-radius: 10px; font-size: 0.75rem;
-            cursor: pointer; width: 100%; margin-bottom: 10px; text-align: left; font-weight: 700;
+            background: rgba(167, 139, 250, 0.05); border: 1px solid var(--border);
+            color: var(--text-dim); padding: 12px; border-radius: 12px; font-size: 0.75rem;
+            cursor: pointer; width: 100%; margin-bottom: 8px; text-align: left; font-weight: 700;
         }
-        .toggle-btn.checked { background: var(--accent); color: #000; }
+        .toggle-btn.checked { background: rgba(167, 139, 250, 0.2); color: #fff; border-color: var(--accent); }
+
+        /* INFO BOXES */
+        .info-pill { background: rgba(0,0,0,0.3); padding: 10px; border-radius: 12px; font-size: 0.7rem; color: var(--text-dim); margin: 15px 0; }
+        .info-pill b { color: #fff; }
+
+        /* PROGRESS BAR REDIRECT */
+        .timer-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-top: 20px; overflow: hidden; }
+        .timer-progress { width: 100%; height: 100%; background: var(--success); transition: width 5s linear; }
+
+        .icon-state { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: 900; font-size: 1.2rem; }
     </style>
 </head>
 <body>
@@ -102,36 +108,48 @@
 <div class="setup-card">
     <div class="gang-logo-raw">G</div>
 
-    <div id="screen-no-auth" class="status-screen">
-        <div class="icon-error">!</div>
-        <h3>Error de Acceso</h3>
-        <p style="color: var(--text-dim)">No se encontraron credenciales válidas de Discord. Por favor, intenta iniciar sesión nuevamente.</p>
-        <button class="btn-main" onclick="location.href='/'">Volver al Inicio</button>
+    <div id="screen-loading" class="status-screen active">
+        <p style="color: var(--text-dim)">Sincronizando datos...</p>
     </div>
 
-    <div id="screen-multi" class="status-screen">
-        <div class="icon-error">BID</div>
-        <h3>Conflicto de Dispositivo</h3>
-        <p style="color: var(--text-dim)">Este navegador ya está vinculado a otra cuenta de RBXGang. Para evitar fraudes, contacta con soporte.</p>
-        <a href="https://discord.gg/rbxgang" class="btn-support">Hablar con Soporte</a>
+    <div id="screen-found" class="status-screen">
+        <div class="icon-state" style="border: 2px solid var(--success); color: var(--success);">✓</div>
+        <h3 style="color: var(--success); margin: 0;">¡Sesión Activa!</h3>
+        <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 20px;">Redirigiendo automáticamente...</p>
+        
+        <div class="discord-profile">
+            <img class="d-avatar-img" src="" alt="Avatar">
+            <div>
+                <div class="d-username-txt" style="font-weight: 800;">-</div>
+                <div style="font-size: 0.7rem; color: var(--success);">Usuario Registrado</div>
+            </div>
+        </div>
+
+        <div class="info-pill" style="text-align: left;">
+            IP: <b class="info-ip-txt">...</b><br>
+            BID: <b class="info-bid-txt">...</b>
+        </div>
+
+        <div class="timer-bar"><div id="p-bar" class="timer-progress"></div></div>
+        <p style="font-size: 0.75rem; margin-top: 10px; color: var(--text-dim);">Entrando en <span id="cd">5</span>...</p>
     </div>
 
     <div id="screen-register" class="status-screen">
         <div class="discord-profile">
-            <img id="d-avatar" src="" alt="">
+            <img class="d-avatar-img" src="" alt="Avatar">
             <div style="text-align: left;">
-                <div id="d-name" style="font-weight: 800;">-</div>
+                <div class="d-username-txt" style="font-weight: 800;">-</div>
                 <button onclick="location.href='/'" style="background:none; border:none; color:var(--error); padding:0; cursor:pointer; font-size: 0.7rem;">¿No eres tú? Salir</button>
             </div>
         </div>
 
-        <div style="text-align: left; margin-bottom: 20px;">
-            <label style="font-size: 0.7rem; color: var(--accent); font-weight: 800; text-transform: uppercase;">Usuario de Roblox</label>
-            <input type="text" id="r-user" placeholder="Ej: RobloxPlayer123">
+        <div class="input-group">
+            <label>Usuario de Roblox</label>
+            <input type="text" id="r-user" placeholder="Tu nombre de usuario...">
         </div>
 
-        <div style="text-align: left; margin-bottom: 20px;">
-            <label style="font-size: 0.7rem; color: var(--accent); font-weight: 800; text-transform: uppercase; display: block; margin-bottom: 8px;">Fecha de Nacimiento</label>
+        <div class="input-group">
+            <label>Fecha de Nacimiento</label>
             <div class="date-selectors">
                 <select id="dob-day"></select>
                 <select id="dob-month"></select>
@@ -139,14 +157,21 @@
             </div>
         </div>
 
-        <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: 12px; font-size: 0.7rem; color: var(--text-dim); margin-bottom: 20px; text-align: left;">
-            IP: <span id="info-ip" style="color:#fff">...</span> | BID: <span id="info-bid" style="color:#fff">...</span>
+        <div class="info-pill" style="text-align: left;">
+            IP: <b class="info-ip-txt">...</b> | BID: <b class="info-bid-txt">...</b>
         </div>
 
         <button class="toggle-btn" id="btn-tos" onclick="toggleCheck('tos')">ACEPTAR TÉRMINOS Y PRIVACIDAD</button>
-        <button class="toggle-btn" id="btn-ip" onclick="toggleCheck('ip')">ACEPTAR REGISTRO DE IP (ANTI-MULTI)</button>
+        <button class="toggle-btn" id="btn-ip" onclick="toggleCheck('ip')">AUTORIZAR REGISTRO DE IP (ANTI-MULTI)</button>
 
-        <button id="btn-create" class="btn-main" disabled onclick="createProfile()">Crear Perfil</button>
+        <button id="btn-create" class="btn-main" disabled onclick="createProfile()">Completar Perfil</button>
+    </div>
+
+    <div id="screen-error" class="status-screen">
+        <div class="icon-state" style="border: 2px solid var(--error); color: var(--error);">!</div>
+        <h3 id="err-title">Error</h3>
+        <p id="err-desc" style="color: var(--text-dim); font-size: 0.85rem;"></p>
+        <button class="btn-main" onclick="location.href='/'">Volver</button>
     </div>
 </div>
 
@@ -169,113 +194,122 @@
     let checks = { tos: false, ip: false };
     const bid = navigator.userAgent.replace(/\D+/g, '').substring(0, 10);
 
-    // Llenar selectores de fecha
-    const fillDate = () => {
+    const show = (id) => {
+        document.querySelectorAll('.status-screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    };
+
+    const fillDates = () => {
         const d = document.getElementById('dob-day'), m = document.getElementById('dob-month'), y = document.getElementById('dob-year');
         for(let i=1; i<=31; i++) d.innerHTML += `<option value="${i}">${i}</option>`;
         ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'].forEach((v,i) => m.innerHTML += `<option value="${i+1}">${v}</option>`);
-        for(let i=2013; i>=1950; i--) y.innerHTML += `<option value="${i}">${i}</option>`;
+        for(let i=2014; i>=1950; i--) y.innerHTML += `<option value="${i}">${i}</option>`;
     };
 
-    window.toggleCheck = (type) => {
-        checks[type] = !checks[type];
-        document.getElementById(`btn-${type}`).classList.toggle('checked');
-        validate();
-    };
-
-    const validate = () => {
+    window.toggleCheck = (t) => {
+        checks[t] = !checks[t];
+        document.getElementById(`btn-${t}`).classList.toggle('checked');
         const user = document.getElementById('r-user').value.trim();
         document.getElementById('btn-create').disabled = !(checks.tos && checks.ip && user.length > 2);
     };
-    document.getElementById('r-user').addEventListener('input', validate);
 
-    async function init() {
-        fillDate();
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');
-
-        // 1. Verificar si hay código/credenciales
+    async function start() {
+        const code = new URLSearchParams(window.location.search).get('code');
         if (!code) {
-            document.getElementById('screen-no-auth').classList.add('active');
+            document.getElementById('err-title').innerText = "Sin Acceso";
+            document.getElementById('err-desc').innerText = "No se detectaron credenciales de Discord.";
+            show('screen-error');
             return;
         }
 
         try {
-            // Obtener IP
-            const ipReq = await fetch('https://api.ipify.org?format=json');
-            const { ip } = await ipReq.json();
-            document.getElementById('info-ip').innerText = ip;
-            document.getElementById('info-bid').innerText = bid;
+            const { ip } = await (await fetch('https://api.ipify.org?format=json')).json();
+            document.querySelectorAll('.info-ip-txt').forEach(el => el.innerText = ip);
+            document.querySelectorAll('.info-bid-txt').forEach(el => el.innerText = bid);
 
-            // 2. Verificar si este BID ya tiene otra cuenta vinculada
-            const q = query(collection(db, "users"), where("browserId", "==", bid));
-            const querySnap = await getDocs(q);
-            
-            // Llamada a tu API para procesar el código de Discord
-            const res = await fetch('https://rbxgang.xyz/api/auth/discord', {
+            const res = await fetch('/api/auth/discord', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ code })
             });
+            if(!res.ok) throw new Error();
             userData = await res.json();
 
-            if (!userData.id) throw new Error();
+            // Seguridad BID (Multi-cuenta)
+            const q = query(collection(db, "users"), where("browserId", "==", bid));
+            const snap = await getDocs(q);
+            let isMulti = false;
+            snap.forEach(d => { if(d.id !== userData.id) isMulti = true; });
 
-            // Lógica de Bloqueo BID
-            let alreadyOwned = false;
-            querySnap.forEach(doc => { if(doc.id !== userData.id) alreadyOwned = true; });
-            
-            if (alreadyOwned) {
-                document.getElementById('screen-multi').classList.add('active');
+            if(isMulti) {
+                document.getElementById('err-title').innerText = "Multi-cuenta Detectada";
+                document.getElementById('err-desc').innerText = "Este dispositivo ya está vinculado a otra cuenta de RBXGang.";
+                show('screen-error');
                 return;
             }
 
-            // 3. Verificar si el usuario ya existe
             const userDoc = await getDoc(doc(db, "users", userData.id));
+
             if (userDoc.exists()) {
-                localStorage.setItem('rbx_user', JSON.stringify(userDoc.data()));
-                window.location.href = '/profile/dashboard';
-                return;
+                // ESTADO: CUENTA ENCONTRADA
+                show('screen-found');
+                document.querySelectorAll('.d-username-txt').forEach(el => el.innerText = userData.username);
+                document.querySelectorAll('.d-avatar-img').forEach(el => el.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`);
+                
+                setTimeout(() => document.getElementById('p-bar').style.width = '0%', 100);
+                let timer = 5;
+                const intv = setInterval(() => {
+                    timer--;
+                    document.getElementById('cd').innerText = timer;
+                    if(timer <= 0) {
+                        clearInterval(intv);
+                        localStorage.setItem('rbx_user', JSON.stringify(userDoc.data()));
+                        window.location.href = '/profile/dashboard';
+                    }
+                }, 1000);
+            } else {
+                // ESTADO: REGISTRO
+                fillDates();
+                document.querySelectorAll('.d-username-txt').forEach(el => el.innerText = userData.username);
+                document.querySelectorAll('.d-avatar-img').forEach(el => el.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`);
+                show('screen-register');
             }
-
-            // 4. Mostrar pantalla de registro si es nuevo
-            document.getElementById('screen-register').classList.add('active');
-            document.getElementById('d-name').innerText = userData.username;
-            document.getElementById('d-avatar').src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`;
-
         } catch (e) {
-            document.getElementById('screen-no-auth').classList.add('active');
+            document.getElementById('err-title').innerText = "Error Crítico";
+            document.getElementById('err-desc').innerText = "Hubo un fallo en la sincronización con el servidor.";
+            show('screen-error');
         }
     }
 
     window.createProfile = async () => {
-        const btn = document.getElementById('btn-create');
-        btn.innerText = "PROCESANDO...";
-        btn.disabled = true;
+        const b = document.getElementById('btn-create');
+        b.innerText = "REGISTRANDO...";
+        b.disabled = true;
 
-        const finalData = {
+        const data = {
             discordId: userData.id,
             discordName: userData.username,
             avatar: userData.avatar,
             robloxUser: document.getElementById('r-user').value.trim(),
             dob: `${document.getElementById('dob-day').value}/${document.getElementById('dob-month').value}/${document.getElementById('dob-year').value}`,
             browserId: bid,
-            ip: document.getElementById('info-ip').innerText,
+            ip: document.querySelector('.info-ip-txt').innerText,
             createdAt: new Date(),
-            verified: true
+            verified: true,
+            balance: 0
         };
 
         try {
-            await setDoc(doc(db, "users", userData.id), finalData);
-            localStorage.setItem('rbx_user', JSON.stringify(finalData));
+            await setDoc(doc(db, "users", userData.id), data);
+            localStorage.setItem('rbx_user', JSON.stringify(data));
             window.location.href = '/profile/dashboard';
         } catch (e) {
-            alert("Error al guardar perfil.");
-            btn.disabled = false;
+            alert("Error al guardar.");
+            b.disabled = false;
         }
     };
 
-    init();
+    start();
 </script>
 </body>
 </html>
