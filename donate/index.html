@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donar | RBXGang</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Estilos específicos para la sección de donación */
+        .donate-hero {
+            padding: 120px 5% 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .donation-grid {
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Tarjeta de Formulario */
+        .donate-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            text-align: left;
+        }
+
+        .donate-card h2 { margin-bottom: 1rem; color: var(--primary); }
+
+        .input-group {
+            margin: 1.5rem 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .input-group input {
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Beneficios */
+        .benefits-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.2rem;
+        }
+
+        .benefit-icon {
+            width: 35px; height: 35px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        #donation-status {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .donation-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="topbar">
+    <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+        <li><a href="/events">Eventos</a></li>
+        <li><a href="/help/us">Nosotros</a></li>
+    </ul>
+    
+    <div class="auth-container">
+    <button id="auth-btn" class="btn-login"></button>
+    
+    <div id="auth-dropdown" class="dropdown-content">
+        <a href="/dashboard"><i class="icon-dashboard"></i> Panel de Control</a>
+        <a href="/profile"><i class="icon-user"></i> Mi Perfil</a>
+        <hr>
+        <a href="#" onclick="logout()" class="logout-link">Cerrar Sesión</a>
+    </div>
+</div>
+</nav>
+
+   <section class="donate-hero">
+    <div class="features-header">
+        <h1 class="section-title">Apoya a la <span class="brand-accent">Gang</span></h1>
+        <p class="section-subtitle">Tu apoyo mantiene la infraestructura y el stock de Robux. ¡Elige un pack o personaliza tu aporte!</p>
+    </div>
+
+    <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; width: 100%; margin-top: 2rem;">
+        
+        <div class="card donate-pack" style="cursor: pointer; padding: 1.5rem; border-radius: 16px; background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1);" onclick="selectPack(5)">
+            <div class="card-icon-wrapper" style="margin-bottom: 1rem;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 17.59L10.59 13 6 8.41 7.41 7l6 6-6 6z"/><path d="M13 17.59L17.59 13 13 8.41 14.41 7l6 6-6 6z"/></svg>
+            </div>
+            <h3 style="color: white;">Starter</h3>
+            <p style="color: #94a3b8;">Aporte de <span style="color: var(--primary); font-weight: bold;">$5.00</span></p>
+            <ul style="list-style: none; font-size: 0.85rem; color: #64748b; margin-top: 10px; padding: 0;">
+                <li>✓ Rol Donador</li>
+                <li>✓ Badge Bronce</li>
+            </ul>
+        </div>
+
+        <div class="card donate-pack" style="cursor: pointer; padding: 1.5rem; border-radius: 16px; background: var(--card-bg); border: 2px solid var(--primary);" onclick="selectPack(20)">
+            <div class="card-icon-wrapper" style="margin-bottom: 1rem;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h3 style="color: white;">Pro Gang</h3>
+            <p style="color: #94a3b8;">Aporte de <span style="color: var(--primary); font-weight: bold;">$20.00</span></p>
+            <ul style="list-style: none; font-size: 0.85rem; color: #64748b; margin-top: 10px; padding: 0;">
+                <li>✓ Rol Donador VIP</li>
+                <li>✓ Prioridad Stock</li>
+                <li>✓ Badge Plata</li>
+            </ul>
+        </div>
+
+        <div class="card donate-pack" style="cursor: pointer; padding: 1.5rem; border-radius: 16px; background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1);" onclick="selectPack(50)">
+            <div class="card-icon-wrapper" style="margin-bottom: 1rem;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"></path><path d="M12 2v15.77"></path></svg>
+            </div>
+            <h3 style="color: white;">Legend</h3>
+            <p style="color: #94a3b8;">Aporte de <span style="color: var(--primary); font-weight: bold;">$50.00</span></p>
+            <ul style="list-style: none; font-size: 0.85rem; color: #64748b; margin-top: 10px; padding: 0;">
+                <li>✓ Acceso Beta</li>
+                <li>✓ Badge Oro</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="donation-grid">
+        <div class="donate-card">
+            <h2>Monto Personalizado</h2>
+            <div class="input-group">
+                <label>Monto en USD ($)</label>
+                <input type="number" id="donation-amount" placeholder="10.00" min="1">
+            </div>
+            <button id="btn-process-donation" class="btn-login" style="width: 100%; padding: 1rem; cursor: pointer;">
+                Donar Ahora
+            </button>
+            <div id="donation-status"></div>
+        </div>
+
+        <div class="benefits-card">
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                    <strong style="color: white;">Seguridad</strong>
+                    <p style="font-size: 0.8rem; color: #94a3b8;">Procesamiento seguro vía Stripe/PayPal.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer class="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col brand-col">
+            <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+            <p>La plataforma más segura y rápida para potenciar tu experiencia en Roblox. Únete a miles de usuarios y empieza a ganar hoy.</p>
+            <div class="social-links">
+                <a href="/Social/" class="social-icon">Discord</a>
+                <a href="/Social" class="social-icon">TikTok</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Plataforma</h4>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+                <li><a href="/Trust/">Por qué elegirnos</a></li>
+                <li><a href="/events">Eventos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="/legal/Terms-of-Service">Términos de Servicio</a></li>
+                <li><a href="/legal/Privacy-Policy">Política de Privacidad</a></li>
+                <li><a href="/help/center">Centro de Ayuda</a></li>
+                <li><a href="/help/contact">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>&copy; 2026 RBXGang. Todos los derechos reservados.</p>
+            <p class="disclaimer">Este sitio no está afiliado, patrocinado ni respaldado por Roblox Corporation.</p>
+        </div>
+    </div>
+</footer>
+
+    <script type="module" src="/js/script.js"></script>
+
+    <script type="module">
+    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, doc, setDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAceW9Yh2jRfY3pCFawWCTzP4Hvngt1V8g",
+        authDomain: "rbxgang-86d30.firebaseapp.com",
+        projectId: "rbxgang-86d30",
+        storageBucket: "rbxgang-86d30.firebasestorage.app",
+        messagingSenderId: "35329039357",
+        appId: "1:35329039357:web:2430fb26473ef1e9fd1794"
+    };
+
+    // SOLUCIÓN AL ERROR DE DUPLICADO: Solo inicializa si no existe
+    const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    const btnDonar = document.getElementById('btn-process-donation');
+    const amountInput = document.getElementById('donation-amount');
+    const statusMsg = document.getElementById('donation-status');
+    let userLogueado = null;
+
+    // SOLUCIÓN AL ERROR DE REFERENCEERROR: Exponer a window
+    window.selectPack = (amount) => {
+        amountInput.value = amount;
+        amountInput.focus();
+        amountInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            userLogueado = user;
+            btnDonar.disabled = false;
+            btnDonar.style.opacity = "1";
+            statusMsg.innerHTML = `<span style="color: #94a3b8;">Listo para donar como <b>${user.displayName}</b></span>`;
+        } else {
+            userLogueado = null;
+            btnDonar.disabled = true;
+            btnDonar.style.opacity = "0.5";
+            statusMsg.innerHTML = `<span style="color: #ef4444;">Inicia sesión para continuar.</span>`;
+        }
+    });
+
+    btnDonar.addEventListener('click', async () => {
+        const monto = parseFloat(amountInput.value);
+        if (!monto || monto <= 0) {
+            statusMsg.innerHTML = `<span style="color: #ef4444;">Monto inválido.</span>`;
+            return;
+        }
+
+        btnDonar.innerText = "Preparando...";
+        btnDonar.disabled = true;
+
+        try {
+            const docRef = doc(db, "donations", userLogueado.uid);
+            await setDoc(docRef, {
+                displayName: userLogueado.displayName,
+                email: userLogueado.email,
+                ultimaIntencion: serverTimestamp(),
+                montoPendiente: monto
+            }, { merge: true });
+
+            statusMsg.innerHTML = `<span style="color: var(--primary);">Redirigiendo...</span>`;
+            
+            // Redirección final
+            setTimeout(() => {
+                window.location.href = `/cart/checkout?amount=${monto}&user=${userLogueado.uid}`;
+            }, 800);
+
+        } catch (error) {
+            console.error(error);
+            statusMsg.innerHTML = `<span style="color: #ef4444;">Error de conexión.</span>`;
+            btnDonar.disabled = false;
+            btnDonar.innerText = "Donar Ahora";
+        }
+    });
+</script>
+</body>
+</html>
