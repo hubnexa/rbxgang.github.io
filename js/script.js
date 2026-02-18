@@ -10,11 +10,9 @@ const firebaseConfig = {
     appId: "1:35329039357:web:2430fb26473ef1e9fd1794"
 };
 
-// SOLUCIÓN AL ERROR: Verificar si la app ya existe antes de inicializar
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const db = getFirestore(app);
 
-// Diccionario de Logos (SVG) - Sin cambios
 const Icons = {
     discord: `<svg viewBox="0 0 127.14 96.36" style="width:18px;"><path fill="currentColor" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.71,32.65-1.82,56.6.39,80.21a105.73,105.73,0,0,0,32.27,16.15,77.7,77.7,0,0,0,7.21-11.73,69.19,69.19,0,0,1-11.44-5.46c.97-.7,1.92-1.42,2.83-2.17a73.58,73.58,0,0,0,64.9,0c.91.75,1.86,1.47,2.83,2.17a69.1,69.1,0,0,1-11.44,5.46,77.35,77.35,0,0,0,7.21,11.73,105.54,105.54,0,0,0,32.27-16.15C130.58,52.25,126,28.42,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5.17-12.69,11.44-12.69S53.9,46,53.9,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5.17-12.69,11.44-12.69S96.15,46,96.15,53,91,65.69,84.69,65.69Z"/></svg>`,
     dashboard: `<svg viewBox="0 0 24 24" style="width:16px;"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 13.125C3 12.504 3.504 12 4.125 12h5.75c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125h-5.75A1.125 1.125 0 0 1 3 19.875v-6.75zM13 4.125C13 3.504 13.504 3 14.125 3h5.75c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125h-5.75A1.125 1.125 0 0 1 13 10.875v-6.75zM3 4.125C3 3.504 3.504 3 4.125 3h5.75c.621 0 1.125.504 1.125 1.125v2.75c0 .621-.504 1.125-1.125 1.125h-5.75A1.125 1.125 0 0 1 3 6.875v-2.75zM13 17.125c0-.621.504-1.125 1.125-1.125h5.75c.621 0 1.125.504 1.125 1.125v2.75c0 .621-.504 1.125-1.125 1.125h-5.75a1.125 1.125 0 0 1-1.125-1.125v-2.75z"/></svg>`,
@@ -26,43 +24,69 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (localStorage.getItem('user_logged_out') !== 'true') {
         await autoLoginByBID();
     }
+    checkAccessControl();
     renderTopbar();
 });
 
-// El resto de tus funciones se mantienen igual
+// --- LÓGICA DE PROTECCIÓN DE PÁGINAS ---
+function checkAccessControl() {
+    const path = window.location.pathname;
+    const user = localStorage.getItem('rbx_user');
+
+    // Lista de rutas que NO requieren login
+    const isPublicPage = 
+        path === "/" || 
+        path === "/index.html" || 
+        path.startsWith("/help/") || 
+        path.startsWith("/legal/") ||
+        path.startsWith("/error/"); // Permitir acceso a la página de error para evitar bucles
+
+    // Si la página es privada y no hay usuario, redirigir a /error/auth
+    if (!isPublicPage && !user) {
+        window.location.href = "/error/auth/";
+    }
+}
+
 async function autoLoginByBID() {
     if (localStorage.getItem('rbx_user')) return;
-
-    // 1. Verificar si ya tiene device_bid
     let bid = localStorage.getItem('device_bid');
-    
-    // 2. Si no existe, generar uno aleatorio
     if (!bid) {
         bid = Date.now().toString() + Math.floor(Math.random() * 10000); 
         localStorage.setItem('device_bid', bid);
     }
-
     try {
         const q = query(collection(db, "users"), where("browserId", "==", bid));
         const querySnapshot = await getDocs(q);
-
         if (!querySnapshot.empty) {
-            // Si existe un usuario con este BID, guardarlo
             const userData = querySnapshot.docs[0].data();
             localStorage.setItem('rbx_user', JSON.stringify(userData));
         }
-        // Si no existe, no se hace nada (usuario anónimo)
     } catch (error) { 
         console.error("Error identificando:", error); 
     }
 }
 
-
 function renderTopbar() {
+    const navElement = document.querySelector('.topbar');
+    if (!navElement) return;
+
+    navElement.innerHTML = `
+        <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+        <ul class="nav-links">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/donate/">Donar</a></li>
+            <li><a href="/plans/">Planes</a></li>
+            <li><a href="/events">Eventos</a></li>
+            <li><a href="/help/us">Nosotros</a></li>
+        </ul>
+        <div class="auth-container">
+            <button id="auth-btn" class="btn-Login wirh Discord"></button>
+            <div id="auth-dropdown" class="dropdown-content"></div>
+        </div>
+    `;
+
     const authBtn = document.getElementById('auth-btn');
     const dropdown = document.getElementById('auth-dropdown');
-    if (!authBtn) return;
-
     const rbxUser = JSON.parse(localStorage.getItem('rbx_user'));
 
     if (rbxUser) {
@@ -72,10 +96,7 @@ function renderTopbar() {
         authBtn.innerHTML = `
             <div class="user-pill">
                 <div class="avatar-container">
-                    <img src="${discordAvatar}" 
-                         class="nav-avatar" 
-                         alt="Discord Avatar"
-                         onerror="this.onerror=null; this.src='https://cdn.discordapp.com/embed/avatars/0.png';">
+                    <img src="${discordAvatar}" class="nav-avatar" alt="User" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png';">
                 </div>
                 <span class="nav-username">${rbxUser.discordName}</span>
                 <span class="nav-arrow">▼</span>
@@ -84,7 +105,7 @@ function renderTopbar() {
         
         dropdown.innerHTML = `
             <a href="/profile/dashboard">${Icons.dashboard} <span>Dashboard</span></a>
-            <a href="/profile/configure">${Icons.settings} <span>Configuración</span></a>
+            <a href="/profile/configure">${Icons.settings} <span>Configuracion</span></a>
             <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin:8px 0;">
             <a href="#" onclick="logout()" class="logout-link">${Icons.logout} <span>Cerrar Sesión</span></a>
         `;
@@ -94,7 +115,7 @@ function renderTopbar() {
             dropdown.classList.toggle('show');
         };
     } else {
-        authBtn.innerHTML = `<div class="btn-discord-content">${Icons.discord} <span>Login con Discord</span></div>`;
+        authBtn.innerHTML = `<div class="btn-discord-content">${Icons.discord} <span>Login with Discord</span></div>`;
         authBtn.className = "btn-login-discord";
         authBtn.onclick = window.loginWithDiscord;
     }
@@ -110,5 +131,5 @@ window.loginWithDiscord = function() {
 window.logout = function() {
     localStorage.setItem('user_logged_out', 'true');
     localStorage.removeItem('rbx_user');
-    window.location.reload();
+    window.location.href = "/";
 };

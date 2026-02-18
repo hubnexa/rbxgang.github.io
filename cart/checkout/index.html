@@ -3,222 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>RBXGang - Checkout</title>
-<meta name="title" content="RBXGang - ¡Gana robux!">
-<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
-<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
-<meta name="robots" content="index, follow">
-<meta name="language" content="Spanish">
-<meta name="author" content="RBXGang Team">
-
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://rbxgang.xyz/">
-<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
-<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
-<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
-
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://rbxgang.xyz/">
-<meta property="twitter:title" content="RBXGang - La comunidad número 1">
-<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
-<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
-
-<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
-<meta name="theme-color" content="#8b5cf6">
+    <title>RBXGang - Checkout</title>
+    <meta name="title" content="RBXGang - ¡Gana robux!">
+    <meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+    <meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="author" content="RBXGang Team">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rbxgang.xyz/">
+    <meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+    <meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+    <meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://rbxgang.xyz/">
+    <meta property="twitter:title" content="RBXGang - La comunidad número 1">
+    <meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+    <meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+    <link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+    <meta name="theme-color" content="#8b5cf6">
+    
+    <script src="https://www.paypal.com/sdk/js?client-id=Afz70XmgO1pO7F_wBhKxIkjFkNz-ftQmCdRZ6c8o579fEBcUkfbfNJIkU8IA9HvV7d_3WMMRfJ-DjUse&currency=USD&components=buttons&locale=es_ES"></script>
     <link rel="stylesheet" href="/css/style.css">
-    <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD&components=buttons,card-fields"></script>
+    
     <style>
         :root {
-            --accent-purple: #8b5cf6;
-            --card-dark: rgba(15, 23, 42, 0.9);
+            --accent: #a78bfa;
+            --bg: #0b0f1a;
+            --card: rgba(22, 27, 44, 0.6);
+            --border: rgba(167, 139, 250, 0.15);
+            --glass-text: #94a3b8;
         }
 
-        .checkout-grid {
+        body {
+            background-color: var(--bg);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% -20%, rgba(167, 139, 250, 0.15), transparent);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 140px 20px 80px 20px;
+            box-sizing: border-box;
+        }
+
+        .checkout-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            padding: 120px 5% 60px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .order-summary, .payment-methods {
-            background: var(--card-dark);
-            backdrop-filter: blur(15px);
-            border-radius: 28px;
-            padding: 2.5rem;
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Contenedores de inputs de PayPal */
-        .paypal-input-frame {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            border-radius: 12px;
-            padding: 12px 15px;
-            height: 48px;
-            transition: all 0.3s ease;
-            margin-bottom: 1.2rem;
-        }
-
-        .paypal-input-frame:hover {
-            border-color: var(--accent-purple) !important;
-        }
-
-        /* Estilo para los labels */
-        .field-label {
-            display: block;
-            margin-bottom: 8px;
-            color: #94a3b8;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .input-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        /* Botón de Pago con Tarjeta */
-        #multi-card-field-button {
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
             width: 100%;
-            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            text-transform: uppercase;
+            max-width: 1150px;
         }
 
-        #multi-card-field-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+        /* --- BOX 1: RESUMEN --- */
+        .box-details {
+            background: var(--card);
+            border-radius: 32px;
+            padding: 3.5rem;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.7);
         }
 
-        /* Loader Spinner */
-        .spinner {
-            width: 30px;
-            height: 30px;
-            border: 3px solid rgba(139, 92, 246, 0.2);
-            border-top: 3px solid var(--accent-purple);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            display: none;
-            margin: 15px auto;
+        .safe-notice {
+            background: rgba(167, 139, 250, 0.05);
+            border-left: 4px solid var(--accent);
+            color: #cbd5e1;
+            padding: 20px 24px;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 2.5rem;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* Logo con código CSS */
+        .logo-box-mini {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: #0b0f1a;
+            font-size: 0.8rem;
+            flex-shrink: 0;
         }
 
-        .divider {
+        .items-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 24px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+
+        .item-row:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .item-name { font-weight: 700; color: #f8fafc; font-size: 1.1rem; }
+        .item-qty { color: var(--glass-text); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .item-price { font-weight: 800; color: #fff; font-family: 'Inter', sans-serif; }
+
+        /* Estilo para códigos aplicados */
+        .coupon-applied {
+            display: none; /* Se activa por JS */
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.2);
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: #4ade80;
+            font-weight: 600;
+            margin-top: 10px;
+            width: fit-content;
+        }
+
+        .total-wrapper {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .total-price { 
+            font-size: 4rem; 
+            font-weight: 900; 
+            color: #fff; 
+            letter-spacing: -2px;
+            text-shadow: 0 0 30px rgba(167, 139, 250, 0.2);
+        }
+
+        /* --- BOX 2: PORTAL DE PAGO --- */
+        .box-payment {
+            background: #0f172a;
+            border-radius: 32px;
+            padding: 3.5rem;
+            border: 1px solid var(--accent);
             text-align: center;
-            margin: 1.5rem 0;
-            position: relative;
-            color: #475569;
-            font-size: 0.9rem;
+            height: fit-content;
+            box-shadow: 0 0 50px rgba(167, 139, 250, 0.1);
         }
 
-        .divider::before, .divider::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 35%;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .divider::before { left: 0; }
-        .divider::after { right: 0; }
+        .payment-header h3 { font-size: 1.8rem; margin: 0; letter-spacing: -0.5px; }
+        .payment-header p { color: var(--glass-text); margin: 10px 0 2.5rem; font-size: 0.9rem; }
 
-        @media (max-width: 850px) {
-            .checkout-grid { grid-template-columns: 1fr; }
+        @media (max-width: 900px) {
+            .checkout-layout { grid-template-columns: 1fr; }
+            main { padding-top: 120px; }
+            .total-price { font-size: 3rem; }
+            .box-details, .box-payment { padding: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav class="topbar">
+<nav class="topbar">
     <div class="logo">RBX<span class="brand-accent">Gang</span></div>
     <ul class="nav-links">
         <li><a href="/">Inicio</a></li>
-        <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+        <li><a href="/donate/">Donar</a></li>
+        <li><a href="/plans/">Planes</a></li>
         <li><a href="/events">Eventos</a></li>
         <li><a href="/help/us">Nosotros</a></li>
     </ul>
     
     <div class="auth-container">
-    <button id="auth-btn" class="btn-login"></button>
-    
-    <div id="auth-dropdown" class="dropdown-content">
-        <a href="/dashboard"><i class="icon-dashboard"></i> Panel de Control</a>
-        <a href="/profile"><i class="icon-user"></i> Mi Perfil</a>
-        <hr>
-        <a href="#" onclick="logout()" class="logout-link">Cerrar Sesión</a>
+        <button id="auth-btn" class="btn-login"></button>
+        <div id="auth-dropdown" class="dropdown-content">
+            <a href="/dashboard"><i class="icon-dashboard"></i> Panel de Control</a>
+            <a href="/profile"><i class="icon-user"></i> Mi Perfil</a>
+            <hr>
+            <a href="#" onclick="logout()" class="logout-link">Cerrar Sesión</a>
+        </div>
     </div>
-</div>
 </nav>
 
-<div class="checkout-grid">
-    <div class="order-summary">
-        <h2 style="margin-top:0">Tu <span class="brand-accent">Pedido</span></h2>
-        <div class="summary-item">
-            <span>Concepto</span>
-            <span id="display-type" style="color: white;">-</span>
-        </div>
-        <div class="summary-item">
-            <span>Discord ID</span>
-            <span id="display-discord" style="color: #94a3b8;">-</span>
-        </div>
-        <div class="summary-item total-row" style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem;">
-            <span>Total a Pagar</span>
-            <span id="display-amount" style="color: var(--accent-purple);">$0.00</span>
-        </div>
-    </div>
-
-    <div class="payment-methods">
-        <h3 style="margin-top:0">Método de <span class="brand-accent">Pago</span></h3>
-        
-        <div id="paypal-button-container"></div>
-
-        <div class="divider">o paga con tarjeta global</div>
-
-        <div id="card-form">
-            <label class="field-label">Nombre del Titular</label>
-            <input type="text" id="card-holder-name" placeholder="Nombre completo" class="paypal-input-frame" style="width:100%; color: white; outline: none; box-sizing: border-box;">
-
-            <label class="field-label">Número de Tarjeta</label>
-            <div id="card-number-field" class="paypal-input-frame"></div>
-
-            <div class="input-row">
-                <div>
-                    <label class="field-label">Vencimiento</label>
-                    <div id="card-expiry-field" class="paypal-input-frame"></div>
-                </div>
-                <div>
-                    <label class="field-label">CVV</label>
-                    <div id="card-cvv-field" class="paypal-input-frame"></div>
-                </div>
+<main>
+    <div class="checkout-layout">
+        <div class="box-details">
+            <div class="safe-notice">
+                <div class="logo-box-mini">G</div>
+                <span><strong>Seguridad TLS 1.3:</strong> Tu conexión está encriptada punto a punto. No almacenamos datos bancarios.</span>
             </div>
 
-            <button id="multi-card-field-button">Confirmar Pago</button>
+            <h2 style="font-size: 2rem; margin: 0;">Confirmación</h2>
+            <p style="color: var(--glass-text); margin-top: 5px;">Verifica tu orden antes del procesamiento final.</p>
+            
+            <div id="applied-promo" class="coupon-applied">
+                PROMO: <span id="promo-name">N/A</span>
+            </div>
+
+            <div class="items-container" id="items-list">
+                </div>
+
+            <div class="total-wrapper">
+                <span style="color: var(--glass-text); font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">Monto Final</span>
+                <span class="total-price" id="display-amount">$0.00</span>
+            </div>
         </div>
 
-        <div id="payment-status-container" style="text-align: center; margin-top: 1rem;">
-            <div id="loading-spinner" class="spinner"></div>
-            <div id="payment-status"></div>
+        <div class="box-payment">
+            <div class="payment-header">
+                <h3>Portal de Pago</h3>
+                <p>Procesamiento seguro vía PayPal</p>
+            </div>
+
+            <div id="paypal-button-container"></div>
+
+            <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                <p style="font-size: 0.7rem; color: #475569; line-height: 1.6; text-align: justify;">
+                    Al completar la transacción, el sistema automatizado enviará los créditos al Discord ID vinculado. Este proceso suele tardar menos de 60 segundos.
+                </p>
+            </div>
         </div>
     </div>
-</div>
+</main>
 
 <footer class="main-footer">
     <div class="footer-container container">
@@ -278,105 +297,82 @@
     const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
     const db = getFirestore(app);
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const amount = urlParams.get('amount') || "0.00";
-    const txnRef = urlParams.get('txn_ref');
-    const discordId = urlParams.get('discord_id');
+    const params = new URLSearchParams(window.location.search);
+    const amount = params.get('amount') || "0.00";
+    const type = params.get('type') || "donacion";
+    const txnRef = params.get('txn_ref');
+    const discordId = params.get('discord_id');
+    const promoCode = params.get('promo'); // Opcional: Para mostrar código aplicado
 
-    document.getElementById('display-amount').innerText = `$${amount} USD`;
-    document.getElementById('display-type').innerText = urlParams.get('type') || "Donación";
-    document.getElementById('display-discord').innerText = discordId || "No identificado";
+    document.getElementById('display-amount').innerText = `$${amount}`;
 
-    const statusMsg = document.getElementById('payment-status');
-    const loader = document.getElementById('loading-spinner');
+    // Mostrar código si existe
+    if(promoCode) {
+        document.getElementById('applied-promo').style.display = 'block';
+        document.getElementById('promo-name').innerText = promoCode.toUpperCase();
+    }
 
-    // 1. Configuración de Tarjetas con Estilos Dark Mode
-    if (paypal.CardFields) {
-        const cardFields = paypal.CardFields({
-            style: {
-                input: {
-                    'font-size': '16px',
-                    'font-family': 'Inter, sans-serif',
-                    'color': '#ffffff', // Texto Blanco
-                    'background': 'transparent'
-                },
-                '.invalid': { 'color': '#ef4444' }
-            },
-            createOrder: (data, actions) => {
-                return actions.order.create({
-                    purchase_units: [{ amount: { value: amount } }]
-                });
-            },
-            onApprove: (data, actions) => {
-                return actions.order.capture().then(completarTransaccion);
-            },
-            onError: (err) => {
-                loader.style.display = "none";
-                statusMsg.innerHTML = `<span style="color: #ef4444;">Error en los datos de la tarjeta.</span>`;
-            }
-        });
+    const listContainer = document.getElementById('items-list');
 
-        if (cardFields.isEligible()) {
-            cardFields.NumberField().render('#card-number-field');
-            cardFields.ExpiryField().render('#card-expiry-field');
-            cardFields.CVVField().render('#card-cvv-field');
-
-            document.getElementById('multi-card-field-button').addEventListener('click', () => {
-                const name = document.getElementById('card-holder-name').value;
-                if (!name) return alert("Ingresa el nombre del titular");
-                
-                loader.style.display = "block";
-                statusMsg.innerText = "Verificando tarjeta...";
-                cardFields.submit({ cardholderName: name });
-            });
+    if (type === "donacion") {
+        listContainer.innerHTML = `
+            <div class="item-row">
+                <div class="item-info">
+                    <span class="item-name">Aporte Voluntario</span>
+                    <span class="item-qty">RBXGANG Community Support</span>
+                </div>
+                <span class="item-price">$${amount}</span>
+            </div>
+        `;
+    } else {
+        const cart = JSON.parse(localStorage.getItem('cart_list') || "[]");
+        if (cart.length > 0) {
+            listContainer.innerHTML = cart.map(item => `
+                <div class="item-row">
+                    <div class="item-info">
+                        <span class="item-name">${item.name || 'Producto'}</span>
+                        <span class="item-qty">Paquete Individual</span>
+                    </div>
+                    <span class="item-price">$${item.price || '0.00'}</span>
+                </div>
+            `).join('');
+        } else {
+            listContainer.innerHTML = '<p style="text-align:center; color:#64748b;">No hay productos registrados</p>';
         }
     }
 
-    // 2. Botón estándar de PayPal
     paypal.Buttons({
-        style: { shape: 'rect', color: 'blue', layout: 'vertical', label: 'pay' },
-        createOrder: (data, actions) => {
-            return actions.order.create({ purchase_units: [{ amount: { value: amount } }] });
-        },
-        onApprove: (data, actions) => {
-            return actions.order.capture().then(completarTransaccion);
-        }
+        style: { layout: 'vertical', color: 'blue', shape: 'pill', label: 'pay' },
+        createOrder: (data, actions) => actions.order.create({ purchase_units: [{ amount: { value: amount } }] }),
+        onApprove: (data, actions) => actions.order.capture().then(finalizar)
     }).render('#paypal-button-container');
 
-    // 3. Función Finalizadora
-    async function completarTransaccion(details) {
-        loader.style.display = "block";
-        statusMsg.innerText = "Sincronizando con tu cuenta...";
-        
+    function generateGangID() {
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const numbers = "0123456789";
+        const L = () => letters.charAt(Math.floor(Math.random() * letters.length));
+        const N = () => numbers.charAt(Math.floor(Math.random() * numbers.length));
+        return `GANG_${L()}${L()}${L()}${L()}_${L()}${L()}${N()}${N()}`;
+    }
+
+    async function finalizar(details) {
+        const gangPaymentId = generateGangID();
         try {
-            const txnDocRef = doc(db, "transactions", txnRef);
-            await updateDoc(txnDocRef, {
+            const docRef = doc(db, "transactions", txnRef);
+            await updateDoc(docRef, {
                 status: "completed",
                 paypalOrderId: details.id,
-                method: details.payment_source?.card ? "card" : "paypal",
-                completedAt: serverTimestamp()
+                gangId: gangPaymentId,
+                completedAt: serverTimestamp(),
+                appliedPromo: promoCode || "none"
             });
 
-            // Actualizar estado de donador en el usuario
-            if (discordId) {
-                const userRef = doc(db, "users", discordId);
-                await updateDoc(userRef, { 
-                    isDonator: true, 
-                    lastDonation: serverTimestamp() 
-                });
-            }
+            if (discordId) await updateDoc(doc(db, "users", discordId), { isDonator: true });
+            if (type === "compra") localStorage.removeItem('cart_list');
 
-            loader.style.display = "none";
-            statusMsg.innerHTML = `<span style="color: #10b981; font-weight:bold;">¡PAGO EXITOSO! Redirigiendo...</span>`;
-            
-            setTimeout(() => {
-                window.location.href = "/dashboard?payment=success";
-            }, 2500);
-
+            window.location.href = `/cart/checkout/payment?status=success&gangId=${gangPaymentId}&amount=${amount}`;
         } catch (e) {
-            console.error(e);
-            loader.style.display = "none";
-            statusMsg.innerHTML = `<span style="color: #ef4444;">Error al guardar. ID de Pago: ${details.id}</span>`;
+            window.location.href = `/cart/checkout/payment?status=failed&gangId=${gangPaymentId}`;
         }
     }
 </script>

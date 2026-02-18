@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>RBXGang - Plans</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        :root {
+            --accent: #a78bfa;
+            --accent-glow: rgba(167, 139, 250, 0.4);
+            --bg: #05070a;
+            --card: #0f121d;
+            --border: rgba(167, 139, 250, 0.1);
+            --text-dim: #64748b;
+        }
+
+        body {
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 50% -10%, rgba(167, 139, 250, 0.1) 0%, transparent 50%),
+                linear-gradient(rgba(167, 139, 250, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(167, 139, 250, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #fff;
+            margin: 0;
+        }
+
+        /* --- LOGOS CODIFICADOS --- */
+        .gang-icon { width: 40px; height: 40px; background: var(--accent); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: inline-block; }
+
+        /* --- HERO SECTION --- */
+        .hero-premium {
+            text-align: center;
+            padding: 140px 20px 80px;
+        }
+        .badge-premium {
+            background: rgba(167, 139, 250, 0.1);
+            border: 1px solid var(--accent);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .hero-premium h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; margin: 0; letter-spacing: -2px; }
+
+        /* --- PASOS DE COMPRA --- */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1000px;
+            margin: -40px auto 60px;
+            gap: 20px;
+            padding: 0 20px;
+        }
+        .step-card {
+            background: rgba(15, 18, 29, 0.5);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .step-num { font-size: 1.5rem; font-weight: 900; color: rgba(167, 139, 250, 0.3); }
+        .step-text h5 { margin: 0; font-size: 1rem; }
+        .step-text p { margin: 0; font-size: 0.8rem; color: var(--text-dim); }
+
+        /* --- LAYOUT PRINCIPAL --- */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+
+        /* --- PLANES --- */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .tier-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 40px;
+            position: relative;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .tier-card:hover { 
+            border-color: var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+        .tier-card h3 { font-size: 1.8rem; margin: 0; }
+        .tier-price { font-size: 3rem; font-weight: 900; margin: 20px 0; color: #fff; }
+        .tier-price span { font-size: 1rem; color: var(--text-dim); }
+
+        .benefit-list { list-style: none; padding: 0; margin: 30px 0; }
+        .benefit-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; font-size: 0.95rem; }
+        .benefit-list svg { color: var(--accent); flex-shrink: 0; }
+
+        .btn-add-cart {
+            width: 100%;
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-add-cart:hover { background: var(--accent); transform: translateY(-3px); }
+
+        /* --- MINI CART / RESUMEN --- */
+        .sticky-summary {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 30px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        .summary-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
+        .summary-items { margin-bottom: 25px; border-top: 1px solid var(--border); }
+        .cart-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+
+        /* --- SEGURIDAD --- */
+        .security-info {
+            margin-top: 80px;
+            padding: 60px;
+            background: rgba(167, 139, 250, 0.02);
+            border-radius: 40px;
+            border: 1px solid var(--border);
+        }
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+        }
+        .sec-box h4 { font-size: 1.4rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+
+        @media (max-width: 1000px) {
+            .main-layout { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="topbar">
+    <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+    <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/donate/">Donar</a></li>
+        <li><a href="/plans/">Planes</a></li>
+        <li><a href="/events">Eventos</a></li>
+        <li><a href="/help/us">Nosotros</a></li>
+    </ul>
+    
+    <div class="auth-container">
+        <button id="auth-btn" class="btn-login"></button>
+        <div id="auth-dropdown" class="dropdown-content">
+            <a href="/dashboard"><i class="icon-dashboard"></i> Panel de Control</a>
+            <a href="/profile"><i class="icon-user"></i> Mi Perfil</a>
+            <hr>
+            <a href="#" onclick="logout()" class="logout-link">Cerrar Sesión</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero-premium">
+    <div class="badge-premium">Inversión Segura</div>
+    <h1>Desbloquea el Poder de la <span style="color:var(--accent)">Gang.</span></h1>
+    <p style="color:var(--text-dim); max-width: 600px; margin: 20px auto;">Nuestra infraestructura garantiza que cada crédito adquirido se traduzca en ventajas reales dentro de la comunidad.</p>
+</header>
+
+<div class="process-steps">
+    <div class="step-card">
+        <span class="step-num">01</span>
+        <div class="step-text"><h5>Selección</h5><p>Elige tu tier de beneficios.</p></div>
+    </div>
+    <div class="step-card">
+        <span class="step-num">02</span>
+        <div class="step-text"><h5>Checkout</h5><p>Pago seguro vía PayPal.</p></div>
+    </div>
+    <div class="step-card">
+        <span class="step-num">03</span>
+        <div class="step-text"><h5>Activación</h5><p>Créditos automáticos.</p></div>
+    </div>
+</div>
+
+<main class="main-layout">
+    <section class="tier-grid">
+        <div class="tier-card">
+            <h3>Street Member</h3>
+            <div class="tier-price">$9.99 <span>/ saldo</span></div>
+            <ul class="benefit-list">
+                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> 1,200 Créditos Gang</li>
+                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Badge "Street" en perfil</li>
+                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Acceso a canales de Drop</li>
+            </ul>
+            <button class="btn-add-cart" onclick="addToCart('Street Member', 9.99)">Añadir al Carrito</button>
+        </div>
+
+        <div class="tier-card" style="border-color: var(--accent);">
+            <div style="position:absolute; top:20px; right:20px; background:var(--accent); color:#000; padding:4px 12px; border-radius:8px; font-size:0.7rem; font-weight:800;">TOP VENTAS</div>
+            <h3>Elite Gang</h3>
+            <div class="tier-price">$24.99 <span>/ saldo</span></div>
+            <ul class="benefit-list">
+                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> 3,500 Créditos Gang</li>
+                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Multiplicador Eventos x1.3</li>
+                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Rol VIP en Discord</li>
+                <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Retiros Prioritarios</li>
+            </ul>
+            <button class="btn-add-cart" onclick="addToCart('Elite Gang', 24.99)" style="background:var(--accent)">Añadir al Carrito</button>
+        </div>
+    </section>
+
+    <aside class="sticky-summary">
+        <div class="summary-header">
+            <h4 style="margin:0">Tu Carrito</h4>
+            <div class="gang-icon"></div>
+        </div>
+        <div id="cart-list" class="summary-items">
+            </div>
+        <div style="display:flex; justify-content:space-between; font-size:1.4rem; font-weight:900; margin-bottom:25px;">
+            <span>Total</span>
+            <span id="total-val">$0.00</span>
+        </div>
+        <button class="btn-add-cart" style="background:var(--accent)" onclick="checkout()">Completar Orden</button>
+        <p style="text-align:center; font-size:0.75rem; color:var(--text-dim); margin-top:15px;">Transferencia protegida por encriptación SSL</p>
+    </aside>
+</main>
+
+<section class="main-layout">
+    <div class="security-info" style="grid-column: span 2;">
+        <div class="security-grid">
+            <div class="sec-box">
+                <h4><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg> Manejo de Fondos</h4>
+                <p style="color:var(--text-dim); line-height:1.6;">En RBXGang utilizamos un sistema de <strong>Liquidación Diferida</strong>. Los fondos se procesan a través de PayPal y se depositan en una cuenta de fideicomiso (Escrow) que solo libera los créditos una vez que la API de Firebase confirma la integridad del usuario.</p>
+            </div>
+            <div class="sec-box">
+                <h4><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> Transparencia Total</h4>
+                <p style="color:var(--text-dim); line-height:1.6;">Cada transacción genera una ID de Seguimiento única (<strong>GANG_ID</strong>). Si existe un retraso mayor a 5 minutos, nuestro bot de soporte en Discord detecta la discrepancia y realiza el abono de forma manual tras verificar el recibo de PayPal.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="main-footer">
+    <div class="footer-container container">
+        <div class="footer-col brand-col">
+            <div class="logo">RBX<span class="brand-accent">Gang</span></div>
+            <p>La plataforma más segura y rápida para potenciar tu experiencia en Roblox. Únete a miles de usuarios y empieza a ganar hoy.</p>
+            <div class="social-links">
+                <a href="/Social/" class="social-icon">Discord</a>
+                <a href="/Social" class="social-icon">TikTok</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Plataforma</h4>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/help/how-it-works/">Cómo funciona</a></li>
+                <li><a href="/Trust/">Por qué elegirnos</a></li>
+                <li><a href="/events">Eventos</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="/legal/Terms-of-Service">Términos de Servicio</a></li>
+                <li><a href="/legal/Privacy-Policy">Política de Privacidad</a></li>
+                <li><a href="/help/center">Centro de Ayuda</a></li>
+                <li><a href="/help/contact">Contacto</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container footer-bottom-content">
+            <p>&copy; 2026 RBXGang. Todos los derechos reservados.</p>
+            <p class="disclaimer">Este sitio no está afiliado, patrocinado ni respaldado por Roblox Corporation.</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="/js/script.js"></script>
+
+<script>
+    function renderCart() {
+        const cart = JSON.parse(localStorage.getItem('cart_list') || "[]");
+        const list = document.getElementById('cart-list');
+        const total = document.getElementById('total-val');
+        
+        list.innerHTML = cart.length ? '' : '<p style="padding:20px 0; color:var(--text-dim)">Vacío...</p>';
+        let sum = 0;
+        
+        cart.forEach((item, i) => {
+            sum += item.price;
+            list.innerHTML += `
+                <div class="cart-row">
+                    <span>${item.name}</span>
+                    <span style="color:var(--accent)">$${item.price} <button onclick="remove(${i})" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-weight:bold; margin-left:8px;">×</button></span>
+                </div>
+            `;
+        });
+        total.innerText = `$${sum.toFixed(2)}`;
+    }
+
+    function addToCart(name, price) {
+        let cart = JSON.parse(localStorage.getItem('cart_list') || "[]");
+        cart.push({name, price});
+        localStorage.setItem('cart_list', JSON.stringify(cart));
+        renderCart();
+    }
+
+    function remove(i) {
+        let cart = JSON.parse(localStorage.getItem('cart_list') || "[]");
+        cart.splice(i, 1);
+        localStorage.setItem('cart_list', JSON.stringify(cart));
+        renderCart();
+    }
+
+    function checkout() {
+        const cart = JSON.parse(localStorage.getItem('cart_list') || "[]");
+        const userData = JSON.parse(localStorage.getItem('rbx_user'));
+
+        // 1. Validar carrito
+        if(!cart.length) return alert("Selecciona al menos un plan para continuar.");
+
+        // 2. Validar sesión (Necesitamos el Discord ID para el uid)
+        if(!userData || !userData.discordId) {
+            alert("Debes iniciar sesión con Discord para procesar tu compra.");
+            window.loginWithDiscord(); // Asumiendo que esta función es global por tu script de Firebase
+            return;
+        }
+
+        // 3. Generar parámetros
+        const transactionId = "GANG_" + Math.random().toString(36).substr(2, 9).toUpperCase();
+        const discordId = userData.discordId;
+        
+        // 4. Redirigir con el formato solicitado
+        // Formato: /cart/?id=TRANSACTION_ID&items=local&uid=DISCORD_ID
+        window.location.href = `/cart/?id=${transactionId}&items=local&uid=${discordId}`;
+    }
+
+    // Inicializar al cargar
+    renderCart();
+</script>
+</body>
+</html>
