@@ -13,7 +13,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, ''));
 });
 
-// 1. CORRECCIÓN DE CORS: Permitir tu dominio real y local
 const allowedOrigins = ['http://127.0.0.1:5500', 'https://rbxgang.xyz', 'https://rbxgang-web.onrender.com'];
 app.use(cors({
     origin: function (origin, callback) {
@@ -27,10 +26,9 @@ app.use(cors({
 
 app.use(express.json());
 
-// 2. SEGURIDAD: Usa variables de entorno en producción (Render -> Settings -> Env Vars)
 const CLIENT_ID = process.env.CLIENT_ID || '1472654015702499550';
 const CLIENT_SECRET = process.env.CLIENT_SECRET || 'H2SW3Kn6iAYih2CLswFCVNGHAbx1olIz';
-// La REDIRECT_URI debe cambiar según el entorno
+
 const REDIRECT_URI = process.env.REDIRECT_URI || 'https://rbxgang.xyz/auth/set-up/'; 
 
 app.post('/api/auth/discord', async (req, res) => {
@@ -60,6 +58,5 @@ app.post('/api/auth/discord', async (req, res) => {
     }
 });
 
-// 3. PUERTO DINÁMICO: Render asigna el puerto, no puedes usar 3000 fijo
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Servidor en puerto ${PORT}`));
