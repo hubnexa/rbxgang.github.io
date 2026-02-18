@@ -3,7 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donar | RBXGang</title>
+    <title>RBXGang - Donate!</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">
     <link rel="stylesheet" href="/css/style.css">
     <style>
         /* Estilos específicos para la sección de donación */
@@ -237,9 +258,9 @@
 
     <script type="module" src="/js/script.js"></script>
 
-    <script type="module">
+<script type="module">
     import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, doc, setDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getFirestore, collection, query, where, getDocs, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
     const firebaseConfig = {
@@ -251,7 +272,6 @@
         appId: "1:35329039357:web:2430fb26473ef1e9fd1794"
     };
 
-    // SOLUCIÓN AL ERROR DE DUPLICADO: Solo inicializa si no existe
     const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
     const db = getFirestore(app);
     const auth = getAuth(app);
@@ -259,62 +279,111 @@
     const btnDonar = document.getElementById('btn-process-donation');
     const amountInput = document.getElementById('donation-amount');
     const statusMsg = document.getElementById('donation-status');
-    let userLogueado = null;
+    let userDataRecord = null;
 
-    // SOLUCIÓN AL ERROR DE REFERENCEERROR: Exponer a window
     window.selectPack = (amount) => {
-        amountInput.value = amount;
-        amountInput.focus();
-        amountInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (amountInput) {
+            amountInput.value = amount;
+            amountInput.focus();
+            amountInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
     };
 
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            userLogueado = user;
+    async function buscarUsuarioPorBID() {
+        const localBid = localStorage.getItem('device_bid');
+        if (!localBid) return null;
+
+        try {
+            const usersRef = collection(db, "users");
+            const q = query(usersRef, where("browserId", "==", localBid));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                return { 
+                    id: querySnapshot.docs[0].id, 
+                    ...querySnapshot.docs[0].data() 
+                };
+            }
+            return null;
+        } catch (e) {
+            console.error("Error buscando dispositivo:", e);
+            return null;
+        }
+    }
+
+    const updateUI = async () => {
+        statusMsg.innerHTML = `<span style="color: #94a3b8;">Sincronizando identidad...</span>`;
+        const dbUser = await buscarUsuarioPorBID();
+
+        if (dbUser) {
+            userDataRecord = dbUser;
             btnDonar.disabled = false;
             btnDonar.style.opacity = "1";
-            statusMsg.innerHTML = `<span style="color: #94a3b8;">Listo para donar como <b>${user.displayName}</b></span>`;
+            btnDonar.style.cursor = "pointer";
+            statusMsg.innerHTML = `<span style="color: #10b981;">Sesión validada: <b>${dbUser.discordName || dbUser.robloxUser}</b></span>`;
         } else {
-            userLogueado = null;
+            userDataRecord = null;
             btnDonar.disabled = true;
             btnDonar.style.opacity = "0.5";
-            statusMsg.innerHTML = `<span style="color: #ef4444;">Inicia sesión para continuar.</span>`;
+            btnDonar.style.cursor = "not-allowed";
+            statusMsg.innerHTML = `<span style="color: #ef4444;">Dispositivo no vinculado. Reingresa a la plataforma.</span>`;
         }
+    };
+
+    onAuthStateChanged(auth, () => {
+        updateUI();
     });
 
     btnDonar.addEventListener('click', async () => {
+        if (!userDataRecord) return;
+
         const monto = parseFloat(amountInput.value);
         if (!monto || monto <= 0) {
-            statusMsg.innerHTML = `<span style="color: #ef4444;">Monto inválido.</span>`;
+            statusMsg.innerHTML = `<span style="color: #ef4444;">Monto no válido.</span>`;
             return;
         }
 
-        btnDonar.innerText = "Preparando...";
+        btnDonar.innerText = "Registrando transacción...";
         btnDonar.disabled = true;
 
         try {
-            const docRef = doc(db, "donations", userLogueado.uid);
-            await setDoc(docRef, {
-                displayName: userLogueado.displayName,
-                email: userLogueado.email,
-                ultimaIntencion: serverTimestamp(),
-                montoPendiente: monto
-            }, { merge: true });
-
-            statusMsg.innerHTML = `<span style="color: var(--primary);">Redirigiendo...</span>`;
+            const transactionId = `txn_${Date.now()}`;
+            const discordId = userDataRecord.discordId || userDataRecord.id;
             
-            // Redirección final
+            // 1. Registro detallado en Firestore
+            const docRef = doc(db, "transactions", transactionId);
+            await setDoc(docRef, {
+                transactionType: "donacion", // Tipo: donacion
+                amount: monto,              // Monto
+                discordId: discordId,       // Discord ID
+                robloxUser: userDataRecord.robloxUser || "N/A",
+                browserId: userDataRecord.browserId,
+                status: "pending",
+                createdAt: serverTimestamp()
+            });
+
+            statusMsg.innerHTML = `<span style="color: var(--primary);">Validación exitosa. Abriendo Checkout...</span>`;
+            
+            // 2. Redirección con parámetros solicitados
+            const params = new URLSearchParams({
+                type: "donacion",
+                amount: monto,
+                discord_id: discordId,
+                txn_ref: transactionId
+            });
+
             setTimeout(() => {
-                window.location.href = `/cart/checkout?amount=${monto}&user=${userLogueado.uid}`;
+                window.location.href = `/cart/checkout?${params.toString()}`;
             }, 800);
 
         } catch (error) {
             console.error(error);
-            statusMsg.innerHTML = `<span style="color: #ef4444;">Error de conexión.</span>`;
+            statusMsg.innerHTML = `<span style="color: #ef4444;">Error en el proceso de seguridad.</span>`;
             btnDonar.disabled = false;
             btnDonar.innerText = "Donar Ahora";
         }
     });
 </script>
+
 </body>
 </html>
