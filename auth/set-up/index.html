@@ -3,135 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RBXGang - Verificación de Acceso</title>
-    
-    <meta name="description" content="Plataforma segura para la comunidad de Roblox.">
-    <meta name="theme-color" content="#8b5cf6">
-    <link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+   <title>RBXGang - Earn Robux!</title>
+<meta name="title" content="RBXGang - ¡Gana robux!">
+<meta name="description" content="La plataforma más segura y rápida para la comunidad de Roblox. Únete a la Gang, participa en eventos y obtén recompensas reales sin compartir tu contraseña.">
+<meta name="keywords" content="rbx, rewards, roblox community, rbxgang, recompensas, robux safe">
+<meta name="robots" content="index, follow">
+<meta name="language" content="Spanish">
+<meta name="author" content="RBXGang Team">
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rbxgang.xyz/">
+<meta property="og:title" content="RBXGang - Únete a la plataforma más confiable">
+<meta property="og:description" content="Sistema de recompensas automatizado y seguro. Sin riesgo de ban y con soporte 24/7.">
+<meta property="og:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://rbxgang.xyz/">
+<meta property="twitter:title" content="RBXGang - La comunidad número 1">
+<meta property="twitter:description" content="Obtén 200 créditos gratis por el evento de lanzamiento. ¡Solo hoy en rbxgang.xyz!">
+<meta property="twitter:image" content="https://rbxgang.xyz/assets/banner-preview.png">
+
+<link rel="icon" type="image/x-icon" href="https://rbxgang.xyz/assets/logo.png">
+<meta name="theme-color" content="#8b5cf6">    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg: #0b0f1a;
-            --card: rgba(22, 27, 44, 0.8);
-            --accent: #a78bfa;
-            --success: #4ade80;
-            --error: #f87171;
-            --text-dim: #94a3b8;
-            --border: rgba(167, 139, 250, 0.15);
+            --bg: #05060f;
+            --accent: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.4);
+            --card: rgba(13, 15, 28, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+            --success: #10b981;
+            --error: #ef4444;
+            --text-dim: #64748b;
         }
 
         body {
             background-color: var(--bg);
             color: #fff;
-            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
             overflow: hidden;
-            background-image: radial-gradient(circle at top right, rgba(167, 139, 250, 0.05), transparent);
         }
 
-        /* LOGO CODIFICADO */
-        .gang-logo-raw {
-            width: 50px; height: 50px; background: var(--accent);
-            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 900; color: #000; margin: 0 auto 20px;
+        /* FONDO ANIMADO DE PARTÍCULAS */
+        .bg-mesh {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
+            z-index: -1;
         }
 
+        .bg-mesh::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
         .setup-card {
             background: var(--card);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
             width: 90%;
-            max-width: 420px;
+            max-width: 440px;
             padding: 40px;
-            border-radius: 32px;
+            border-radius: 35px;
             border: 1px solid var(--border);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+            box-shadow: 0 25px 80px rgba(0,0,0,0.5);
             text-align: center;
+            position: relative;
+            animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* LOGO CODIFICADO G */
+        .gang-logo {
+            width: 65px; height: 65px;
+            background: var(--accent);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; font-weight: 800; color: #000;
+            margin: 0 auto 30px;
+            box-shadow: 0 0 30px var(--accent-glow);
+            animation: pulseGlow 3s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+            50% { box-shadow: 0 0 40px var(--accent-glow); }
         }
 
         .status-screen { display: none; }
-        .status-screen.active { display: block; animation: slideUp 0.4s ease-out; }
+        .status-screen.active { display: block; animation: contentSlide 0.5s ease; }
 
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes contentSlide {
+            from { opacity: 0; transform: translateY(10px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
 
-        /* PERFIL DISCORD */
-        .discord-profile { 
-            display: flex; align-items: center; gap: 15px; background: rgba(0,0,0,0.2); 
-            padding: 15px; border-radius: 20px; margin-bottom: 25px; border: 1px solid var(--border); 
+        /* PERFIL ESTILO GLASS */
+        .discord-profile {
+            display: flex; align-items: center; gap: 15px;
+            background: rgba(255,255,255,0.03);
+            padding: 16px; border-radius: 22px; margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.05);
             text-align: left;
         }
-        .discord-profile img { width: 50px; height: 50px; border-radius: 12px; border: 2px solid var(--accent); }
-
-        /* FORMULARIO */
-        .input-group { text-align: left; margin-bottom: 15px; }
-        .input-group label { font-size: 0.7rem; color: var(--accent); font-weight: 800; text-transform: uppercase; margin-bottom: 8px; display: block; }
-        
-        select, input[type="text"] {
-            width: 100%; padding: 14px; background: rgba(0,0,0,0.4); border: 1px solid var(--border);
-            border-radius: 12px; color: #fff; font-size: 0.9rem; outline: none; box-sizing: border-box;
+        .discord-profile img {
+            width: 55px; height: 55px; border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border: 2px solid var(--accent);
         }
 
-        .date-selectors { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 8px; }
+        /* INPUTS Y FORMULARIOS */
+        .input-group { text-align: left; margin-bottom: 18px; }
+        .input-group label {
+            font-size: 0.65rem; color: var(--accent); font-weight: 800;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            margin-left: 5px; margin-bottom: 8px; display: block;
+        }
+
+        input[type="text"], select {
+            width: 100%; padding: 16px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 16px; color: #fff;
+            font-size: 0.95rem; transition: 0.3s;
+            box-sizing: border-box; outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--accent);
+            background: rgba(139, 92, 246, 0.05);
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
+        }
+
+        .date-selectors { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 10px; }
 
         /* BOTONES */
         .btn-main {
-            width: 100%; padding: 18px; background: #fff; color: #000; border: none;
-            border-radius: 16px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 20px;
-            transition: 0.2s;
+            width: 100%; padding: 20px;
+            background: #fff; color: #000;
+            border: none; border-radius: 18px;
+            font-weight: 800; font-size: 0.9rem;
+            text-transform: uppercase; cursor: pointer;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 20px;
         }
-        .btn-main:disabled { opacity: 0.1; cursor: not-allowed; }
-        
+
+        .btn-main:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255,255,255,0.15);
+        }
+
+        .btn-main:disabled { opacity: 0.15; filter: grayscale(1); cursor: not-allowed; }
+
         .toggle-btn {
-            background: rgba(167, 139, 250, 0.05); border: 1px solid var(--border);
-            color: var(--text-dim); padding: 12px; border-radius: 12px; font-size: 0.75rem;
-            cursor: pointer; width: 100%; margin-bottom: 8px; text-align: left; font-weight: 700;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            color: var(--text-dim); padding: 14px;
+            border-radius: 15px; font-size: 0.75rem;
+            cursor: pointer; width: 100%; margin-bottom: 10px;
+            text-align: left; font-weight: 600; transition: 0.3s;
         }
-        .toggle-btn.checked { background: rgba(167, 139, 250, 0.2); color: #fff; border-color: var(--accent); }
 
-        /* INFO BOXES */
-        .info-pill { background: rgba(0,0,0,0.3); padding: 10px; border-radius: 12px; font-size: 0.7rem; color: var(--text-dim); margin: 15px 0; }
-        .info-pill b { color: #fff; }
+        .toggle-btn.checked {
+            background: rgba(139, 92, 246, 0.15);
+            border-color: var(--accent); color: #fff;
+        }
 
-        /* PROGRESS BAR REDIRECT */
-        .timer-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.05); border-radius: 10px; margin-top: 20px; overflow: hidden; }
-        .timer-progress { width: 100%; height: 100%; background: var(--success); transition: width 5s linear; }
+        /* CONSOLA DE DATOS */
+        .data-console {
+            font-family: 'Fira Code', monospace;
+            background: #000;
+            padding: 12px; border-radius: 14px;
+            font-size: 0.65rem; color: var(--accent);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            margin: 20px 0; text-align: left;
+        }
 
-        .icon-state { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-weight: 900; font-size: 1.2rem; }
+        /* LOADER ANIMADO */
+        .custom-loader {
+            width: 40px; height: 40px;
+            border: 3px solid rgba(139, 92, 246, 0.1);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .timer-bar { 
+            width: 100%; height: 5px; background: rgba(255,255,255,0.05); 
+            border-radius: 10px; margin-top: 25px; overflow: hidden;
+        }
+        .timer-progress { 
+            width: 100%; height: 100%; background: var(--success); 
+            transition: width 5s linear; 
+        }
+
     </style>
 </head>
 <body>
 
+<div class="bg-mesh"></div>
+
 <div class="setup-card">
-    <div class="gang-logo-raw">G</div>
+    <div class="gang-logo">G</div>
 
     <div id="screen-loading" class="status-screen active">
-        <p style="color: var(--text-dim)">Sincronizando datos...</p>
+        <div class="custom-loader"></div>
+        <p style="color: var(--text-dim); letter-spacing: 1px; font-size: 0.8rem;">AUTENTICANDO PROTOCOLO...</p>
     </div>
 
     <div id="screen-found" class="status-screen">
-        <div class="icon-state" style="border: 2px solid var(--success); color: var(--success);">✓</div>
-        <h3 style="color: var(--success); margin: 0;">¡Sesión Activa!</h3>
-        <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 20px;">Redirigiendo automáticamente...</p>
+        <h3 style="color: var(--success); margin: 0 0 10px 0; font-size: 1.4rem;">IDENTIDAD CONFIRMADA</h3>
+        <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 25px;">Sincronizando con el servidor central...</p>
         
         <div class="discord-profile">
             <img class="d-avatar-img" src="" alt="Avatar">
             <div>
-                <div class="d-username-txt" style="font-weight: 800;">-</div>
-                <div style="font-size: 0.7rem; color: var(--success);">Usuario Registrado</div>
+                <div class="d-username-txt" style="font-weight: 800; font-size: 1.1rem;">-</div>
+                <div style="font-size: 0.65rem; color: var(--success); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">✓ Acceso Permitido</div>
             </div>
         </div>
 
-        <div class="info-pill" style="text-align: left;">
-            IP: <b class="info-ip-txt">...</b><br>
-            BID: <b class="info-bid-txt">...</b>
+        <div class="data-console">
+            > NODE_IP: <span class="info-ip-txt">...</span><br>
+            > DEVICE_ID: <span class="info-bid-txt">...</span>
         </div>
 
         <div class="timer-bar"><div id="p-bar" class="timer-progress"></div></div>
-        <p style="font-size: 0.75rem; margin-top: 10px; color: var(--text-dim);">Entrando en <span id="cd">5</span>...</p>
+        <p style="font-size: 0.75rem; margin-top: 15px; color: var(--text-dim);">Redirigiendo en <span id="cd" style="color:#fff">5</span>s</p>
     </div>
 
     <div id="screen-register" class="status-screen">
@@ -139,13 +259,13 @@
             <img class="d-avatar-img" src="" alt="Avatar">
             <div style="text-align: left;">
                 <div class="d-username-txt" style="font-weight: 800;">-</div>
-                <button onclick="location.href='/'" style="background:none; border:none; color:var(--error); padding:0; cursor:pointer; font-size: 0.7rem;">¿No eres tú? Salir</button>
+                <button onclick="location.href='/'" style="background:none; border:none; color:var(--error); padding:0; cursor:pointer; font-size: 0.65rem; font-weight: 700;">CANCELAR ENLACE</button>
             </div>
         </div>
 
         <div class="input-group">
-            <label>Usuario de Roblox</label>
-            <input type="text" id="r-user" placeholder="Tu nombre de usuario...">
+            <label>Username Roblox</label>
+            <input type="text" id="r-user" placeholder="Ej: Player123" oninput="validateForm()">
         </div>
 
         <div class="input-group">
@@ -157,21 +277,22 @@
             </div>
         </div>
 
-        <div class="info-pill" style="text-align: left;">
-            IP: <b class="info-ip-txt">...</b> | BID: <b class="info-bid-txt">...</b>
+        <div class="data-console" style="margin: 10px 0 20px 0;">
+            > IP: <span class="info-ip-txt">...</span><br>
+            > BID: <span class="info-bid-txt">...</span>
         </div>
 
-        <button class="toggle-btn" id="btn-tos" onclick="toggleCheck('tos')">ACEPTAR TÉRMINOS Y PRIVACIDAD</button>
-        <button class="toggle-btn" id="btn-ip" onclick="toggleCheck('ip')">AUTORIZAR REGISTRO DE IP (ANTI-MULTI)</button>
+        <button class="toggle-btn" id="btn-tos" onclick="toggleCheck('tos')">ACEPTAR TÉRMINOS Y SERVICIO</button>
+        <button class="toggle-btn" id="btn-ip" onclick="toggleCheck('ip')">AUTORIZAR REGISTRO DE IP</button>
 
-        <button id="btn-create" class="btn-main" disabled onclick="createProfile()">Completar Perfil</button>
+        <button id="btn-create" class="btn-main" disabled onclick="createProfile()">Finalizar Registro</button>
     </div>
 
     <div id="screen-error" class="status-screen">
-        <div class="icon-state" style="border: 2px solid var(--error); color: var(--error);">!</div>
-        <h3 id="err-title">Error</h3>
-        <p id="err-desc" style="color: var(--text-dim); font-size: 0.85rem;"></p>
-        <button class="btn-main" onclick="location.href='/'">Volver</button>
+        <div style="font-size: 3rem; margin-bottom: 15px;">⚠️</div>
+        <h3 id="err-title" style="color: var(--error); margin: 0; text-transform: uppercase; letter-spacing: 1px;"></h3>
+        <p id="err-desc" style="color: var(--text-dim); font-size: 0.85rem; line-height: 1.5; margin: 15px 0 25px 0;"></p>
+        <button class="btn-main" style="background: var(--error); color: #fff;" onclick="location.href='/'">CERRAR PROTOCOLO</button>
     </div>
 </div>
 
@@ -192,7 +313,7 @@
 
     let userData = null;
     let checks = { tos: false, ip: false };
-    const bid = navigator.userAgent.replace(/\D+/g, '').substring(0, 10);
+    const bid = navigator.userAgent.replace(/\D+/g, '').substring(0, 12);
 
     const show = (id) => {
         document.querySelectorAll('.status-screen').forEach(s => s.classList.remove('active'));
@@ -201,49 +322,54 @@
 
     const fillDates = () => {
         const d = document.getElementById('dob-day'), m = document.getElementById('dob-month'), y = document.getElementById('dob-year');
+        d.innerHTML = m.innerHTML = y.innerHTML = "";
         for(let i=1; i<=31; i++) d.innerHTML += `<option value="${i}">${i}</option>`;
         ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'].forEach((v,i) => m.innerHTML += `<option value="${i+1}">${v}</option>`);
         for(let i=2014; i>=1950; i--) y.innerHTML += `<option value="${i}">${i}</option>`;
     };
 
-    window.toggleCheck = (t) => {
-        checks[t] = !checks[t];
-        document.getElementById(`btn-${t}`).classList.toggle('checked');
+    window.validateForm = () => {
         const user = document.getElementById('r-user').value.trim();
         document.getElementById('btn-create').disabled = !(checks.tos && checks.ip && user.length > 2);
     };
 
+    window.toggleCheck = (t) => {
+        checks[t] = !checks[t];
+        document.getElementById(`btn-${t}`).classList.toggle('checked');
+        validateForm();
+    };
+
     async function start() {
         const code = new URLSearchParams(window.location.search).get('code');
-        if (!code) {
-            document.getElementById('err-title').innerText = "Sin Acceso";
-            document.getElementById('err-desc').innerText = "No se detectaron credenciales de Discord.";
-            show('screen-error');
-            return;
-        }
-
+        
         try {
-            const { ip } = await (await fetch('https://api.ipify.org?format=json')).json();
-            document.querySelectorAll('.info-ip-txt').forEach(el => el.innerText = ip);
+            // Captura de IP vía Cloudflare (Resistente)
+            const trace = await fetch('https://1.1.1.1/cdn-cgi/trace').then(r => r.text());
+            const userIp = trace.match(/ip=([0-9.]+)/)[1];
+
+            document.querySelectorAll('.info-ip-txt').forEach(el => el.innerText = userIp);
             document.querySelectorAll('.info-bid-txt').forEach(el => el.innerText = bid);
 
+            if (!code) throw new Error("NO_CODE");
+
+            // Simulación de Auth API (Reemplazar por tu endpoint real)
             const res = await fetch('/api/auth/discord', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ code })
             });
-            if(!res.ok) throw new Error();
+            if(!res.ok) throw new Error("AUTH_FAILED");
             userData = await res.json();
 
-            // Seguridad BID (Multi-cuenta)
-            const q = query(collection(db, "users"), where("browserId", "==", bid));
+            // LÓGICA DE SEGURIDAD: DOBLE IP / MULTIACCIÓN
+            const q = query(collection(db, "users"), where("ip", "==", userIp));
             const snap = await getDocs(q);
             let isMulti = false;
             snap.forEach(d => { if(d.id !== userData.id) isMulti = true; });
 
             if(isMulti) {
-                document.getElementById('err-title').innerText = "Multi-cuenta Detectada";
-                document.getElementById('err-desc').innerText = "Este dispositivo ya está vinculado a otra cuenta de RBXGang.";
+                document.getElementById('err-title').innerText = "Vínculo Duplicado";
+                document.getElementById('err-desc').innerText = "Tu dirección IP ya está asociada a otra cuenta. Solo se permite una cuenta por usuario real.";
                 show('screen-error');
                 return;
             }
@@ -251,11 +377,11 @@
             const userDoc = await getDoc(doc(db, "users", userData.id));
 
             if (userDoc.exists()) {
-                // ESTADO: CUENTA ENCONTRADA
                 show('screen-found');
                 document.querySelectorAll('.d-username-txt').forEach(el => el.innerText = userData.username);
                 document.querySelectorAll('.d-avatar-img').forEach(el => el.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`);
                 
+                // Animación barra y redirección
                 setTimeout(() => document.getElementById('p-bar').style.width = '0%', 100);
                 let timer = 5;
                 const intv = setInterval(() => {
@@ -268,15 +394,15 @@
                     }
                 }, 1000);
             } else {
-                // ESTADO: REGISTRO
                 fillDates();
                 document.querySelectorAll('.d-username-txt').forEach(el => el.innerText = userData.username);
                 document.querySelectorAll('.d-avatar-img').forEach(el => el.src = `https://cdn.discordapp.com/avatars/${userData.id}/${userData.avatar}.png`);
                 show('screen-register');
             }
+
         } catch (e) {
-            document.getElementById('err-title').innerText = "Error Crítico";
-            document.getElementById('err-desc').innerText = "Hubo un fallo en la sincronización con el servidor.";
+            document.getElementById('err-title').innerText = "Acceso Denegado";
+            document.getElementById('err-desc').innerText = "No se ha podido validar tu sesión o los escudos de red han bloqueado la conexión.";
             show('screen-error');
         }
     }
@@ -294,8 +420,7 @@
             dob: `${document.getElementById('dob-day').value}/${document.getElementById('dob-month').value}/${document.getElementById('dob-year').value}`,
             browserId: bid,
             ip: document.querySelector('.info-ip-txt').innerText,
-            createdAt: new Date(),
-            verified: true,
+            createdAt: new Date().toISOString(),
             balance: 0
         };
 

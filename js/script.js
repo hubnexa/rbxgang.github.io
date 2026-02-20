@@ -111,6 +111,8 @@ function renderTopbar() {
             <li><a href="/">Inicio</a></li>
             <li><a href="/plans/">Planes</a></li>
             <li><a href="/events">Eventos</a></li>
+            <li><a href="/help/us">Nosotros</a></li>
+            <li><a href="/transparency">Trasnparencia</a></li>
         </ul>
         <div class="auth-container" id="auth-wrapper"></div>
     `;
